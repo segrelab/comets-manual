@@ -1,0 +1,6 @@
+site_name: COMETS Documentation
+nav:
+ - Home : index.md
+ - About: about.md
+ - Legacy Documentation: legacy-documentation.md
+theme: readthedocs
