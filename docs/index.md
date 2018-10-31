@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# COMETS Manual
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+This is the repository for the COMETS (Computation Of Microbial Ecosystems in Time and Space) project documentation.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+These documents are rendered with [MkDocs](https://www.mkdocs.org/) and written in [Markdown](https://daringfireball.net/projects/markdown/).
