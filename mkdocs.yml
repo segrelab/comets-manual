@@ -2,5 +2,9 @@ site_name: COMETS Documentation
 nav:
  - Home : index.md
  - About: about.md
+ - Getting Started: getting-started.md
+ - Layout Files: layout-files.md
+ - Model Files: model-files.md
+ - Parameters: parameters.md
  - Legacy Documentation: legacy-documentation.md
 theme: readthedocs
