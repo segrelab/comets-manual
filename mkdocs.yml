@@ -1,6 +1,6 @@
 site_name: COMETS Documentation
 nav:
- - Home : home.md
+ - Home : index.md
  - Capabilities : capabilities.md
  - Getting Started: getting-started.md
  - Interacting with comets: interacting.md
