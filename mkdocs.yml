@@ -1,10 +1,15 @@
 site_name: COMETS Documentation
 nav:
  - Home : index.md
- - About: about.md
+ - Capabilities : capabilities.md
  - Getting Started: getting-started.md
+ - Interacting with comets: interacting.md
  - Layout Files: layout-files.md
  - Model Files: model-files.md
  - Parameters: parameters.md
+ - 1. Single species growth : single_species.md
+ - 2. Multi-species growth : multi_species.md
+ - 3. Continuous growth in a chemostat: chemostat.md
+ - 4. Colonies on a virtual Petri-dish : petri.md 
  - Legacy Documentation: legacy-documentation.md
 theme: readthedocs
