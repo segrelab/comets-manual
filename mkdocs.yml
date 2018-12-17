@@ -5,6 +5,7 @@ nav:
  - Getting Started: getting-started.md
  - Interacting with comets: interacting.md
  - Layout Files: layout-files.md
+ - Creating a Layout: creating-layout.md
  - Model Files: model-files.md
  - Parameters: parameters.md
  - 1. Single species growth : single_species.md
@@ -12,4 +13,9 @@ nav:
  - 3. Continuous growth in a chemostat: chemostat.md
  - 4. Colonies on a virtual Petri-dish : petri.md 
  - Legacy Documentation: legacy-documentation.md
+
 theme: readthedocs
+
+markdown_extensions:
+    - toc:
+        baselevel: 3
