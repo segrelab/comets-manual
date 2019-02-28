@@ -6,38 +6,39 @@ The global_params.txt file contains a list of parameters that are involved in th
 
 Note that all ‘boolean’ type parameters only allow “true” or “false” as their value (they do not accept 0 or 1).
 
-| Parameter Name           | Type                    | Default                             | Description                                                  | Units |
-| ------------------------ | ----------------------- | ----------------------------------- | ------------------------------------------------------------ | ----- |
-| timeStep                 | decimal > 0             | 1                                   | time for each simulation step in hours                       | hours |
-| deathRate                | decimal between 0 and 1 | 0.1                                 | Fraction of biomass that degrades each hour                  |       |
-| maxSpaceBiomass          | decimal > 0             | 10                                  | maximum allowed biomass in a space in grams                  | grams |
-| minSpaceBiomass          | decimal > 0             | 1.00E-10                            | minimum allowed biomass in a space in grams (setting to a small value > 0 might avoid some numerical errors) | grams |
-| spaceWidth               | decimal > 0             | 0.1                                 | width of each space in cm                                    | cm    |
+| Parameter Name           | Type                    | Default                             | Description                                                                                                                    | Units |
+| ------------------------ | ----------------------- | ----------------------------------- | ------------------------------------------------------------                                                                   | ----- |
+| timeStep                 | decimal > 0             | 1                                   | time for each simulation step in hours                                                                                         | hours |
+| deathRate                | decimal between 0 and 1 | 0.1                                 | Fraction of biomass that degrades each hour                                                                                    |       |
+| maxSpaceBiomass          | decimal > 0             | 10                                  | maximum allowed biomass in a space in grams                                                                                    | grams |
+| minSpaceBiomass          | decimal > 0             | 1.00E-10                            | minimum allowed biomass in a space in grams (setting to a small value > 0 might avoid some numerical errors)                   | grams |
+| spaceWidth               | decimal > 0             | 0.1                                 | width of each space in cm                                                                                                      | cm    |
 | spaceVolume (deprecated) | decimal > 0             | 1                                   | volume of each space in mL. This input is ignored in the latest versions of COMETS, where volume is the cube of the spaceWidth | mL    |
-| allowCellOverlap         | boolean                 | FALSE                               | if true, allows different species to occupy the same space   |       |
-| colorRelative            | boolean                 | TRUE                                | if true, colors each space relative to the space with the highest value. |       |
-| showCycleTime            | boolean                 | TRUE                                | if true, shows the time it took to finish the fba cycle in the output |       |
-| showCycleCount           | boolean                 | TRUE                                | if true, shows the current cycle number in the output        |       |
-| pauseOnStep              | boolean                 | true (false if running as a script) | if true, pauses the simulation after completing a step       |       |
-| displayLayer             | int 0..num media        | 0                                   | sets the current medium component (or biomass) to be displayed |       |
-| pixelScale               | int > 0                 | 4                                   | the number of pixels to render for each space                |       |
-| gridRows                 | int > 0                 | 100                                 | the number of rows in the simulation                         |       |
-| gridCols                 | int > 0                 | 100                                 | the number of columns in the simulation                      |       |
-| maxCycles                | int > 0 or -1           | -1 (infinite)                       | the maximum number of simulation steps to run. If set to -1, this is unlimited. |       |
-| simulateActivation       | boolean                 | FALSE                               | if true, the models are activated with the set activationRate |       |
-| activateRate             | decimal > 0             | 0.001                               | the value of activation rate                                 |       |
-| toroidalWorld            | boolean                 | FALSE                               | If true, edge cells are considered adjacent to the cell on the opposite edge |       |
-| randomSeed               | long                    | 0                                   | Seed value for the semirandom number generator               |       |
+| allowCellOverlap         | boolean                 | FALSE                               | if true, allows different species to occupy the same space                                                                     |       |
+| colorRelative            | boolean                 | TRUE                                | if true, colors each space relative to the space with the highest value.                                                       |       |
+| showCycleTime            | boolean                 | TRUE                                | if true, shows the time it took to finish the fba cycle in the output                                                          |       |
+| showCycleCount           | boolean                 | TRUE                                | if true, shows the current cycle number in the output                                                                          |       |
+| pauseOnStep              | boolean                 | true (false if running as a script) | if true, pauses the simulation after completing a step                                                                         |       |
+| displayLayer             | int 0..num media        | 0                                   | sets the current medium component (or biomass) to be displayed                                                                 |       |
+| pixelScale               | int > 0                 | 4                                   | the number of pixels to render for each space                                                                                  |       |
+| gridRows                 | int > 0                 | 100                                 | the number of rows in the simulation                                                                                           |       |
+| gridCols                 | int > 0                 | 100                                 | the number of columns in the simulation                                                                                        |       |
+| maxCycles                | int > 0 or -1           | -1 (infinite)                       | the maximum number of simulation steps to run. If set to -1, this is unlimited.                                                |       |
+| simulateActivation       | boolean                 | FALSE                               | if true, the models are activated with the set activationRate                                                                  |       |
+| activateRate             | decimal > 0             | 0.001                               | the value of activation rate                                                                                                   |       |
+| toroidalWorld            | boolean                 | FALSE                               | If true, edge cells are considered adjacent to the cell on the opposite edge                                                   |       |
+| randomSeed               | long                    | 0                                   | Seed value for the semirandom number generator                                                                                 |       |
+
 
 ### Slideshow specific parameters
 
-| Parameter Name         | Type             | Default | Description                                                  |
-| ---------------------- | ---------------- | ------- | ------------------------------------------------------------ |
-| saveSlideshow          | boolean          | FALSE   | if true, saves a graphics slideshow to a series of files. See also slideshowName. |
-| slideshowColorRelative | boolean          | TRUE    | as colorRelative above, applied to the slideshow             |
-| slideshowRate          | int > 0          | 1       | the number of steps between taking a slideshow picture       |
+| Parameter Name         | Type             | Default | Description                                                                                                                                                                 |
+| ---------------------- | ---------------- | ------- | ------------------------------------------------------------                                                                                                                |
+| saveSlideshow          | boolean          | FALSE   | if true, saves a graphics slideshow to a series of files. See also slideshowName.                                                                                           |
+| slideshowColorRelative | boolean          | TRUE    | as colorRelative above, applied to the slideshow                                                                                                                            |
+| slideshowRate          | int > 0          | 1       | the number of steps between taking a slideshow picture                                                                                                                      |
 | slideshowLayer         | int 0..num media | 0       | the layer to take a snapshot of for each slideshow step, in order of media from 0 to N-1 (for N media components). If this is set to N, a snapshot of the biomass is taken. |
-| slideshowExt           | String           | png     | the file extension for slideshow pictures. Currently, only “png” “bmp” and “jpg” are supported, and “png” is probably the best. |
+| slideshowExt           | String           | png     | the file extension for slideshow pictures. Currently, only “png” “bmp” and “jpg” are supported, and “png” is probably the best.                                             |
 
 #### Constructing GIFs and Movies
 

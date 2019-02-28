@@ -1,15 +1,36 @@
+
 site_name: COMETS Documentation
+
 nav:
- - Home : home.md
- - Capabilities : capabilities.md
- - Getting Started: getting-started.md
- - Interacting with comets: interacting.md
- - Layout Files: layout-files.md
- - Model Files: model-files.md
- - Parameters: parameters.md
- - 1. Single species growth : single_species.md
- - 2. Multi-species growth : multi_species.md
- - 3. Continuous growth in a chemostat: chemostat.md
- - 4. Colonies on a virtual Petri-dish : petri.md 
- - Legacy Documentation: legacy-documentation.md
+    - Home: index.md
+    - Capabilities: capabilities.md
+    - COMMAND LINE:
+        - Getting Started: getting-started.md
+        - Interacting with comets: interacting.md
+        - Layout Files: layout-files.md
+        - Creating a Layout: creating-layout.md
+        - Model Files: model-files.md
+        - Parameters: parameters.md
+        - 1. Single species growth: single_species.md
+        - 2. Multi-species growth: multi_species.md
+        - 3. Continuous growth in a chemostat: chemostat.md
+        - 4. Colonies on a virtual Petri-dish: petri.md
+    - COMETS MATLAB TOOLBOX:
+        - Growth of an E. coli colony: python-module/colony.md
+    - COMETS PYTHON TOOLBOX:
+        - Getting started: python-module/getting_started.md
+        - Growth of an E. coli colony: python-module/colony.md
+    - GRAPHICAL USER INTERFACE:
+        - Growth of an E. coli colony: python-module/colony.md
+    - LEGACY DOCUMENTATION:
+        - Legacy Documentation: legacy-documentation.md
+
+
 theme: readthedocs
+extra_css: [css/extra.css]
+extra_javascript: [js/extra.js]
+
+markdown_extensions:
+    - toc:
+        baselevel: 3
+    - def_list
