@@ -1,16 +1,12 @@
 site_name: COMETS Documentation
 
 extra_css: [css/extra.css]
-extra_javascript:
-    - js/extra.js
-    - ../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    - js/mathjaxhelper.js
+extra_javascript: [js/extra.js]
     
 markdown_extensions:
     - toc:
         baselevel: 3
-    - def_list      
-    - pymdownx.arithmatex
+    - def_list
     - fenced_code
     - footnotes
 
