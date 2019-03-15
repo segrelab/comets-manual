@@ -31,8 +31,8 @@ theme: readthedocs
 extra_css: [css/extra.css]
 
 extra_javascript:
-    - js/extra.js
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    - 'js/extra.js'
+    - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
 
 markdown_extensions:
     - toc:
