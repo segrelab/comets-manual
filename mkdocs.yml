@@ -1,15 +1,13 @@
 site_name: COMETS Documentation
 
 extra_css: [css/extra.css]
-
-extra_javascript: [ 'js/extra.js', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML' ]
+extra_javascript: [ 'js/extra.js', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML']
 
 markdown_extensions:
     - toc:
         baselevel: 3
     - def_list      
-    - mdx_math:
-        enable_dollar_delimiter: True #for use of inline $..$
+    - pymdownx.arithmatex
     - fenced_code
     - footnotes
 
