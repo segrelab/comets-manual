@@ -1,9 +1,15 @@
-
 site_name: COMETS Documentation
 
 nav:
     - Home: index.md
     - Capabilities: capabilities.md
+    - COMETS PYTHON TOOLBOX:
+        - Getting started: python-module/getting_started.md
+        - Loading models: python-module/model_testing.md
+        - Bacterial colony growth: python-module/colony.md
+        - Batch culture: python-module/batch.md
+    - COMETS MATLAB TOOLBOX:
+        - Growth of an E. coli colony: python-module/colony.md
     - COMMAND LINE:
         - Getting Started: getting-started.md
         - Interacting with comets: interacting.md
@@ -15,22 +21,24 @@ nav:
         - 2. Multi-species growth: multi_species.md
         - 3. Continuous growth in a chemostat: chemostat.md
         - 4. Colonies on a virtual Petri-dish: petri.md
-    - COMETS MATLAB TOOLBOX:
-        - Growth of an E. coli colony: python-module/colony.md
-    - COMETS PYTHON TOOLBOX:
-        - Getting started: python-module/getting_started.md
-        - Growth of an E. coli colony: python-module/colony.md
     - GRAPHICAL USER INTERFACE:
         - Growth of an E. coli colony: python-module/colony.md
     - LEGACY DOCUMENTATION:
         - Legacy Documentation: legacy-documentation.md
 
-
 theme: readthedocs
+
 extra_css: [css/extra.css]
-extra_javascript: [js/extra.js]
+
+extra_javascript:
+    - js/extra.js
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 markdown_extensions:
     - toc:
         baselevel: 3
-    - def_list
+    - def_list      
+    - mdx_math:
+        enable_dollar_delimiter: True #for use of inline $..$
+    - fenced_code
+    - footnotes

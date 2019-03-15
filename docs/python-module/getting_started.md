@@ -1,26 +1,8 @@
 # The Comets Python module
 
-The Comets python module is intended to offer a programatic, yet easy and intuitive way to use Comets. While it internally uses the Comets Java engine, it replaces parameter files, simulation layouts or models, bash scripts or output files by python objects that users deal with to both perform simulations and analyze the results. 
+The Comets python module is intended to offer a programatic, easy and intuitive interface to `COMETS`. While it internally uses the same `COMETS` Java engine as always, it replaces the legacy parameter files, simulation layouts or models, bash scripts and output files, by python objects in a single environment, which users deal with to perform simulations and analyze the results. 
 
-Any comets simulation starts from a **layout** and a set of **parameters**. The layout specifies the environment (media metabolites, refresh values, periodic dilutions) and the species present in it, that is, the **models**. The parameters specify many simulation characteristics, such as number of iterations, timestep, type of metabolite exchange or whether to record different output logs. Therefore, the three main types of objects are `layout`, `parameters` and `model`, all of them integrated in `comets` type objects which perform simulations and contain their output. 
-
-# The `model` class 
-The model class adapts a genome-scale model to be used with comets. It is instantiated with one argument, specifying either a path for a comets model file, a cobra model file, or a cobra model object. Note that for cobra compatibilty, obviously the cobra python package must be installed (see instructions here). For now, let's use the E. coli comets model file bundled with Comets. 
-
-```python
-import comets as c
-
-ecoli = c.model('ecoli.cmd')
-```
-Models contain three basic fields: The reactions and their bounds, the metabolites, and the S matrix (in sparse form). 
-
-In addition, Comets models have a field containingthe model in Cobra format, making it easy to switch between Comets and Cobra functionalities. For instance, one might want to do a quick Flux Balance Analysis of the `ecoli` model: 
-
-```python
-ecoli.cobra_model.run()
-```
-Models can also be written in Comets format using the `write_model` method (for instance, `ecoli.write_model()`) although this method is mostly intended for internal use. 
-
+Any comets simulation starts from a **layout** and a set of **parameters**. The layout specifies the environment (media metabolites, refresh values, periodic dilutions) and the species present in it, that is, the **models**. The parameters specify many simulation characteristics, such as number of iterations, timestep, type of metabolite exchange or whether to record different output logs. Therefore, the two main types of objects are `layout` and `parameters`. These two are  integrated in the `comets` class, which perform simulations and contain their output. 
 
 
 # The `params` class
@@ -30,7 +12,7 @@ The parameters class is a `dict` with the parameter names and values for a simul
 my_params = c.params()
 ```
 
-The class can also load comets parameters files (see the definition of these files [here]()). The arguments must be, in that order, the two filenames corresponding to *global_params* and *package_params*:
+The class can also load comets parameters files (see the definition of these files [here]()). The arguments must be the two filenames corresponding to *global_params* and *package_params*:
 
 ```python
 my_params = c.params('global_params_file_path', 'package_params_file_path')
@@ -49,16 +31,20 @@ my_params.write_params('global_params_outfile', 'package_params_outfile')
 
 
 # The `layout` class
-The layout class describes the characteristics of the environment, i.e. the "world". Empty layouts can be created if the class is instantiated without arguments as `my_layout = c.layout()` but the preferred way to instantiate a layout is either providing a `model` (or several of them), or a [Comets layout file](). If fed `models`, it will create layouts with all media components those models are able to exchange with the environment, and default values for everything else. 
+The layout class describes the characteristics of the environment, i.e. the "world", including which species (models) are in it. It can be instantiated in three ways: 
 
-To examine the different parts of a Comets `layout`, let's first create one from the standard *E. coli* model bundled with Comets. 
+ * If instantiated without arguments (as `my_layout = c.layout()`), an empty layout is created with all necessary fields that have to be populated.
+ * If a layout is instantiated passing a `model` (or several models), it will generate a layout with all metabolites those models can exchange with the environment at zero concentration, plus metals and ions at unlimited concentration (default -1000).  
+ * Finally, it can also be instantiated by passing teh path to a [Comets layout file](). If fed `models`, it will create layouts with all media components those models are able to exchange with the environment, and default values for everything else. 
+
+To examine the different parts of a Comets `layout`, let\'s first create one from the standard *E. coli* model bundled with Comets. 
 
 ```python
 my_layout = c.layout('ecoli_model')
 ```
+
 Firstly, the layout stores information about the species (`ec_layout.models`) and spatial structure (`ec_layout.grid`) in the environment. In this case, the model is only the *E. coli* one and the grid is the default one, only one cell.
 
-TODO: add models to layout.
 
 The layout stores also information about the **media** as a pandas dataframe:
 ```python
