@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Parameters - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extra.css]" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Parameters";
+    var mkdocs_page_input_path = "parameters.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/2_competition/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/3_chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/4_evolution/">Simulating evolution with COMETS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMMAND LINE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting-started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../interacting.md">Interacting with comets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../layout-files/">Layout Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../creating-layout/">Creating a Layout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../model-files/">Model Files</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Parameters</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#comets-parameter-descriptions">COMETS Parameter Descriptions</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#general-comets-parameters">General Comets Parameters</a></li>
+        
+            <li><a class="toctree-l4" href="#fba-modeling-parameters">FBA Modeling Parameters</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../single_species/">1. Single species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../multi_species/">2. Multi-species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../chemostat/">3. Continuous growth in a chemostat</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../petri/">4. Colonies on a virtual Petri-dish</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">LEGACY DOCUMENTATION</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../legacy-documentation/">Legacy Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMMAND LINE &raquo;</li>
+        
+      
+    
+    <li>Parameters</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="comets-parameter-descriptions">COMETS Parameter Descriptions</h3>
+<h4 id="general-comets-parameters">General Comets Parameters</h4>
+<p>The global_params.txt file contains a list of parameters that are involved in the general COMETS application. Alternatively, parameters can be included within a layout file in an optional “parameters” block.</p>
+<p>Note that all ‘boolean’ type parameters only allow “true” or “false” as their value (they do not accept 0 or 1).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeStep</td>
+<td>decimal &gt; 0</td>
+<td>1</td>
+<td>time for each simulation step in hours</td>
+<td>hours</td>
+</tr>
+<tr>
+<td>deathRate</td>
+<td>decimal between 0 and 1</td>
+<td>0.1</td>
+<td>Fraction of biomass that degrades each hour</td>
+<td></td>
+</tr>
+<tr>
+<td>maxSpaceBiomass</td>
+<td>decimal &gt; 0</td>
+<td>10</td>
+<td>maximum allowed biomass in a space in grams</td>
+<td>grams</td>
+</tr>
+<tr>
+<td>minSpaceBiomass</td>
+<td>decimal &gt; 0</td>
+<td>1.00E-10</td>
+<td>minimum allowed biomass in a space in grams (setting to a small value &gt; 0 might avoid some numerical errors)</td>
+<td>grams</td>
+</tr>
+<tr>
+<td>spaceWidth</td>
+<td>decimal &gt; 0</td>
+<td>0.1</td>
+<td>width of each space in cm</td>
+<td>cm</td>
+</tr>
+<tr>
+<td>spaceVolume (deprecated)</td>
+<td>decimal &gt; 0</td>
+<td>1</td>
+<td>volume of each space in mL. This input is ignored in the latest versions of COMETS, where volume is the cube of the spaceWidth</td>
+<td>mL</td>
+</tr>
+<tr>
+<td>allowCellOverlap</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, allows different species to occupy the same space</td>
+<td></td>
+</tr>
+<tr>
+<td>colorRelative</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>if true, colors each space relative to the space with the highest value.</td>
+<td></td>
+</tr>
+<tr>
+<td>showCycleTime</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>if true, shows the time it took to finish the fba cycle in the output</td>
+<td></td>
+</tr>
+<tr>
+<td>showCycleCount</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>if true, shows the current cycle number in the output</td>
+<td></td>
+</tr>
+<tr>
+<td>pauseOnStep</td>
+<td>boolean</td>
+<td>true (false if running as a script)</td>
+<td>if true, pauses the simulation after completing a step</td>
+<td></td>
+</tr>
+<tr>
+<td>displayLayer</td>
+<td>int 0..num media</td>
+<td>0</td>
+<td>sets the current medium component (or biomass) to be displayed</td>
+<td></td>
+</tr>
+<tr>
+<td>pixelScale</td>
+<td>int &gt; 0</td>
+<td>4</td>
+<td>the number of pixels to render for each space</td>
+<td></td>
+</tr>
+<tr>
+<td>gridRows</td>
+<td>int &gt; 0</td>
+<td>100</td>
+<td>the number of rows in the simulation</td>
+<td></td>
+</tr>
+<tr>
+<td>gridCols</td>
+<td>int &gt; 0</td>
+<td>100</td>
+<td>the number of columns in the simulation</td>
+<td></td>
+</tr>
+<tr>
+<td>maxCycles</td>
+<td>int &gt; 0 or -1</td>
+<td>-1 (infinite)</td>
+<td>the maximum number of simulation steps to run. If set to -1, this is unlimited.</td>
+<td></td>
+</tr>
+<tr>
+<td>simulateActivation</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, the models are activated with the set activationRate</td>
+<td></td>
+</tr>
+<tr>
+<td>activateRate</td>
+<td>decimal &gt; 0</td>
+<td>0.001</td>
+<td>the value of activation rate</td>
+<td></td>
+</tr>
+<tr>
+<td>toroidalWorld</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>If true, edge cells are considered adjacent to the cell on the opposite edge</td>
+<td></td>
+</tr>
+<tr>
+<td>randomSeed</td>
+<td>long</td>
+<td>0</td>
+<td>Seed value for the semirandom number generator</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="slideshow-specific-parameters">Slideshow specific parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>saveSlideshow</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, saves a graphics slideshow to a series of files. See also slideshowName.</td>
+</tr>
+<tr>
+<td>slideshowColorRelative</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>as colorRelative above, applied to the slideshow</td>
+</tr>
+<tr>
+<td>slideshowRate</td>
+<td>int &gt; 0</td>
+<td>1</td>
+<td>the number of steps between taking a slideshow picture</td>
+</tr>
+<tr>
+<td>slideshowLayer</td>
+<td>int 0..num media</td>
+<td>0</td>
+<td>the layer to take a snapshot of for each slideshow step, in order of media from 0 to N-1 (for N media components). If this is set to N, a snapshot of the biomass is taken.</td>
+</tr>
+<tr>
+<td>slideshowExt</td>
+<td>String</td>
+<td>png</td>
+<td>the file extension for slideshow pictures. Currently, only “png” “bmp” and “jpg” are supported, and “png” is probably the best.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="constructing-gifs-and-movies">Constructing GIFs and Movies</h6>
+<p>Slideshows can be converted from a bunch of image files (such as pngs) to a gif or movie file using the convert command. e.g.</p>
+<pre><code>convert *.png slideshow.gif
+</code></pre>
+
+<p>find more details on the convert command here: <a href="http://www.astro.umd.edu/~dcr/Courses/ASTR615/intro_viz/node7.html">http://www.astro.umd.edu/~dcr/Courses/ASTR615/intro_viz/node7.html</a> and here: <a href="http://www.ma.utexas.edu/cgi-bin/man-cgi?convert+1">http://www.ma.utexas.edu/cgi-bin/man-cgi?convert+1</a> This command requires the program “ImageMagick” (<a href="http://www.imagemagick.org/script/index.php">http://www.imagemagick.org/script/index.php</a>) which is installed by default on most linux distributions.</p>
+<h4 id="fba-modeling-parameters">FBA Modeling Parameters</h4>
+<p>The package_params.txt file contains a list of parameters that are particular to the FBA functions of COMETS. If other packages are created, they will probably use different sets of parameters.</p>
+<h5 id="fba-parameters">FBA parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exchangeStyle</td>
+<td>String:{Standard FBA | Monod Style | Pseudo-Monod Style}</td>
+<td>Standard FBA</td>
+<td>Sets the method used for calculating maximum exchange rates for all extracellular metabolites. Only one of the three strings is an allowed value</td>
+<td></td>
+</tr>
+<tr>
+<td>biomassMotionStyle</td>
+<td>String:{“Diffusion 2D(Crank-Nicolson)”, “Diffusion 2D(Eight Point)”, “Diffusion 3D”, “Convection 2D”, “Convection 3D” }</td>
+<td>“Diffusion 2D(Crank-Nicolson)”</td>
+<td>Sets the method used for diffusing biomass. Only one of the indicated strings is an allowed value</td>
+<td></td>
+</tr>
+<tr>
+<td>numDiffPerStep</td>
+<td>int &gt; 0</td>
+<td>10</td>
+<td>Number of partial diffusions to do for each time step. Instead of doing one big jump for a time step, this gives the option of breaking the time step into smaller pieces to do a smoother diffusion calculation.</td>
+<td></td>
+</tr>
+<tr>
+<td>growthDiffRate</td>
+<td>decimal &gt; 0</td>
+<td>1.00E-07</td>
+<td>The default biomass diffusion constant for growth in cm^2/s</td>
+<td>cm2/s</td>
+</tr>
+<tr>
+<td>flowDiffRate</td>
+<td>decimal &gt; 0</td>
+<td>1.00E-07</td>
+<td>The default biomass diffusion constant for non-growth diffusion in cm^2/s</td>
+<td>cm2/s</td>
+</tr>
+<tr>
+<td>defaultVmax</td>
+<td>decimal &gt; 0</td>
+<td>10</td>
+<td>The default Vmax value for Monod-style exchange</td>
+<td>mmol/gCDW/hr</td>
+</tr>
+<tr>
+<td>defaultKm</td>
+<td>decimal &gt; 0</td>
+<td>5</td>
+<td>The default Km value for Monod-style exchange</td>
+<td>mmol/cm3</td>
+</tr>
+<tr>
+<td>defaultHill</td>
+<td>decimal &gt; 0</td>
+<td>2</td>
+<td>The default Hill coefficient for Monod-style exchange</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultAlpha</td>
+<td>decimal &gt; 0</td>
+<td>1</td>
+<td>The default Alpha coefficient (slope) for the Pseudo-Monod style exchange</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultW</td>
+<td>decimal &gt; 0</td>
+<td>10</td>
+<td>The default W coefficient (plateau) for the Pseudo-Monod style exchange</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultDiffConst</td>
+<td>decimal &gt; 0</td>
+<td>1.00E-05</td>
+<td>The default diffusion constant for extracellular metabolites</td>
+<td></td>
+</tr>
+<tr>
+<td>randomOrder</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>Should the order that models are processed at each timestep be randomized? If false, they are always run in the order presented in the first line of the layout file.</td>
+<td></td>
+</tr>
+<tr>
+<td>numRunThreads</td>
+<td>Int &gt; 0</td>
+<td>1</td>
+<td>Allow multithreaded computation</td>
+<td></td>
+</tr>
+<tr>
+<td>numExRxnSubsteps</td>
+<td>Int &gt; 0</td>
+<td>5</td>
+<td>Number times a timestep can be cut in half so an extracellular reaction can be calculated with increased accuracy when reactant concentrations approach 0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="log-file-parameters">Log file parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>useLogNameTimeStamp</td>
+<td>boolean</td>
+<td>TRUE</td>
+<td>If true, appends a time stamp to every log file name</td>
+</tr>
+<tr>
+<td>writeFluxLog</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>If true, writes fluxes out to a log file</td>
+</tr>
+<tr>
+<td>fluxLogName</td>
+<td>String</td>
+<td>“flux_log.txt”</td>
+<td>The name of the flux log file</td>
+</tr>
+<tr>
+<td>fluxLogRate</td>
+<td>int &gt; 0</td>
+<td>1</td>
+<td>How often (number of simulation steps) to write to the flux file. A value of 1 will cause writing after every step.</td>
+</tr>
+<tr>
+<td>writeMediaLog</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, writes media information to a log file</td>
+</tr>
+<tr>
+<td>mediaLogName</td>
+<td>String</td>
+<td>media_log.txt</td>
+<td>The name of the media log file</td>
+</tr>
+<tr>
+<td>mediaLogRate</td>
+<td>int &gt; 0</td>
+<td>1</td>
+<td>How often to write to the media file</td>
+</tr>
+<tr>
+<td>writeBiomassLog</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, writes biomass information to a log file</td>
+</tr>
+<tr>
+<td>biomassLogName</td>
+<td>String</td>
+<td>biomass_log.txt</td>
+<td>The name of the biomass log file</td>
+</tr>
+<tr>
+<td>biomassLogRate</td>
+<td>int &gt; 0</td>
+<td>1</td>
+<td>How often to write to the biomass file</td>
+</tr>
+<tr>
+<td>writeTotalBiomassLog</td>
+<td>boolean</td>
+<td>FALSE</td>
+<td>if true, writes a summation of all biomass information to a log file</td>
+</tr>
+<tr>
+<td>totalBiomassLogName</td>
+<td>String</td>
+<td>total_biomass_log.txt</td>
+<td>The name of the total biomass log file</td>
+</tr>
+<tr>
+<td>totalBiomassLogRate</td>
+<td>int &gt; 0</td>
+<td>1</td>
+<td>How often to write to the total biomass log file</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../single_species/" class="btn btn-neutral float-right" title="1. Single species growth">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../model-files/" class="btn btn-neutral" title="Model Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../model-files/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../single_species/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

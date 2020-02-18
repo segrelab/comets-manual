@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Competition assay - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css]" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Competition assay";
+    var mkdocs_page_input_path = "python-module/2_competition.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Competition assay</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#serial-transfers-and-competitive-exclusion">Serial transfers and competitive exclusion</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../3_chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../4_evolution/">Simulating evolution with COMETS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMMAND LINE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../interacting.md">Interacting with comets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layout-files/">Layout Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../creating-layout/">Creating a Layout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../model-files/">Model Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../parameters/">Parameters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../single_species/">1. Single species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../multi_species/">2. Multi-species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../chemostat/">3. Continuous growth in a chemostat</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../petri/">4. Colonies on a virtual Petri-dish</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">LEGACY DOCUMENTATION</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../legacy-documentation/">Legacy Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Competition assay</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Competition experiments are frequently performed in the laboratory to assay,
+for example, the fitness of a mutant in competition to the wild-type. Here, we
+simulate one such experiment involving E. coli and a nonessential but
+deleterious mutation involving the deletion of the triose phosphate isomerase
+reaction from glycolysis.</p>
+<p>We start by creating a layout ("world") and setting the initial nutrient supply.</p>
+<pre><code class="Python"># Start by loading required packages, including the COMETS toolbox
+import comets as c
+import pandas as pd
+
+# create an empty layout
+world = c.layout()
+
+# Add glucose and remove o2
+world.set_specific_metabolite('glc__D_e', 0.01)
+</code></pre>
+
+<p>We will now add the typical trace metabolites to the layout we generated
+(including oxygen). These metabolites will be considered as <code>static</code> by the
+simulation. The <code>static</code> option implies that a metabolite is set to a given
+value and kept constant throughout the simulation. This is useful, for example,
+for media components that we want to be always in excess.</p>
+<pre><code class="Python"># Add typical trace metabolites and oxygen coli as static
+trace_metabolites = ['ca2_e',
+                     'cl_e',
+                     'cobalt2_e',
+                     'cu2_e',
+                     'fe2_e',
+                     'fe3_e',
+                     'h_e',
+                     'k_e',
+                     'h2o_e',
+                     'mg2_e',
+                     'mn2_e',
+                     'mobd_e',
+                     'na1_e',
+                     'ni2_e',
+                     'nh4_e',
+                     'o2_e',
+                     'pi_e',
+                     'so4_e',
+                     'zn2_e']
+
+for met in trace_metabolites:
+    newrow = {'metabolite': met,
+              'g_refresh': 0,
+              'g_static': 1,
+              'g_static_val': 1000,
+              'init_amount': 1000,
+              'diff_c': world.default_diff_c}
+
+    newrow = pd.DataFrame([newrow], columns=newrow.keys())
+    world.media = pd.concat([world.media, newrow], axis=0, sort=False)
+</code></pre>
+
+<p>Now, we load the <em>E. coli</em> iJO1366 model, and create also a KO mutant for
+the triose phosphate isomerase reaction. We do this by setting both upper and
+lower bounds to zero. We then add both models to our <code>layout</code>.</p>
+<pre><code class="Python"># load the wild-type model
+wt = c.model('test_models/iJO1366.xml')
+
+# load the wild-type model and construct the mutant
+mut = c.model('test_models/iJO1366.xml')
+mut.change_bounds('TPI', 0,0)
+mut.id = 'TPI_iJO1366'
+
+# set the initial biomasses for both models
+wt.initial_pop = [0, 0, 5e-8]
+mut.initial_pop = [0, 0, 5e-8]
+
+# add the models to the layout
+world.add_model(wt)
+world.add_model(mut)
+</code></pre>
+
+<p>We need also to create a parameters object and modify needed parameters. In
+this case, we will modify only the number of cycles the simulation runs.</p>
+<pre><code class="Python">comp_params = c.params()
+comp_params.all_params['maxCycles'] = 240
+</code></pre>
+
+<p>Finally, we pass all of the above to a <code>comets</code> object, and run the competition
+assay.</p>
+<pre><code class="Python">comp_assay = c.comets(world, comp_params)
+comp_assay.run()
+</code></pre>
+
+<p>Now, we can plot the biomasses of these two genotypes in co-culture.</p>
+<pre><code class="Python">biomass = comp_assay.total_biomass
+biomass['t'] = biomass['cycle'] * comp_assay.parameters.all_params['timeStep']
+
+import matplotlib.pyplot as plt
+myplot = biomass.drop(columns=['cycle']).plot(x = 't')
+</code></pre>
+
+<p><img alt="png" src="/img/competition_1.png" /></p>
+<p>We can also compute the competitive fitness of the mutant with respect to the
+wild type, as the ratio of the biomass increase of the mutant divided by that
+of the wild-type:</p>
+<pre><code class="Python">cfit = (biomass.loc[biomass['t'] == 24, 'TPI_iJO1366'].iloc[0]/biomass.loc[biomass['t'] == 0, 'TPI_iJO1366'].iloc[0])/(biomass.loc[biomass['t'] == 24, 'iJO1366'].iloc[0]/biomass.loc[biomass['t'] == 0, 'iJO1366'].iloc[0])
+</code></pre>
+
+<h3 id="serial-transfers-and-competitive-exclusion">Serial transfers and competitive exclusion</h3>
+<p>To illustrate the serial transfer capabilities of COMETS, we will now simulate
+a serial transfer competition between these two genotypes.</p>
+<p>We will just create a different set of parameters, increasing the total
+simulation time and including batch transfers of 1% every 24h, but we will use
+the same "world" <code>layout</code> as before.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When performing serial transfers, the biomass is discretized according to
+the <code>cellSize</code> parameter. This allows for stochastic sampling when the
+bottleneck is applied, which can be important if some species are present
+at low density. The value of <code>cellSize</code> must be always bigger than the
+minimal biomass allowed for a model in a cell (defined by the
+<code>minCellBiomass</code>parameter).</p>
+</div>
+<pre><code class="Python">serial_params = c.params()
+serial_params.all_params['maxCycles'] = 240*25 # simulate 4 serial transfers of 24h each
+serial_params.all_params['batchDilution'] = True
+serial_params.all_params['dilFactor'] = 0.01
+serial_params.all_params['dilTime'] = 24
+serial_params.all_params['cellSize'] = 1e-9
+</code></pre>
+
+<p>We now run the simulation</p>
+<pre><code class="Python">serial_expt = c.comets(world, serial_params)
+serial_expt.run()
+</code></pre>
+
+<p>And plot the biomasses of the two species during an experiment with 25 transfers every 24h</p>
+<pre><code class="Py">biomass = serial_expt.total_biomass
+biomass['transfer'] = biomass['cycle'] * comp_assay.parameters.all_params['timeStep']/24
+
+myplot = biomass.drop(columns=['cycle', 't']).plot(x = 'transfer')
+</code></pre>
+
+<p><img alt="png" src="/img/competition_2.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../3_chemostat/" class="btn btn-neutral float-right" title="Continuous culture">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../1_simple_growth/" class="btn btn-neutral" title="Growth in a test tube"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../1_simple_growth/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../3_chemostat/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

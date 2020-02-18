@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Layout Files - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extra.css]" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Layout Files";
+    var mkdocs_page_input_path = "layout-files.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/2_competition/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/3_chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/4_evolution/">Simulating evolution with COMETS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMMAND LINE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting-started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../interacting.md">Interacting with comets</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Layout Files</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#layout-file-format">Layout File Format</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#1-model-names">1. Model Names</a></li>
+        
+            <li><a class="toctree-l4" href="#2-model-world">2. Model World</a></li>
+        
+            <li><a class="toctree-l4" href="#3-initial-population-biomass">3. Initial Population Biomass</a></li>
+        
+            <li><a class="toctree-l4" href="#4-parameters">4. Parameters</a></li>
+        
+            <li><a class="toctree-l4" href="#sample-layout-file">Sample Layout File</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../creating-layout/">Creating a Layout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../model-files/">Model Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../parameters/">Parameters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../single_species/">1. Single species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../multi_species/">2. Multi-species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../chemostat/">3. Continuous growth in a chemostat</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../petri/">4. Colonies on a virtual Petri-dish</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">LEGACY DOCUMENTATION</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../legacy-documentation/">Legacy Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMMAND LINE &raquo;</li>
+        
+      
+    
+    <li>Layout Files</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="layout-file-format">Layout File Format</h3>
+<p>The data blocks in this file are mostly nested within each other. The model file block encapsulates the model world and initial population blocks. The rest of the blocks are listed in the model world block.</p>
+<h4 id="1-model-names">1. Model Names</h4>
+<p>This is a single line block, NOT followed by // on a line below, but at the end of the file. This must be the first line of the layout file. It is followed by the name of at least one FBA model file.</p>
+<pre><code>model_file model_file_name1 model_file_name2 ... model_file_name_N
+</code></pre>
+
+<h4 id="2-model-world">2. Model World</h4>
+<p>This is a single line block, NOT followed by // on a line below, but after several internal data blocks. This must be the first block inside the model names block. It simply opens up the data block containing the world information. Optionally, it can be followed by the name of a file containing global media information (note that this is deprecated! Global media information should be included in the layout file under the world media block).</p>
+<pre><code>model_world
+</code></pre>
+
+<h5 id="2a-grid-size">2a. Grid Size</h5>
+<p>This is required to be the first block under the model world line. It doesn’t have a closing //, and only describes the width and height of the simulation grid.</p>
+<pre><code>grid_size  width  height
+</code></pre>
+
+<h5 id="2b-world-media">2b. World Media</h5>
+<p>The world media block contains global information of the quantity of all extracellular metabolites in the simulation. Each row in the block has two elements – the name of an extracellular metabolite (must be exactly as found in the model file) followed by the quantity in millimoles of that metabolite initialized in every block in the simulation.</p>
+<p>This block must come before the media refresh, static media, and diffusion constants blocks.</p>
+<pre><code>world_media
+  metab_1  quantity_1
+  metab_2  quantity_2
+  metab_3  quantity_3
+  .
+  .
+  .
+  metab_N  quantity_N
+//
+</code></pre>
+
+<h5 id="2c-diffusion-constants">2c. Diffusion Constants</h5>
+<p>The diffusion constants block contains diffusion constant information for the extracellular metabolites in the simulation. The block begins with a global default value on the same line as the opening tag. Each row in the block, then, has two elements – the index of the metabolite in question, in the same order as in the world_media block above (starting from 0); and a value for the diffusion constant if it differs from the default.</p>
+<p>Units for these values are cm2 /s. </p>
+<pre><code>diffusion_constants    default_value
+  index_1  diff_const_1
+  index_2  diff_const_2
+  index_3  diff_const_3
+  .
+  .
+  .
+//
+</code></pre>
+
+<h5 id="2d-media-refresh">2d. Media Refresh</h5>
+<p>This block describes how much each medium component should be refreshed on each simulation cycle in any given grid space. The opening line contains global refresh values for each medium component, in the same order as presented in the world media block.</p>
+<p>Each proceeding row contains the amount of media to refresh for each grid space where there is a nonzero refresh value. That is, the only rows that should be present in this block should contain some amount of medium to be refreshed.</p>
+<pre><code>media_refresh  global_amt_1  global_amt_2  ...  global_amt_N
+  row_1  col_1  amt_1  amt_2  amt_3  ...  amt_N
+  row_2  col_2  amt_1  amt_2  amt_3  ...  amt_N
+  row_3  col_3  amt_1  amt_2  amt_3  ...  amt_N
+  .
+  .
+  .
+  row_M  col_M  amt_1  amt_2  amt_3  ...  amt_N
+//
+</code></pre>
+
+<h5 id="2e-static-media">2e. Static Media</h5>
+<p>Like the media refresh block, this describes how the media in each space in the grid should be altered during the simulation. However, this block describes which media components should remain at a static value. That is, those media whose quantities should not change due to the effects of the simulation. This might represent a constant sink or source of a number of metabolites.</p>
+<p>This block contains pairs of data elements. Each pair starts with a binary (0 or 1) element, denoting whether or not to use that pair as a static element, and a quantity to keep that element static at. This lets one build a static media set where only a few medium elements are maintained as static, while keeping the file structure similar to the media refresh block above.
+For example:</p>
+<pre><code>static_media  0  0  1  0  1  2  0  0
+//
+</code></pre>
+
+<p>Breaks into 4 pairs [0 0], [1 0], [1 2], [0 0]. Only components 2 and 3 have a 1 as their first element, so those medium components are kept static. Component 2 remains at 0, while component 3 stays at 2. Note that in this example, there are no exceptions, so this applies throughout the simulation. In general, it is done like this:</p>
+<pre><code>static_media  use_1  amt_1  use_2  amt_2  use_3  amt_3  ...  use_N  amt_N
+  row_1  col_1  use_1  amt_1  use_2  amt_2  ...  use_N  amt_N
+  row_2  col_2  use_1  amt_1  use_2  amt_2  ...  use_N  amt_N
+  row_3  col_3  use_1  amt_1  use_2  amt_2  ...  use_N  amt_N
+  .
+  .
+  .
+  row_M  col_M  use_1  amt_1  use_2  amt_2  ...  use_N  amt_N
+//
+</code></pre>
+
+<h5 id="2f-barrier-coordinates">2f. Barrier Coordinates</h5>
+<p>Simple enough, this block describes those grid coordinates that contain barriers (i.e., no media, biomass, or diffusion can occur here).</p>
+<pre><code>barrier
+  row_1  col_1
+  row_2  col_2
+  row_3  col_3
+  .
+  .
+  .
+  row_N  col_N
+//
+</code></pre>
+
+<h4 id="3-initial-population-biomass">3. Initial Population Biomass</h4>
+<p>This final block describes the initial biomass population in the layout, and has many options.</p>
+<p>The units for the biomass amounts are grams (for example, 1e-6 denotes one microgram of the corresponding species).</p>
+<p>In the default biomass layout style, there is just initial_pop left alone as the header, followed by one row for each grid space containing biomass. There must be one quantity for each metabolic model in the system.</p>
+<pre><code>initial_pop
+  row_1  col_1  biomass_1  biomass_2  ...  biomass_N
+  row_2  col_2  biomass_1  biomass_2  ...  biomass_N
+  row_3  col_3  biomass_1  biomass_2  ...  biomass_N
+  .
+  .
+  .
+  row_M  col_M  biomass_1  biomass_2  ...  biomass_N
+//
+</code></pre>
+
+<p>The next set of options modify the initial_pop line itself, and contain no rows in the block, though the // on the line below must be present.</p>
+<pre><code>initial_pop  random  N1  biomass_1  N2  biomass_2 ...
+//
+</code></pre>
+
+<p>This will randomly assign Ni spaces to have biomass_i amount of biomass from model i. If biomass from different species is allowed to overlap, then that is allowed to happen in this case, but if different species is not allowed to overlap, then that rule is upheld.</p>
+<pre><code>initial_pop  random_rect  X  Y  W  H  N1  biomass_1  N2  biomass_2 ...
+//
+</code></pre>
+
+<p>As above, but the randomly assigned biomass spots are confined to a rectangle with its upper-left corner at grid space (X,Y), with W grid spaces wide, and H spaces tall.</p>
+<pre><code>initial_pop  filled  biomass_1  biomass_2 ...
+//
+</code></pre>
+
+<p>This will completely fill the grid with the given amount of biomass from each species.</p>
+<pre><code>initial_pop filled_rect X Y W H biomass_1 biomass_2. ..
+//
+</code></pre>
+
+<p>This will completely fill the rectangle (see above) with biomass from each species.</p>
+<pre><code>initial_pop square N1 biomass_1 N2 biomass_2 ...
+//
+</code></pre>
+
+<p>This will fill squares with radius Ni at the center of the grid with biomass_i from species i.</p>
+<h4 id="4-parameters">4. Parameters</h4>
+<p>This block contains parameters initially loaded with the file. A table of accepted parameters and their default values is <a href="https://docs.google.com/document/d/19GtXv3ej147Q6a4ftW76KMCTPzC3kO3Cd0B4H68Jf6Y/edit#heading=h.rbzwd69jdafl">provided</a> at the end of this document. Here’s the structure of the block:</p>
+<pre><code>parameters
+  param_1 = value_1
+  param_2 = value_2
+  .
+  .
+  .
+  param_N = value_N
+//
+</code></pre>
+
+<h4 id="sample-layout-file">Sample Layout File</h4>
+<pre><code>model_file ec_iAF1260.cmf
+  model_world
+    grid_size 100 100
+    world_media
+      M1  0
+      M2  100
+      M3  100
+      M4  0
+      M5  50
+    //
+    diffusion_constants  1e-6
+      0   1e-5
+      1   5e-6
+      4   2.5e-6
+    //
+    media_refresh 0 0 0 0 0
+      25 20 0 10 10 0 5
+      30 35 0 15 15 0 0
+    //
+    static_media 1 0 0 0 0 0 0 0 0 0
+      10 10 0 0 1 10 1 20 0 0 0 0
+    //
+  //
+  initial_pop random 20 1
+  //
+  parameters
+    timeStep = 1
+    numRunThreads = 10
+    allowCellOverlap = false
+  //
+//
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../creating-layout/" class="btn btn-neutral float-right" title="Creating a Layout">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../getting-started/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../getting-started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../creating-layout/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

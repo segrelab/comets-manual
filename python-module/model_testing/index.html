@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Loading models and CobraPy compatibility - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css]" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Loading models and CobraPy compatibility";
+    var mkdocs_page_input_path = "python-module/model_testing.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2_competition/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../3_chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../4_evolution/">Simulating evolution with COMETS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMMAND LINE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../interacting.md">Interacting with comets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layout-files/">Layout Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../creating-layout/">Creating a Layout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../model-files/">Model Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../parameters/">Parameters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../single_species/">1. Single species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../multi_species/">2. Multi-species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../chemostat/">3. Continuous growth in a chemostat</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../petri/">4. Colonies on a virtual Petri-dish</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">LEGACY DOCUMENTATION</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../legacy-documentation/">Legacy Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Loading models and CobraPy compatibility</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="loading-models-and-cobrapy-compatibility">Loading models and CobraPy compatibility</h3>
+<p>Let's show with a couple of simple simulation how the COMETS Python toolbox deals with models, including compatibility with CobraPy.</p>
+<p>We first create a set of parameters by instantiating the params class (with no arguments, meaning that all parameter values will be the default). and a layout containing a simple environment with glucose as the only carbon source. </p>
+<pre><code class="python">import comets as c
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+pd.options.display.max_rows = 10
+
+# .. Create set of parameters with default values, and change timeStep
+my_params = c.params()
+my_params.all_params['timeStep'] = 0.25
+
+# .. Load layout from file and load cobra model into the layout
+my_layout = c.layout('test_models/layout_blueprint')
+</code></pre>
+
+<p>We then load in the Cobra SBML iJO1366 model file to the layout. Each time the models in a layout are changed, we have to run also the <code>update_models()</code> method.</p>
+<pre><code class="python">my_layout.models = ['test_models/iJO1366.xml']
+my_layout.update_models()
+my_layout.models
+</code></pre>
+
+<pre><code>['iJO1366']
+</code></pre>
+<p>We are now ready toinstantiate the <code>comets</code> class and run the simulation.</p>
+<pre><code class="python">my_comets = c.comets(my_layout, my_params)
+my_comets.run()
+</code></pre>
+
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<pre><code class="python">biomass1 = my_comets.total_biomass
+plt.plot('cycle', 'iJO1366', data=biomass1)
+</code></pre>
+
+<p><img alt="png" src="/img/model_testing_4_1.png" /></p>
+<h4 id="adjusting-comets-parameters-in-models">Adjusting COMETS parameters in models</h4>
+<p>What if we want to change some parameters of the model? For instance, we might want to change the type of optimization of the model to maximize biomass and then minimize the total flux (parsimonious FBA). </p>
+<p>For manipulating models, we need to load them in SBML format using the <code>COBRA</code> package, and then add the corresponding fields for <code>COMETS</code> (see bottom of this page). </p>
+<pre><code class="python">import cobra as cb
+md = cb.io.read_sbml_model('test_models/iJO1366.xml')
+</code></pre>
+
+<pre><code class="python"># add some parameters to the model
+md.obj_style = 'MAX_OBJECTIVE_MIN_TOTAL'
+
+# change the ID of the model
+md.id = 'modified_iJO1366'
+</code></pre>
+
+<p>We might also want to change <span><span class="MathJax_Preview">V_{max}</span><script type="math/tex">V_{max}</script></span>, <span><span class="MathJax_Preview">K_m</span><script type="math/tex">K_m</script></span>, and Hill coefficients of some uptake reaction, say glucose uptake. We can add these as fields of the corresponding exchange reaction. However, if we decide to specify these parameters for any particular reaction, we will also need to specify their default values for all the rest of uptake reactions in the model. </p>
+<pre><code class="python"># Set specific values for the glucose transporter
+md.reactions.EX_glc__D_e.Vmax = 6
+md.reactions.EX_glc__D_e.Km = .1
+md.reactions.EX_glc__D_e.Hill = 2
+
+# Set also teh default values for the rest of reactions
+md.default_vmax = 10
+md.default_km = 0.01
+md.default_hill = 1
+</code></pre>
+
+<p>Lets now include this cobra model object in our layout. In addition to passing strings specifying filenames as we did previously, Models can be passed directly as a list of <code>cobra.Model</code> objects to the layout:</p>
+<pre><code class="python">my_layout.models = [md]
+my_layout.models
+</code></pre>
+
+<pre><code>[&lt;Model modified_iJO1366 at 0x7f3a2b1c59b0&gt;]
+</code></pre>
+<p>NOTE: the list of models can be either a list of model files (either cobra xml or comets models, see below) or a list of cobra models loaded into the environment, but never a mix of both.</p>
+<p>In order to make effective any changes in the layout models, we have to run <code>update_models</code>:</p>
+<pre><code class="python">my_layout.update_models()
+</code></pre>
+
+<p>Now, let's run the new model and compare it to the previous simulation.</p>
+<pre><code class="python">my_comets = c.comets(my_layout, my_params)
+my_comets.run()
+biomass2 = my_comets.total_biomass
+plt.plot('cycle', 'iJO1366', data=biomass1)
+plt.plot('cycle', 'modified_iJO1366', data=biomass2)
+</code></pre>
+
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<p><img alt="png" src="/img/model_testing_15_2.png" /></p>
+<p>Makes sense - we made the model worse in glucose by reducing <span><span class="MathJax_Preview">V_{max}</span><script type="math/tex">V_{max}</script></span> and increasing <span><span class="MathJax_Preview">K_M</span><script type="math/tex">K_M</script></span>.</p>
+<h4 id="loading-comets-model-files">Loading COMETS model files</h4>
+<p>The <code>layout</code> class is also capable of loading model files in COMETS model format (<code>.cmd</code>, the format passed to the COMETS Java engine). This will be deprecated in the future to simplify things for the user, who will only have to deal with cobra type SBML models.</p>
+<p>For example, let's include a <code>COMETS</code> model in our previous layout, and run it. </p>
+<pre><code class="python">my_layout.models = ['test_models/iJO1366.cmd']
+my_layout.update_models()
+my_layout.models
+</code></pre>
+
+<pre><code>['iJO1366']
+</code></pre>
+<pre><code class="python">my_comets = c.comets(my_layout, my_params)
+my_comets.run()
+</code></pre>
+
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<pre><code class="python">print(my_comets.run_output)
+</code></pre>
+
+<pre><code>-script
+running script file: /home/djordje/Dropbox/projects/COMETS-Python-Toolbox/.current_script
+Loading layout file '/home/djordje/Dropbox/projects/COMETS-Python-Toolbox/.current_layout'...
+Found 1 model files!
+Loading 'iJO1366.cmd' ...
+... [etc]
+</code></pre>
+<pre><code class="python">plt.plot('cycle', 'iJO1366', data=my_comets.total_biomass)
+</code></pre>
+
+<p><img alt="png" src="/img/model_testing_20_1.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

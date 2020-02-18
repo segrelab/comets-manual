@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Simulating evolution with COMETS - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css]" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Simulating evolution with COMETS";
+    var mkdocs_page_input_path = "python-module/4_evolution.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2_competition/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../3_chemostat/">Continuous culture</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Simulating evolution with COMETS</a>
+    <ul class="subnav">
+            
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMMAND LINE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../getting-started/">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../interacting.md">Interacting with comets</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../layout-files/">Layout Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../creating-layout/">Creating a Layout</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../model-files/">Model Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../parameters/">Parameters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../single_species/">1. Single species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../multi_species/">2. Multi-species growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../chemostat/">3. Continuous growth in a chemostat</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../petri/">4. Colonies on a virtual Petri-dish</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">LEGACY DOCUMENTATION</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../legacy-documentation/">Legacy Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Simulating evolution with COMETS</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>One of COMETS features is the ability to include mutations in models during a
+simulation, thereby simulating evolution. At the moment, mutations consist in
+either reaction deletions or additions.</p>
+<p>In this example, we simulate an experimental evolution of <em>E. coli</em> in batch
+culure, with serial transfers every 24 hours.</p>
+<p>We start as usual by loading the toolbox and setting up the layout. We will use
+a well mixed environment with a glucose minimal media.</p>
+<pre><code class="Python">import comets as c
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# generate layout
+world = c.layout()
+world.set_specific_metabolite('glc__D_e', 0.01)
+</code></pre>
+
+<p>AddWe also add trace metabolites (ions, metals etc) in unlimited amounts. For
+this, we set the static flag to True and the static value to 1000mM.</p>
+<pre><code class="Python"># Add typical trace metabolites and oxygen coli as static
+trace_metabolites = ['ca2_e',
+                     'cl_e',
+                     'cobalt2_e',
+                     'cu2_e',
+                     'fe2_e',
+                     'fe3_e',
+                     'h_e',
+                     'k_e',
+                     'h2o_e',
+                     'mg2_e',
+                     'mn2_e',
+                     'mobd_e',
+                     'na1_e',
+                     'ni2_e',
+                     'nh4_e',
+                     'o2_e',
+                     'pi_e',
+                     'so4_e',
+                     'zn2_e']
+
+for met in trace_metabolites:
+    newrow = {'metabolite': met,
+              'g_refresh': 0,
+              'g_static': 1,
+              'g_static_val': 1000,
+              'init_amount': 1000,
+              'diff_c': world.default_diff_c}
+
+    newrow = pd.DataFrame([newrow], columns=newrow.keys())
+    world.media = pd.concat([world.media, newrow], axis=0, sort=False)
+</code></pre>
+
+<p>We load our model and add it to the layout</p>
+<pre><code class="Python"># load model
+wt = c.model('test_models/UiJO1366_nonTrimmed.cmd')
+wt.initial_pop = [0, 0, 5e-8]
+world.add_model(wt)
+</code></pre>
+
+<p>We now create a <code>params</code> object, and modify the needed parameters. For this
+small example, we will perform 10 transfers every 24h. We will set the mutation
+rate to <span><span class="MathJax_Preview">10^6</span><script type="math/tex">10^6</script></span> for deletions. We also set a cost term for genome size of 5e-8,
+so that deletion of useless mutations can be slightly beneficial due to
+reduction in genome maitenance.</p>
+<pre><code class="Python"># .. load parameters and layout from file
+evo_params = c.params()
+
+#simulate 10 serial transfers of 24h each (timeStep = 0.1)
+evo_params.all_params['timeStep'] = 0.1
+evo_params.all_params['maxCycles'] = 2400
+evo_params.all_params['batchDilution'] = True
+evo_params.all_params['dilFactor'] = 0.01
+evo_params.all_params['dilTime'] = 24
+
+evo_params.all_params['evolution'] = True
+evo_params.all_params['mutRate'] = 1e-5
+evo_params.all_params['cellSize'] = 1e-9
+#evo_params.all_params['minCellBiomass'] = 2.5e-13
+
+evo_params.all_params['costlyGenome'] = True
+evo_params.all_params['geneFractionalCost'] = 5e-8
+
+evo_params.all_params['BiomassLogRate'] = 1 #2400
+</code></pre>
+
+<p>Finally, we create the COMETS object using the above layout and parameters, and
+run the simulation.</p>
+<pre><code class="Python"># create comets object from the loaded parameters and layout
+evo_simulation = c.comets(world, evo_params)
+# run comets simulation
+evo_simulation.run()
+</code></pre>
+
+<p>We can visualize the evolution over time using the <code>biomass</code> output data frame.</p>
+<pre><code class="Python">fig, ax = plt.subplots(figsize=(15, 5))
+
+for key, grp in evo_simulation.biomass.groupby(['species']):
+    ax = grp.plot(ax=ax, kind='line', x='Cycle', y='biomass')
+ax.get_legend().remove()
+plt.yscale('log')
+plt.show()
+</code></pre>
+
+<p><img alt="png" src="/img/evolution_1.png" /></p>
+<p>It is also helpful to the analyze the <code>genotype</code> data frame output. This table
+contains all the mutants that appear during the simulation, in three columns:
+The ancestor, the mutation, and the name of the resulting genotype, which is
+assigned a random hash as ID (or "Species"). Note that the first genotype in
+the list is the loaded model, so it has "no ancestor" and "no mutation". </p>
+<pre><code class="Python">Evo_simulation.genotypes
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Ancestor</th>
+<th>Mutation</th>
+<th>Species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NO_ANCESTOR</td>
+<td>NO_MUT</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+</tr>
+<tr>
+<td>1</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+<td>add_5510</td>
+<td>e242b9ca-e8ea-46ab-aaeb-09b24b690d6c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+<td>del_1214</td>
+<td>4c1d16f3-976e-446b-87d2-3126d8a4310f</td>
+</tr>
+<tr>
+<td>3</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+<td>add_2944</td>
+<td>46ffd601-3ca7-4d63-93ee-88c7dee6ea03</td>
+</tr>
+<tr>
+<td>4</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+<td>add_5172</td>
+<td>9cd5b1a8-5768-4e1c-8c55-2f0271f9ee36</td>
+</tr>
+<tr>
+<td>5</td>
+<td>UiJO1366_nonTrimmed.cmd</td>
+<td>del_1709</td>
+<td>fb39194a-9892-4942-b817-5261b2bd0da6</td>
+</tr>
+<tr>
+<td>.</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../5_citrate/" class="btn btn-neutral float-right" title="Citrate use in the LTEE">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../3_chemostat/" class="btn btn-neutral" title="Continuous culture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../3_chemostat/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../5_citrate/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
