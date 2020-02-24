@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Natural environments - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Natural environments";
+    var mkdocs_page_input_path = "python-module/9_soil_air_interface.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../1_simple_growth/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../2_competition/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../3_chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../4_evolution/">Simulating evolution with COMETS</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../5_citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../6_extracell_rxns/">Extracellular reactions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../7_colony.md">Bacterial colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Natural environments</a>
+    <ul class="subnav">
+            
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../colony/">Growth of an E. coli colony</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Natural environments</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>One can make a complex, realistic environment in COMETS with relative simplicity. Here, we demonstrate how to simulate a 2d cross-section of soil with three different species, a “root” along the left side, “air” along the top, and multiple impenetrable rocks.</p>
+<p>We begin by downloading three soil bacteria models as .xml files from the BiGG database (King et al. 2015): the Bacillus subtilis model iYO844, the Pseudomonas putida model iJN747, and the Methanosarcina barkeri model iAF629. We load these models into a python environment using the Cobra toolbox. Also, upon downloading, the biomass functions of these models had positive lower bounds, which we then set to zero:</p>
+<pre><code class="Py">import cobra
+import comets as c
+
+iJN = cobra.io.read_sbml_model('iJN746.xml')
+iJN.reactions.get_by_id('BIOMASS_KT_TEMP').lower_bound = 0
+iJN.reactions.get_by_id('BIOMASS_KT_TEMP').upper_bound = 1000
+
+iAF = cobra.io.read_sbml_model('iAF692.xml')
+iAF.reactions.get_by_id('BIOMASS_Mb_30').lower_bound = 0
+iAF.reactions.get_by_id('BIOMASS_Mb_30').upper_bound = 1000
+
+iYO = cobra.io.read_sbml_model('iYO844.xml')
+iYO.reactions.get_by_id('BIOMASS_BS_10').lower_bound = 0
+iYO.reactions.get_by_id('BIOMASS_BS_10').upper_bound = 1000
+</code></pre>
+
+<p>Next, we convert these into COMETS models. (Side note: A difficult design choice was made in having a specific COMETS model object, rather than just using a Cobra object. The reason we used a separate COMETS model object was because in Cobra, media environments are an intrinsic part of the Cobra model, and are generated by altering flux bounds on exchange reactions. In COMETS, assuming the model is a wild-type, the exchange reaction flux bounds should always be open, and the media environment is not part of the model, but part of the layout. Our intent in making a specific COMETS model object was to hopefully reduce the chance that Cobra users would attempt to set the media environment by making changes to the COMETS model. ) We also ensure the model does not think that sink reactions are exchange reactions (as they are unbalanced in Cobra models, and therefore appear similar to exchanges), and open all exchange reaction bounds:</p>
+<pre><code class="Py">iJN_comets = c.model(iJN)
+iJN_comets = ensure_sinks_are_not_exchanges(iJN_comets) # note to self, make these model-owner methods
+iJN_comets = open_exchanges(iJN_comets)
+
+iAF_comets = c.model(iAF)
+iAF_comets = ensure_sinks_are_not_exchanges(iAF_comets)
+iAF_comets = open_exchanges(iAF_comets)
+
+iYO_comets = c.model(iYO)
+iYO_comets = ensure_sinks_are_not_exchanges(iYO_comets)
+iYO_comets = open_exchanges(iYO_comets)
+</code></pre>
+
+<p>Our simulated world will be a 100x100 box lattice. The left-hand side, where x = 0, will be the root. The top, where y = 0, will be the air. Therefore, the biomass and the rocks will be distributed everywhere else. To ensure that we don't attempt to place biomass where rocks are placed, we first determine the rock locations. Specifically, we will create 70 rocks which are impervious to any biomass or metabolite. These rocks will have an average size of 15 boxes. To pick these locations, we use the helper function grow_rocks:</p>
+<pre><code class="Py">rock_locs = grow_rocks(n = 70, xrange = [1,100],yrange = [1,100],mean_size = 15)
+</code></pre>
+
+<p>Each species will have biomass seeded at 60 different locations, with no overlap. We will use the helper function pick_random_locations for this, which is useful as it can take in a previously-generated list of tuples of x-y locations as “forbidden” locations, such as the rock locations.</p>
+<p>First we make a copy of the rock_locs so we don't accidentally alter it, and call this copy forbidden_locs.</p>
+<pre><code class="Py">import copy
+forbidden_locs = copy.deepcopy(rock_locs)
+</code></pre>
+
+<p>Next we pick the random locations for each species, adding these locations to the forbidden locs as we go so as to prevent overlap.</p>
+<pre><code class="Py">iJN_locs = pick_random_locations(n = 60, xrange = [1,100], yrange = [1,100], forbidden_locs = forbidden_locs)
+forbidden_locs.extend(iJN_locs)
+iYO_locs = pick_random_locations(60, [1,100],[1,100], forbidden_locs)
+forbidden_locs.extend(iYO_locs)
+iAF_locs = pick_random_locations(60, [1,100],[1,100], forbidden_locs)
+forbidden_locs.extend(iAF_locs)
+# note to self:  put this somewhere logical in the toolbox
+</code></pre>
+
+<p>If we wish to take a look at what locations were chosen, we can easily make an image with matplotlib (see Figure XXX):</p>
+<pre><code class="Py">from matplotlib import pyplot as plt
+initial_image = np.zeros((100,100,3))
+for rock in rock_locs:
+    initial_image[rock[1]-1,rock[0]-1,0:3] = 0.5 
+for loc in iJN_locs:
+    initial_image[loc[1]-1,loc[0]-1,0] = 1
+for loc in iYO_locs:
+    initial_image[loc[1]-1,loc[0]-1,1] = 1
+for loc in iAF_locs:
+    initial_image[loc[1]-1,loc[0]-1,2] = 1
+plt.imshow(initial_image)
+    ```
+
+Things look good so we continue by making the layout and setting the dimensions. Then, we add the rock barriers to the layout.
+
+```Py
+layout = c.layout()
+layout.grid = [100,100]
+layout.add_barriers(rock_locs)
+</code></pre>
+
+<p>We set the initial population for each species by using a python list comprehension. Note that locations are properties of the model (NOTE maybe I should change this to layout, and make it something like layout.set_initial_pop(species_id, locs, biomass).</p>
+<pre><code class="Py">iJN_comets.initial_pop = [[loc[0],loc[1],1e-8] for loc in iJN_locs]
+iYO_comets.initial_pop = [[loc[0],loc[1],1e-8] for loc in iYO_locs]
+iAF_comets.initial_pop = [[loc[0],loc[1],1e-8] for loc in iAF_locs]
+</code></pre>
+
+<p>We add the models to the layout.</p>
+<pre><code class="Py">layout.add_model(iJN_comets)
+layout.add_model(iYO_comets)
+layout.add_model(iAF_comets)
+</code></pre>
+
+<p>We want some metabolites available initially. These include all the typical trace nutrients needed, so we start with the helper function.</p>
+<pre><code class="Py">layout.add_typical_trace_metabolites()
+</code></pre>
+
+<p>However, we want oxygen to mostly diffuse from the air, so we set that value lower. We also add a few other trace metabolites homogeneously throughout the environm
+At this point we make a COMETS instance and run the model. Be aware that on a modern mid-range computer, this could take more than 5 hours. Set the parameter 'maxCycles' to something smaller if you wish to conduct a test. Note that we set delete_files = False. If one is running fast simulations such as in a single box, it is convenient to leave this as true to keep the file structure clean. However, for long-running simulations, it makes more sense to keep file records of the simulation settings and data, in case the python kernel is shutdown.
+spatial = c.comets(layout, params)
+spatial.run(delete_files = False) # takes hours!</p>
+<p>(todo: decide whether we want the python toolbox to read total biomass / biomass / media files, or whether we state that that is “a typical python task” and leave it up to the reader. I have functions which parse the data out of the MATLAB results which used to be spit out of the comets runs (which is what I'm still doing, heh), but I haven't written anything for whatever the new format is)</p>
+<p>Once complete, the location-specific biomass and media information are in files which are specified in the params, as is the summarized total biomass data:</p>
+<pre><code class="Py">params.all_params['BiomassLogName']
+params.all_params['MediaLogName']
+params.all_params['TotalBiomassLogName']
+</code></pre>
+
+<p>These files can be easily parsed with your favorite data analysis tool. For the figures below, we loaded the data into numpy arrays and visualized them with matplotlib functions, as in previous protocols. </p>
+<p><img alt="png" src="../../img/soil_eg_fig.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../colony/" class="btn btn-neutral float-right" title="Growth of an E. coli colony">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../8_demographic/" class="btn btn-neutral" title="Demographic noise and cooperative propagation in space"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../8_demographic/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../colony/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../css/extra.css]" rel="stylesheet">
+  <link href="../../css/extra.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -61,6 +61,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">COMETS PYTHON TOOLBOX</span>
     <ul class="subnav">
                 <li class="">
@@ -83,11 +88,13 @@
 
     <li class="toctree-l3"><a href="#setting-the-simulation-parameters">Setting the simulation parameters</a></li>
     
-
-    <li class="toctree-l3"><a href="#running-the-simulation">Running the simulation</a></li>
-    
-
-    <li class="toctree-l3"><a href="#analyzing-the-results">Analyzing the results</a></li>
+        <ul>
+        
+            <li><a class="toctree-l4" href="#running-the-simulation">Running the simulation</a></li>
+        
+            <li><a class="toctree-l4" href="#analyzing-the-results">Analyzing the results</a></li>
+        
+        </ul>
     
 
     </ul>
@@ -120,6 +127,10 @@
                     
     <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../9_soil_air_interface/">Natural environments</a>
+                </li>
     </ul>
 	    </li>
           
@@ -130,75 +141,6 @@
                 <li class="">
                     
     <a class="" href="../colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">COMMAND LINE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../getting-started/">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../interacting.md">Interacting with comets</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../layout-files/">Layout Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../creating-layout/">Creating a Layout</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../model-files/">Model Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parameters/">Parameters</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../single_species/">1. Single species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../multi_species/">2. Multi-species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../chemostat/">3. Continuous growth in a chemostat</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../petri/">4. Colonies on a virtual Petri-dish</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">LEGACY DOCUMENTATION</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../legacy-documentation/">Legacy Documentation</a>
                 </li>
     </ul>
 	    </li>
@@ -249,7 +191,7 @@ the time dynamics of bacterial metabolism was the classical study of
 one of the results in that study, the anaerobic fermentation in minimal media
 with glucose as the only carbon source.</p>
 <p>We will simulate a test tube by setting a well-mixed virtual container with
-<span><span class="MathJax_Preview">1cm^3</span><script type="math/tex">1cm^3</script></span> of media, which we will inoculate with 5e-6 grams of <em>E. coli</em> biomass.
+<span><span class="MathJax_Preview">1cm^3</span><script type="math/tex">1cm^3</script></span> of media, which we will inoculate with <span><span class="MathJax_Preview">5 \times 10^{-6}</span><script type="math/tex">5 \times 10^{-6}</script></span> grams of <em>E. coli</em> biomass.
 We will set the initial composition of the substrate to 11mM of glucose and
 unlimited amounts of ammonia and phosphate. For the nutrient uptake, we will use
 standard Michaelis-Menten kinetics, using the experimentally measured Monod
@@ -294,7 +236,7 @@ CobraPy model as input. In our experience, this has been very useful when using
 CobraPy and COMETS back and forth to perform different types of simulations and
 analysis.</p>
 <p>In this case, we load our model from the <code>.xml</code> file we downloaded.
-We then remove the boundson glucose import, which will be set dynamically by
+We then remove the bounds on glucose import, which will be set dynamically by
 COMETS during the simulation according to the dynamically changing external
 glucose concentration. We will set the initial biomass of our model at 10-6 gr.  </p>
 <pre><code class="Python"># load the model
@@ -309,7 +251,7 @@ test_tube.add_model(e_coli)
 </code></pre>
 
 <h3 id="setting-the-simulation-parameters">Setting the simulation parameters</h3>
-<p>We netx instantiate the <code>params</code> class, which generates a set of parameters for
+<p>We next instantiate the <code>params</code> class, which generates a set of parameters for
 the COMETS simulation with the [TODO LINK TO DEF VALS] default values for all of them. All
 of the parameters are contained in the <code>all_params</code> field which is a Python
 <code>dict</code> object, making it easy to change the value of the desired parameters.</p>
@@ -326,7 +268,7 @@ sim_params.all_params['minSpaceBiomass'] = 1e-11
 sim_params.all_params['writeMediaLog'] = True
 </code></pre>
 
-<h3 id="running-the-simulation">Running the simulation</h3>
+<h4 id="running-the-simulation">Running the simulation</h4>
 <p>With all set up, we can now instantiate the <code>comets</code> class by passing the
 <code>layout</code> (containing the <code>model</code>) and the <code>params</code> objects we just created.</p>
 <pre><code class="Python">well_mixed = c.comets(test_tube, sim_params)
@@ -336,14 +278,14 @@ sim_params.all_params['writeMediaLog'] = True
 <pre><code class="Python">well_mixed.run()
 </code></pre>
 
-<h3 id="analyzing-the-results">Analyzing the results</h3>
+<h4 id="analyzing-the-results">Analyzing the results</h4>
 <p>The results of our simulation are stored in several <code>pandas</code> data frames
 contained in the <code>comets</code> object that we just simulated. The growth of the
 simulated model can be seen by plotting the total_biomass field.  </p>
 <pre><code class="Python">well_mixed.total_biomass.plot(x = 'cycle')
 </code></pre>
 
-<p><img alt="png" src="/img/well_mixed_1.png" /></p>
+<p><img alt="png" src="../../img/well_mixed_1.png" /></p>
 <p>Similarly, we can plot composition of the media. In this case, we will limit
 the plot to those components that are not added to the layout in unlimited
 amounts (“static” compounds, e.g. ammonia, phosphate, water, etc in this
@@ -357,7 +299,7 @@ media.groupby('metabolite').plot(x='cycle', ax =ax, y='conc_mmol')
 ax.legend(('acetate','ethanol', 'formate', 'glucose'))
 </code></pre>
 
-<p><img alt="png" src="/img/well_mixed_2.png" /></p>
+<p><img alt="png" src="../../img/well_mixed_2.png" /></p>
               
             </div>
           </div>

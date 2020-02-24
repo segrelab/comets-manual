@@ -8,17 +8,17 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Legacy Documentation - COMETS Documentation</title>
+  <title>Quick Start - COMETS Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../css/extra.css]" rel="stylesheet">
+  <link href="../css/extra.css" rel="stylesheet">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Legacy Documentation";
+    var mkdocs_page_name = "Quick Start";
     var mkdocs_page_input_path = "legacy-documentation.md";
     var mkdocs_page_url = null;
   </script>
@@ -61,6 +61,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">COMETS PYTHON TOOLBOX</span>
     <ul class="subnav">
                 <li class="">
@@ -99,6 +104,10 @@
                     
     <a class="" href="../python-module/8_demographic/">Demographic noise and cooperative propagation in space</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../python-module/9_soil_air_interface/">Natural environments</a>
+                </li>
     </ul>
 	    </li>
           
@@ -109,169 +118,6 @@
                 <li class="">
                     
     <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">COMMAND LINE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../getting-started/">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../interacting.md">Interacting with comets</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../layout-files/">Layout Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../creating-layout/">Creating a Layout</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../model-files/">Model Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../parameters/">Parameters</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../single_species/">1. Single species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../multi_species/">2. Multi-species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../chemostat/">3. Continuous growth in a chemostat</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../petri/">4. Colonies on a virtual Petri-dish</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../python-module/colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">LEGACY DOCUMENTATION</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">Legacy Documentation</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#quick-start">Quick Start</a></li>
-    
-
-    <li class="toctree-l3"><a href="#system-requirements">System Requirements</a></li>
-    
-
-    <li class="toctree-l3"><a href="#install-and-run-comets">Install and Run Comets</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#older-versions">Older Versions</a></li>
-        
-            <li><a class="toctree-l4" href="#installing-on-windows">Installing on Windows</a></li>
-        
-            <li><a class="toctree-l4" href="#installing-on-mac">Installing on Mac</a></li>
-        
-            <li><a class="toctree-l4" href="#installing-on-linux">Installing on Linux</a></li>
-        
-            <li><a class="toctree-l4" href="#running-comets">Running COMETS</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#comets-e-coli-simulation-example">COMETS E. coli Simulation Example</a></li>
-    
-
-    <li class="toctree-l3"><a href="#layout-file-format">Layout File Format</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-model-names">1. Model Names</a></li>
-        
-            <li><a class="toctree-l4" href="#2-model-world">2. Model World</a></li>
-        
-            <li><a class="toctree-l4" href="#3-initial-population-biomass">3. Initial Population Biomass</a></li>
-        
-            <li><a class="toctree-l4" href="#4-parameters">4. Parameters</a></li>
-        
-            <li><a class="toctree-l4" href="#sample-layout-file">Sample Layout File</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#model-file-format">Model File Format</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1-stoichiometric-matrix">1. Stoichiometric Matrix</a></li>
-        
-            <li><a class="toctree-l4" href="#2-flux-bounds">2. Flux Bounds</a></li>
-        
-            <li><a class="toctree-l4" href="#3a-objective-reaction">3a. Objective Reaction</a></li>
-        
-            <li><a class="toctree-l4" href="#3b-biomass-reaction">3b. Biomass Reaction</a></li>
-        
-            <li><a class="toctree-l4" href="#4-metabolite-names">4. Metabolite Names</a></li>
-        
-            <li><a class="toctree-l4" href="#5-reaction-names">5. Reaction Names</a></li>
-        
-            <li><a class="toctree-l4" href="#6-exchange-reaction-indices">6. Exchange Reaction Indices</a></li>
-        
-            <li><a class="toctree-l4" href="#7-diffusion-constants">7. Diffusion Constants</a></li>
-        
-            <li><a class="toctree-l4" href="#8-alpha-values">8. Alpha Values</a></li>
-        
-            <li><a class="toctree-l4" href="#9-w-values">9. W Values</a></li>
-        
-            <li><a class="toctree-l4" href="#10-km-values">10. Km Values</a></li>
-        
-            <li><a class="toctree-l4" href="#11-vmax-values">11. Vmax Values</a></li>
-        
-            <li><a class="toctree-l4" href="#12-hill-coefficients">12. Hill Coefficients</a></li>
-        
-            <li><a class="toctree-l4" href="#13-objective-style">13. Objective Style</a></li>
-        
-            <li><a class="toctree-l4" href="#14-optimizer">14. Optimizer</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#comets-parameter-descriptions">COMETS Parameter Descriptions</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#general-comets-parameters">General Comets Parameters</a></li>
-        
-            <li><a class="toctree-l4" href="#fba-modeling-parameters">FBA Modeling Parameters</a></li>
-        
-        </ul>
-    
-
-    </ul>
                 </li>
     </ul>
 	    </li>
@@ -297,12 +143,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>LEGACY DOCUMENTATION &raquo;</li>
-        
-      
     
-    <li>Legacy Documentation</li>
+    <li>Quick Start</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -1047,13 +889,6 @@ For example:</p>
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="../python-module/colony/" class="btn btn-neutral" title="Growth of an E. coli colony"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
@@ -1075,8 +910,6 @@ For example:</p>
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-      
-        <span><a href="../python-module/colony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>

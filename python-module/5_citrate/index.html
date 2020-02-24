@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../css/extra.css]" rel="stylesheet">
+  <link href="../../css/extra.css" rel="stylesheet">
   
   <script>
     // Current page data
@@ -61,6 +61,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">COMETS PYTHON TOOLBOX</span>
     <ul class="subnav">
                 <li class="">
@@ -102,6 +107,10 @@
                     
     <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../9_soil_air_interface/">Natural environments</a>
+                </li>
     </ul>
 	    </li>
           
@@ -112,75 +121,6 @@
                 <li class="">
                     
     <a class="" href="../colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">COMMAND LINE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../getting-started/">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../interacting.md">Interacting with comets</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../layout-files/">Layout Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../creating-layout/">Creating a Layout</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../model-files/">Model Files</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parameters/">Parameters</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../single_species/">1. Single species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../multi_species/">2. Multi-species growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../chemostat/">3. Continuous growth in a chemostat</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../petri/">4. Colonies on a virtual Petri-dish</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">GRAPHICAL USER INTERFACE</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../colony/">Growth of an E. coli colony</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">LEGACY DOCUMENTATION</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../legacy-documentation/">Legacy Documentation</a>
                 </li>
     </ul>
 	    </li>
@@ -369,6 +309,8 @@ final_df.reindex()
 final_df = final_df[np.round((final_df.Generations - 25000) % 6.67,3) == 6.67]
 final_df.plot(x='Generations', ylog=True)
 </code></pre>
+
+<p><img alt="png" src="../../img/citrate.png" /></p>
               
             </div>
           </div>
