@@ -10,7 +10,7 @@ one of the results in that study, the anaerobic fermentation in minimal media
 with glucose as the only carbon source.
 
 We will simulate a test tube by setting a well-mixed virtual container with
-$1cm^3$ of media, which we will inoculate with 5e-6 grams of *E. coli* biomass.
+$1cm^3$ of media, which we will inoculate with $5 \times 10^{-6}$ grams of *E. coli* biomass.
 We will set the initial composition of the substrate to 11mM of glucose and
 unlimited amounts of ammonia and phosphate. For the nutrient uptake, we will use
 standard Michaelis-Menten kinetics, using the experimentally measured Monod
@@ -65,7 +65,7 @@ CobraPy and COMETS back and forth to perform different types of simulations and
 analysis.
 
 In this case, we load our model from the `.xml` file we downloaded.
-We then remove the boundson glucose import, which will be set dynamically by
+We then remove the bounds on glucose import, which will be set dynamically by
 COMETS during the simulation according to the dynamically changing external
 glucose concentration. We will set the initial biomass of our model at 10-6 gr.  
 
@@ -82,7 +82,7 @@ test_tube.add_model(e_coli)
 ```
 
 # Setting the simulation parameters
-We netx instantiate the `params` class, which generates a set of parameters for
+We next instantiate the `params` class, which generates a set of parameters for
 the COMETS simulation with the [TODO LINK TO DEF VALS] default values for all of them. All
 of the parameters are contained in the `all_params` field which is a Python
 `dict` object, making it easy to change the value of the desired parameters.
@@ -101,7 +101,7 @@ sim_params.all_params['minSpaceBiomass'] = 1e-11
 sim_params.all_params['writeMediaLog'] = True
 ```
 
-# Running the simulation
+##Running the simulation
 With all set up, we can now instantiate the `comets` class by passing the
 `layout` (containing the `model`) and the `params` objects we just created.
 
@@ -114,7 +114,7 @@ Finally, we can run the simulation as:
 well_mixed.run()
 ```
 
-# Analyzing the results
+##Analyzing the results
 The results of our simulation are stored in several `pandas` data frames
 contained in the `comets` object that we just simulated. The growth of the
 simulated model can be seen by plotting the total_biomass field.  
@@ -123,7 +123,7 @@ simulated model can be seen by plotting the total_biomass field.
 well_mixed.total_biomass.plot(x = 'cycle')
 ```
 
-![png](/img/well_mixed_1.png)
+![png](../img/well_mixed_1.png)
 
 Similarly, we can plot composition of the media. In this case, we will limit
 the plot to those components that are not added to the layout in unlimited
@@ -141,4 +141,4 @@ media.groupby('metabolite').plot(x='cycle', ax =ax, y='conc_mmol')
 ax.legend(('acetate','ethanol', 'formate', 'glucose'))
 ```
 
-![png](/img/well_mixed_2.png)
+![png](../img/well_mixed_2.png)

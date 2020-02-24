@@ -159,3 +159,6 @@ final_df.reindex()
 final_df = final_df[np.round((final_df.Generations - 25000) % 6.67,3) == 6.67]
 final_df.plot(x='Generations', ylog=True)
 ```
+
+![png](../img/citrate.png)
+

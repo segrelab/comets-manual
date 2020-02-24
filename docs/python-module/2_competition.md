@@ -105,7 +105,7 @@ import matplotlib.pyplot as plt
 myplot = biomass.drop(columns=['cycle']).plot(x = 't')
 ```
 
-![png](/img/competition_1.png)
+![png](../img/competition_1.png)
 
 
 We can also compute the competitive fitness of the mutant with respect to the
@@ -157,4 +157,4 @@ biomass['transfer'] = biomass['cycle'] * comp_assay.parameters.all_params['timeS
 
 myplot = biomass.drop(columns=['cycle', 't']).plot(x = 'transfer')
 ```
-![png](/img/competition_2.png)
+![png](../img/competition_2.png)

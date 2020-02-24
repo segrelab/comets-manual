@@ -1,7 +1,7 @@
 site_name: COMETS Documentation
 
 extra_css:
-    - css/extra.css]
+    - css/extra.css
 
 extra_javascript:
     - js/extra.js
@@ -20,6 +20,7 @@ markdown_extensions:
 nav:
     - Home: index.md
     - Capabilities: capabilities.md
+    - Installation: installation.md
     - COMETS PYTHON TOOLBOX:
         - Getting started: python-module/getting_started.md
         - Growth in a test tube: python-module/1_simple_growth.md
@@ -30,22 +31,8 @@ nav:
         - Extracellular reactions: python-module/6_extracell_rxns.md
         - Bacterial colony growth: python-module/7_colony.md
         - Demographic noise and cooperative propagation in space: python-module/8_demographic.md
+        - Natural environments: python-module/9_soil_air_interface.md
     - COMETS MATLAB TOOLBOX:
         - Growth of an E. coli colony: python-module/colony.md
-    - COMMAND LINE:
-        - Getting Started: getting-started.md
-        - Interacting with comets: interacting.md
-        - Layout Files: layout-files.md
-        - Creating a Layout: creating-layout.md
-        - Model Files: model-files.md
-        - Parameters: parameters.md
-        - 1. Single species growth: single_species.md
-        - 2. Multi-species growth: multi_species.md
-        - 3. Continuous growth in a chemostat: chemostat.md
-        - 4. Colonies on a virtual Petri-dish: petri.md
-    - GRAPHICAL USER INTERFACE:
-        - Growth of an E. coli colony: python-module/colony.md
-    - LEGACY DOCUMENTATION:
-        - Legacy Documentation: legacy-documentation.md
 
 theme: readthedocs

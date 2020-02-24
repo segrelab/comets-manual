@@ -115,7 +115,7 @@ plt.yscale('log')
 plt.show()
 ```
 
-![png](/img/evolution_1.png)
+![png](../img/evolution_1.png)
 
 
 It is also helpful to the analyze the `genotype` data frame output. This table
