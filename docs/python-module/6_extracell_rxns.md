@@ -1,17 +1,22 @@
 This protocol demonstrates the capacity of COMETS to simulate reactions
-occuring in the extracellular environment.
+occurring in the extracellular environment.
 
-Extracellular reaction information is included in the COMETS layout file, in
-blocks with the following format:
+Extracellular reaction information is included in the COMETS layout file, in blocks with the following format:
 
-REACTANTS
-        rxnIdx metIdx order k   //elemental rxn
-        rxnIdx metIdx km        //enzyme catalyzed
-    ENZYMES
-        rxnIdx metIdx kcat
-    PRODUCTS
-        rxnIdx metIdx stoich
-    //
+```
+REACTIONS
+
+	REACTANTS
+		rxnIdx metIdx order k   //elemental rxn
+		rxnIdx metIdx km        //enzyme catalyzed
+        
+	ENZYMES
+		rxnIdx metIdx kcat
+
+	PRODUCTS
+		rxnIdx metIdx stoich
+//
+```
 
 Each reactant or product in a given reaction should appear on its own line,
 using the same integer rxnIdx per extracellular reaction. The metIdx field
