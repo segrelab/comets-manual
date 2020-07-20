@@ -13,7 +13,7 @@ The class `model` is used to store the genome-scale metabolic models used in `CO
 ```python
 import cobra
 import cobra.test
-import cometspy as c
+import comets as c
 
 # Load a textbook example model using the COBRAPy toolbox 
 test_model = cobra.test.create_test_model('textbook')
@@ -26,10 +26,6 @@ test_model = c.model(test_model)
 test_model.initial_pop = [0, 0, 1e-7] 
 ```
 
-    Using license file /home/djordje/gurobi.lic
-    Academic license - for non-commercial use only
-
-
 ### Setting `COMETS` simulation parameters
 `COMETS` simulation parameters are stored in the `params` class, which contains just a `dict` object with the parameter names and values. If we initialize the class without arguments, it will contain the default parameter values (see [here]()). Once loaded, the parameter values can be visualized and modified as desired. 
 
@@ -39,100 +35,11 @@ test_model.initial_pop = [0, 0, 1e-7]
 my_params = c.params()
 
 # Change the value of a parameter, for example number of simulation cycles
-my_params.set_param('maxCycles', 100)
-
-# Set some writeTotalBiomassLog parameter to True, in order to save the output
-my_params.set_param('writeTotalBiomassLog', True)
+my_params.all_params['maxCycles'] = 100
 
 # See avaliable parameters and their values
-my_params.show_params()
+my_params.all_params
 ```
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>VALUE</th>
-      <th>UNITS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>BiomassLogName</th>
-      <td>biomass.txt</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>BiomassLogRate</th>
-      <td>1</td>
-      <td>cycles</td>
-    </tr>
-    <tr>
-      <th>FluxLogName</th>
-      <td>flux_out</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>FluxLogRate</th>
-      <td>5</td>
-      <td>cycles</td>
-    </tr>
-    <tr>
-      <th>MediaLogName</th>
-      <td>media_out</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>writeBiomassLog</th>
-      <td>False</td>
-      <td>logical</td>
-    </tr>
-    <tr>
-      <th>writeFluxLog</th>
-      <td>False</td>
-      <td>logical</td>
-    </tr>
-    <tr>
-      <th>writeMediaLog</th>
-      <td>False</td>
-      <td>logical</td>
-    </tr>
-    <tr>
-      <th>writeSpecificMediaLog</th>
-      <td>False</td>
-      <td>logical</td>
-    </tr>
-    <tr>
-      <th>writeTotalBiomassLog</th>
-      <td>True</td>
-      <td>logical</td>
-    </tr>
-  </tbody>
-</table>
-<p>62 rows × 2 columns</p>
-</div>
-
-
 
 ### Preparing a `COMETS` simulation layout
 The layout class describes the characteristics of the environment, i.e. the "world", including which species (models) are in it. It can be instantiated in empty or using `COMETS` models: 
@@ -149,228 +56,12 @@ my_layout = c.layout(test_model)
 
 The layout stores information about the species (`my_layout.models`) and spatial structure (`my_layout.grid`) in the environment. In this case, the model is only the textbook one, and the grid is the default one, which is $1 \times 1$ i.e. only one cell.
 
-The layout stores also information about the **media** as a pandas dataframe. In this case, no amount of any media component is present. 
+The layout stores also information about the **media** as a pandas dataframe:
 
 
 ```python
-my_layout.media
+ec_layout.media
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>diff_c</th>
-      <th>g_refresh</th>
-      <th>g_static</th>
-      <th>g_static_val</th>
-      <th>init_amount</th>
-      <th>metabolite</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>ac_e</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>acald_e</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>akg_e</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>co2_e</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>etoh_e</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>for_e</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>fru_e</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>fum_e</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>glc__D_e</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>gln__L_e</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>glu__L_e</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>h2o_e</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>h_e</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>lac__D_e</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>mal__L_e</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>nh4_e</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>o2_e</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>pi_e</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>pyr_e</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>0.000005</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>succ_e</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 | metabolite | init_amount | diff_c | g_static | g_static_val | g_refresh_val |
 |------------|-------------|--------|----------|--------------|---------------|
@@ -412,54 +103,33 @@ The `comets` class uses a layout object and a parameters object to run simulatio
 my_simulation = c.comets(my_layout, my_params)
 my_simulation.run()
 ```
-    
-    Running COMETS simulation ...
-    Done!
-
 
 ### Checking simulation output and possible errors
 In the background, this command invokes the `COMETS` Java engine in a console, giving a standard output (stdout) and standard error (stderr) logs. Both can be acessed through the fields `run_outputs` and `run_errors`, respectively. 
 
 
 ```python
-print(my_simulation.run_output)
+print(my_comets.run_output)
 ```
 
-    -script
-    running script file: /home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/.current_script
-    Current Java version: 11.0.7
-    Loading layout file '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/.current_layout'...
-    Found 1 model files!
-    Loading '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/e_coli_core.cmd' ...
-    Loading '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/e_coli_core.cmd' ...
-    Academic license - for non-commercial use only
-    Academic license - for non-commercial use only
-    Done!
-     Testing default parameters...
-    Done!
-    Optimizer status code = 5 (looks ok!)
-    objective solution = 0.8739215069684305
-    Constructing world...
-    Done!
-    medialist	ac_e	acald_e	akg_e	co2_e	etoh_e	for_e	fru_e	fum_e	glc__D_e	gln__L_e	glu__L_e	h2o_e	h_e	lac__D_e	mal__L_e	nh4_e	o2_e	pi_e	pyr_e	succ_e
-    Cycle 1
-    Total biomass:
-    Model e_coli_core.cmd: 1.0E-7
-    Cycle 2
-    Total biomass:
-    Model e_coli_core.cmd: 1.0E-7
-    ...
-    Total time = 0.312s
-    
-
+```
+-script
+running script file: '/home/djordje/Dropbox/COMETS_RUN/.current_script'
+Loading layout file '/home/djordje/Dropbox/COMETS_RUN/.current_layout'...
+Found 1 model files!
+Loading 'EC_ijo1366_model' ...
+...
+...
+```
 
 
 ```python
-print(my_simulation.run_errors)
+print(my_comets.run_errors)
 ```
 
-    STDERR empty.
-
+```
+STDERR is empty.
+```
 
 ### Accessing the results of the simulation
 The results of the successful simulation are stored in several fields in the `comets` object, depending on whether the parameters `writeTotalBiomasslog`,  `writeBiomassLog`, `writeFluxLog` and `writeMediaLog` were set to `True`. 
@@ -472,96 +142,3 @@ The results of the successful simulation are stored in several fields in the `co
 Additionally, specific comets modes will have additional output fields; for instance, if we run an evolution simulation, the field `genotypes` will store information about each species such as its ancestor and which mutation it suffered. 
 
 All of the output files ae `pandas` dataframes which can be further analyzed or plotted using standard Python tools.  
-
-
-```python
-my_simulation.total_biomass
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>cycle</th>
-      <th>e_coli_core</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>96.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>97</th>
-      <td>97.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>98</th>
-      <td>98.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>99</th>
-      <td>99.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-    <tr>
-      <th>100</th>
-      <td>100.0</td>
-      <td>1.000000e-07</td>
-    </tr>
-  </tbody>
-</table>
-<p>101 rows × 2 columns</p>
-</div>
-
-

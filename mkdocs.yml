@@ -17,22 +17,18 @@ markdown_extensions:
     - admonition
     - pymdownx.arithmatex
 
-nav:
+pages:
     - Home: index.md
     - Capabilities: capabilities.md
     - Installation: installation.md
     - COMETS PYTHON TOOLBOX:
         - Getting started: python-module/getting_started.md
-        - Growth in a test tube: python-module/1_simple_growth.md
-        - Competition assay: python-module/2_competition.md
-        - Continuous culture: python-module/3_chemostat.md
-        - Simulating evolution with COMETS: python-module/4_evolution.md
-        - Citrate use in the LTEE: python-module/5_citrate.md
-        - Extracellular reactions: python-module/6_extracell_rxns.md
-        - Bacterial colony growth: python-module/7_colony.md
-        - Demographic noise and cooperative propagation in space: python-module/8_demographic.md
-        - Natural environments: python-module/9_soil_air_interface.md
+        - Growth in a test tube: python-module/test_tube.md
+        - Competition assay: python-module/competition_assay.md
+        - Continuous culture: python-module/chemostat.md
+        - Simulating evolutionary processes: python-module/evolution.md
+        - Citrate use in the LTEE: python-module/citrate.md
+        - Soil-air interface: python-module/soil.md
     - COMETS MATLAB TOOLBOX:
-        - Growth of an E. coli colony: python-module/colony.md
-
+        - Example: colony.md
 theme: readthedocs
