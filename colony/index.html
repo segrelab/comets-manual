@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Installation - COMETS Documentation</title>
+  <title>Example - COMETS Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Installation";
-    var mkdocs_page_input_path = "installation.md";
-    var mkdocs_page_url = "/installation/";
+    var mkdocs_page_name = "Example";
+    var mkdocs_page_input_path = "colony.md";
+    var mkdocs_page_url = "/colony/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -58,12 +58,9 @@
     <a class="" href="../capabilities/">Capabilities</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Installation</a>
-    <ul class="subnav">
-            
-    </ul>
+    <a class="" href="../installation/">Installation</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -105,9 +102,15 @@
 		
     <span class="caption-text">COMETS MATLAB TOOLBOX</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../colony/">Example</a>
+    <a class="current" href="./">Example</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#simulating-the-growth-of-a-colony">Simulating the growth of a colony</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -133,8 +136,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>COMETS MATLAB TOOLBOX &raquo;</li>
+        
+      
     
-    <li>Installation</li>
+    <li>Example</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -144,7 +151,64 @@
           <div role="main">
             <div class="section">
               
-                
+                <h3 id="simulating-the-growth-of-a-colony">Simulating the growth of a colony</h3>
+<p>We demonstrate here a simple <code>COMETS</code> simulation with space, the growth of an <em>E. coli</em> colony using a 2D spatial lattice.</p>
+<pre><code class="python">import comets as c
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.cm, matplotlib.colors
+import copy
+
+pd.options.display.max_rows = 10
+</code></pre>
+
+<p>As usual, we first create a parameters object using the <code>params</code> class.</p>
+<pre><code class="python">my_params = c.params()
+my_params.all_params['maxCycles'] = 300
+my_params.all_params['writeBiomassLog'] = True
+</code></pre>
+
+<p>We next load a layout for our simulation </p>
+<pre><code class="python">my_layout = c.layout('test_colony/colony_layout')
+my_layout.initial_pop
+</code></pre>
+
+<pre><code>[[10.0, 10.0, 1e-07]]
+</code></pre>
+<pre><code class="python"># create comets object from the loaded parameters and layout 
+my_comets = c.comets(my_layout, my_params)
+
+# run comets simulation
+my_comets.run()
+</code></pre>
+
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<p>We can print the stderr and stdout, which are stored in the <code>run_errors</code> and <code>run_output</code> fields:</p>
+<pre><code class="python">print(my_comets.run_errors)
+</code></pre>
+
+<pre><code>STDERR empty.
+</code></pre>
+<p>And here is how our incipient <em>E. coli</em> colony looks like: </p>
+<pre><code class="python">import numpy as np
+
+biomass_END = np.zeros((my_layout.grid[0], my_layout.grid[1]))
+
+aux = my_comets.biomass.loc[my_comets.biomass['Cycle'] == 300]
+for index, row in aux.iterrows():
+    biomass_END[row['x'], row['y']] = row['biomass']
+
+my_cmap = copy.copy(matplotlib.cm.get_cmap('copper')) # copy the default cmap
+my_cmap.set_bad((0,0,0))
+
+plt.imshow(biomass_END, interpolation='nearest', 
+           norm=matplotlib.colors.LogNorm(), cmap=my_cmap)
+</code></pre>
+
+<p><img alt="png" src="../img/colony_11_1.png" /></p>
               
             </div>
           </div>
@@ -152,10 +216,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python-module/getting_started/" class="btn btn-neutral float-right" title="Getting started">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../capabilities/" class="btn btn-neutral" title="Capabilities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../python-module/soil/" class="btn btn-neutral" title="Soil-air interface"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -181,10 +243,8 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../capabilities/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../python-module/soil/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../python-module/getting_started/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

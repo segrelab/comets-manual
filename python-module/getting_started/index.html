@@ -13,20 +13,19 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/highlight.css">
   <link href="../../css/extra.css" rel="stylesheet">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Getting started";
     var mkdocs_page_input_path = "python-module/getting_started.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/python-module/getting_started/";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -40,7 +39,7 @@
         <a href="../.." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
       </div>
@@ -73,55 +72,50 @@
     <a class="current" href="./">Getting started</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#the-comets-python-module">The Comets Python module</a></li>
+    <li class="toctree-l3"><a href="#the-comets-python-toolbox">The Comets Python Toolbox</a></li>
     
-
-    <li class="toctree-l3"><a href="#the-params-class">The params class</a></li>
-    
-
-    <li class="toctree-l3"><a href="#the-layout-class">The layout class</a></li>
-    
-
-    <li class="toctree-l3"><a href="#the-comets-class">The comets class</a></li>
+        <ul>
+        
+            <li><a class="toctree-l4" href="#preparing-a-model-for-comets">Preparing a model for COMETS</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-comets-simulation-parameters">Setting COMETS simulation parameters</a></li>
+        
+            <li><a class="toctree-l4" href="#preparing-a-comets-simulation-layout">Preparing a COMETS simulation layout</a></li>
+        
+            <li><a class="toctree-l4" href="#running-a-comets-simulation">Running a COMETS simulation</a></li>
+        
+            <li><a class="toctree-l4" href="#checking-simulation-output-and-possible-errors">Checking simulation output and possible errors</a></li>
+        
+            <li><a class="toctree-l4" href="#accessing-the-results-of-the-simulation">Accessing the results of the simulation</a></li>
+        
+        </ul>
     
 
     </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../1_simple_growth/">Growth in a test tube</a>
+    <a class="" href="../test_tube/">Growth in a test tube</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../2_competition/">Competition assay</a>
+    <a class="" href="../competition_assay/">Competition assay</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../3_chemostat/">Continuous culture</a>
+    <a class="" href="../chemostat/">Continuous culture</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../4_evolution/">Simulating evolution with COMETS</a>
+    <a class="" href="../evolution/">Simulating evolutionary processes</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../5_citrate/">Citrate use in the LTEE</a>
+    <a class="" href="../citrate/">Citrate use in the LTEE</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../6_extracell_rxns/">Extracellular reactions</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../7_colony.md">Bacterial colony growth</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../8_demographic/">Demographic noise and cooperative propagation in space</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../9_soil_air_interface/">Natural environments</a>
+    <a class="" href="../soil/">Soil-air interface</a>
                 </li>
     </ul>
 	    </li>
@@ -132,7 +126,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../colony/">Growth of an E. coli colony</a>
+    <a class="" href="../../colony/">Example</a>
                 </li>
     </ul>
 	    </li>
@@ -173,42 +167,353 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="the-comets-python-module">The Comets Python module</h3>
+                <h3 id="the-comets-python-toolbox">The Comets Python Toolbox</h3>
 <p>The Comets python module is intended to offer a programatic, easy and intuitive interface to <code>COMETS</code>. While it internally uses the same <code>COMETS</code> Java engine as always, it replaces the legacy parameter files, simulation layouts or models, bash scripts and output files, by python objects in a single environment, which users deal with to perform simulations and analyze the results. </p>
-<p>Any comets simulation starts from a <strong>layout</strong> and a set of <strong>parameters</strong>. The layout specifies the environment (media metabolites, refresh values, periodic dilutions) and the species present in it, that is, the <strong>models</strong>. The parameters specify many simulation characteristics, such as number of iterations, timestep, type of metabolite exchange or whether to record different output logs. Therefore, the two main types of objects are <code>layout</code> and <code>parameters</code>. These two are  integrated in the <code>comets</code> class, which perform simulations and contain their output. </p>
-<h3 id="the-params-class">The <code>params</code> class</h3>
-<p>The parameters class is a <code>dict</code> with the parameter names and values for a simulation. If we initialize the class without arguments, it will contain the default parameter values (see <a href="">here</a>): </p>
-<pre><code class="python">my_params = c.params()
+<p>Any comets simulation starts from a <strong>layout</strong> and a set of <strong>parameters</strong>. The layout specifies the environment (media metabolites, refresh values, periodic dilutions) and the species present in it, that is, the <strong>models</strong>. The parameters specify many simulation characteristics, such as number of iterations, timestep, type of metabolite exchange or whether to record different output logs. Therefore, the two main types of objects are <code>layout</code> and <code>params</code>. These two are passed to the <code>comets</code> class, which perform simulations and contain their output. </p>
+<p>In this section, we will walk through the basic functionalities of <code>COMETS</code> using the Python Toolbox, and more specific examples of usage will be provided in the next sections. </p>
+<h5 id="preparing-a-model-for-comets">Preparing a model for <code>COMETS</code></h5>
+<p>The class <code>model</code> is used to store the genome-scale metabolic models used in <code>COMETS</code> simulations. Most frequently, we will first load a model using <code>COBRAPy</code>. Then, we can pass it to the <code>COMETS</code> <code>model</code> class, which allows us to change <code>COMETS</code>-specific model parameters, such as initial population sizes.  </p>
+<pre><code class="python">import cobra
+import cobra.test
+import cometspy as c
+
+# Load a textbook example model using the COBRAPy toolbox 
+test_model = cobra.test.create_test_model('textbook')
+
+# Use the above model to create a COMETS model
+test_model = c.model(test_model)
+
+# Change comets specific parameters, e.g. the initial biomass of the model
+# Notre 
+test_model.initial_pop = [0, 0, 1e-7] 
 </code></pre>
 
-<p>The class can also load comets parameters files (see the definition of these files <a href="">here</a>). The arguments must be the two filenames corresponding to <em>global_params</em> and <em>package_params</em>:</p>
-<pre><code class="python">my_params = c.params('global_params_file_path', 'package_params_file_path')
+<pre><code>Using license file /home/djordje/gurobi.lic
+Academic license - for non-commercial use only
+</code></pre>
+<h5 id="setting-comets-simulation-parameters">Setting <code>COMETS</code> simulation parameters</h5>
+<p><code>COMETS</code> simulation parameters are stored in the <code>params</code> class, which contains just a <code>dict</code> object with the parameter names and values. If we initialize the class without arguments, it will contain the default parameter values (see <a href="">here</a>). Once loaded, the parameter values can be visualized and modified as desired. </p>
+<pre><code class="python"># Create a parameters object with default values 
+my_params = c.params()
+
+# Change the value of a parameter, for example number of simulation cycles
+my_params.set_param('maxCycles', 100)
+
+# Set some writeTotalBiomassLog parameter to True, in order to save the output
+my_params.set_param('writeTotalBiomassLog', True)
+
+# See avaliable parameters and their values
+my_params.show_params()
 </code></pre>
 
-<p>The parameters dict can be modified as desired. </p>
-<pre><code class="python">my_params.all_params['maxCycles'] = 100
-</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<p>The <code>params</code> class also contains a method to write these parameters in files with the correct format to be fed to the Java Comets engine, but this will be rarely used when working within the Comets Python environment. </p>
-<pre><code>my_params.write_params('global_params_outfile', 'package_params_outfile')
-</code></pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<h3 id="the-layout-class">The <code>layout</code> class</h3>
-<p>The layout class describes the characteristics of the environment, i.e. the "world", including which species (models) are in it. It can be instantiated in three ways: </p>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VALUE</th>
+      <th>UNITS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>BiomassLogName</th>
+      <td>biomass.txt</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>BiomassLogRate</th>
+      <td>1</td>
+      <td>cycles</td>
+    </tr>
+    <tr>
+      <th>FluxLogName</th>
+      <td>flux_out</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>FluxLogRate</th>
+      <td>5</td>
+      <td>cycles</td>
+    </tr>
+    <tr>
+      <th>MediaLogName</th>
+      <td>media_out</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>writeBiomassLog</th>
+      <td>False</td>
+      <td>logical</td>
+    </tr>
+    <tr>
+      <th>writeFluxLog</th>
+      <td>False</td>
+      <td>logical</td>
+    </tr>
+    <tr>
+      <th>writeMediaLog</th>
+      <td>False</td>
+      <td>logical</td>
+    </tr>
+    <tr>
+      <th>writeSpecificMediaLog</th>
+      <td>False</td>
+      <td>logical</td>
+    </tr>
+    <tr>
+      <th>writeTotalBiomassLog</th>
+      <td>True</td>
+      <td>logical</td>
+    </tr>
+  </tbody>
+</table>
+<p>62 rows × 2 columns</p>
+</div>
+
+<h5 id="preparing-a-comets-simulation-layout">Preparing a <code>COMETS</code> simulation layout</h5>
+<p>The layout class describes the characteristics of the environment, i.e. the "world", including which species (models) are in it. It can be instantiated in empty or using <code>COMETS</code> models: </p>
 <ul>
 <li>If instantiated without arguments (as <code>my_layout = c.layout()</code>), an empty layout is created with all necessary fields that have to be populated.</li>
 <li>If a layout is instantiated passing a <code>model</code> (or several models), it will generate a layout with all metabolites those models can exchange with the environment at zero concentration, plus metals and ions at unlimited concentration (default -1000).  </li>
-<li>Finally, it can also be instantiated by passing teh path to a <a href="">Comets layout file</a>. If fed <code>models</code>, it will create layouts with all media components those models are able to exchange with the environment, and default values for everything else. </li>
 </ul>
-<p>To examine the different parts of a Comets <code>layout</code>, let\'s first create one from the standard <em>E. coli</em> model bundled with Comets. </p>
-<pre><code class="python">my_layout = c.layout('ecoli_model')
+<p>To examine the different parts of a Comets <code>layout</code>, let\'s first create one from the above loaded textbook model: </p>
+<pre><code class="python">my_layout = c.layout(test_model)
 </code></pre>
 
-<p>Firstly, the layout stores information about the species (<code>ec_layout.models</code>) and spatial structure (<code>ec_layout.grid</code>) in the environment. In this case, the model is only the <em>E. coli</em> one and the grid is the default one, only one cell.</p>
-<p>The layout stores also information about the <strong>media</strong> as a pandas dataframe:</p>
-<pre><code class="python">
-ec_layout.media
+<p>The layout stores information about the species (<code>my_layout.models</code>) and spatial structure (<code>my_layout.grid</code>) in the environment. In this case, the model is only the textbook one, and the grid is the default one, which is <span><span class="MathJax_Preview">1 \times 1</span><script type="math/tex">1 \times 1</script></span> i.e. only one cell.</p>
+<p>The layout stores also information about the <strong>media</strong> as a pandas dataframe. In this case, no amount of any media component is present. </p>
+<pre><code class="python">my_layout.media
 </code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>diff_c</th>
+      <th>g_refresh</th>
+      <th>g_static</th>
+      <th>g_static_val</th>
+      <th>init_amount</th>
+      <th>metabolite</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>ac_e</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>acald_e</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>akg_e</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>co2_e</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>etoh_e</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>for_e</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fru_e</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>fum_e</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>glc__D_e</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>gln__L_e</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>glu__L_e</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>h2o_e</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>h_e</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>lac__D_e</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>mal__L_e</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>nh4_e</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>o2_e</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>pi_e</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>pyr_e</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.000005</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>succ_e</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <table>
 <thead>
@@ -256,7 +561,7 @@ ec_layout.media
 </tr>
 </tbody>
 </table>
-<p>When initiated from models, the media compounds that can be in the environment are all those for which there is an exchange reaction in at least one of the models. The media table is a pandas dataframe where several pieces of information are stored:</p>
+<p>When initiated from models, the media compounds that can be in the environment are all those for which there is an exchange reaction in at least one of the models. The media, shown in the table above, is a <code>pandas</code> dataframe where several pieces of information are stored:</p>
 <ul>
 <li><code>init_amount</code> is the initial amount to be added to each cell of the simulation grid (in mmol). </li>
 <li><code>diff_c</code> indicates whether the molecule has a diffusion constant different than the default one (stored in <code>ec_layout.global_diff</code>)</li>
@@ -264,74 +569,153 @@ ec_layout.media
 <li><code>g_static_val</code> indicates at which value shouold the nutrient remain static, if the previous coulmn value is 1. </li>
 <li><code>g_refresh_val</code> indicates the amount of the metabolite that should be added after each simulation cycle to each cell of the grid. </li>
 </ul>
-<p>In addition, we can set <strong>local "static"</strong> and <strong>"refresh"</strong> values, i.e. specific to a cell of the simulation grid. </p>
-<p>Local refresh values are stored in a list, <code>ec_layout.local_refresh</code>, where each element of the list is itself a list with the form <code>[ x  y  m1_r  m2_r  m3_r ... ]</code>. The first two elements <code>x</code> and <code>y</code> represent the coordinates, and are followed by the refresh values for all metabolites, in the same order as in <code>media</code>.</p>
-<p>Local static values are stored in a similar way. Each element of the <code>ec_layout.local_static</code> list is itself a list with the form <code>[ x  y  m1_s  m1_s_v m2_s  m2_s_v ... ]</code>. The difference here is that for each metabolite, there are two values, one defining whether the molecule is to be static at that coordinate (<code>m1_s</code>, <code>m2_s</code>, ... ) and another with the value at which it should be kept (<code>m1_s_v</code>, <code>m2_s_v</code>, ... ). </p>
+<p>In addition, we can set local <code>static</code> and <code>refresh</code> values, specific to a cell of the simulation grid. </p>
+<p>When a media component is <code>static</code>, this means that its concentration is returned in each cycle to the set static value. This is used when we want a media component to remain virtually unlimited during a simulation. </p>
+<p>When a media component has a <code>refresh</code> value, this means it will be replenished by adding the set amount at every simulation cycle. </p>
+<p>Local refresh values are stored in a list, <code>my_layout.local_refresh</code>, where each element of the list is itself a list with the form <code>[ x  y  m1_r  m2_r  m3_r ... ]</code>. The first two elements <code>x</code> and <code>y</code> represent the coordinates, and are followed by the refresh values for all metabolites, in the same order as in <code>media</code>.</p>
+<p>Local static values are stored in a similar way. Each element of the <code>my_layout.local_static</code> list is itself a list with the form <code>[ x  y  m1_s  m1_s_v m2_s  m2_s_v ... ]</code>. The difference here is that for each metabolite, there are two values, one defining whether the molecule is to be static at that coordinate (<code>m1_s</code>, <code>m2_s</code>, ... ) and another with the value at which it should be kept (<code>m1_s_v</code>, <code>m2_s_v</code>, ... ). </p>
 <p>Note that both <code>local_refresh</code> and <code>local_static</code> can be empty (the default), or contain only entries for the coordinates where there is at least one nonzero refresh or static value, respectively. </p>
-<p>Finally, the layout also contains information about the starting biomass of each model. This information is stored in two fields, <code>initial_pop_type</code> and <code>initial_pop</code>. </p>
-<ul>
-<li>
-<p><strong>If <code>initial_pop_type</code> is <code>random</code></strong>: </p>
-<ul>
-<li><code>initial_pop</code> is a list with the structure <code>[N_i biomass_1 N_j biomass_2 ...]</code>. This will randomly assign <code>N_i</code> spaces to have <code>biomass_1</code> amount of model 1, and so on. </li>
-</ul>
-</li>
-<li>
-<p><strong>If <code>initial_pop_type</code> is <code>random_rect</code></strong>: </p>
-<ul>
-<li><code>initial_pop</code> is a list with the structure <code>[x y w h N_i biomass_1 N_j biomass_2 ...]</code>. As above, but the randomly assigned biomass spots are confined to a rectangle with its upper-left corner at grid space (X,Y), with W grid spaces wide, and H spaces tall. </li>
-</ul>
-</li>
-<li><strong>If <code>initial_pop_type</code> is <code>filled</code></strong>: <ul>
-<li><code>initial_pop</code> is a list with the structure <code>[biomass_1 biomass_2 ...]</code>. This will completely fill the grid with the given amount of biomass from each species.</li>
-</ul>
-</li>
-<li><strong>If <code>initial_pop_type</code> is <code>filled_rect</code></strong>: <ul>
-<li><code>initial_pop</code> is a list with the structure <code>[x y w h biomass_1 biomass_2 ...]</code>. This will completely fill the rectangle defined by <code>X</code>, <code>Y</code>, <code>W</code> and <code>H</code> with the given amount of biomass from each species.</li>
-</ul>
-</li>
-<li><strong>If <code>initial_pop_type</code> is <code>square</code></strong>: <ul>
-<li><code>initial_pop</code> is a list with the structure <code>[N_i biomass_1 N_j biomass_2 ...]</code>. This will fill squares with radius <code>N_i</code> at the center of the grid with the amount of biomass specified for each species.</li>
-</ul>
-</li>
-<li><strong>If <code>initial_pop_type</code> is <code>custom</code></strong>: <ul>
-<li>initial_pop<code>is a list of lists, in which each entry is itself a list</code>[x y biomass_1 biomass_2 ...]`specifying the amount of biomass of each species for each coordinate. </li>
-</ul>
-</li>
-</ul>
-<h3 id="the-comets-class">The <code>comets</code> class</h3>
-<p>This class represents the core of the module. It integrates the layout and the parameters, performs the simulation, and stores the output of it. Once comets is properly <a href="">installed</a> and layouts and parameters defined, running a comets simulation is pretty straightforward. We firstly define the <code>comets</code> object giving it a <code>layout</code> and a <code>params</code> objects as arguments. Then, we <code>run()</code> the simulation: </p>
+<p>Finally, the layout also contains information about the starting biomass of each model. This information is stored in the <code>initial_pop</code> list. Each component of <code>initial_pop</code> is itself a list with the format <code>[x y biomass_1 biomass_2 ...]</code>specifying the amount of biomass of each model in each coordinate. </p>
+<h5 id="running-a-comets-simulation">Running a <code>COMETS</code> simulation</h5>
+<p>The <code>comets</code> class uses a layout object and a parameters object to run simulations and store the output. Running a comets simulation is pretty straightforward. We firstly define the <code>comets</code> object by passing it a <code>layout</code> and a <code>params</code> objects as arguments. Then, we <code>run()</code> the simulation: </p>
 <pre><code class="python">my_simulation = c.comets(my_layout, my_params)
 my_simulation.run()
 </code></pre>
 
-<p>In the background, this actually invokes the <code>COMETS</code> Java engine in a console, giving an output (stdout) and possibly errors (stderr) both of which can be acessed through the fields <code>run_outputs</code> and <code>run_errors</code>, respectively. </p>
-<pre><code class="python">print(my_comets.run_output)
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<h5 id="checking-simulation-output-and-possible-errors">Checking simulation output and possible errors</h5>
+<p>In the background, this command invokes the <code>COMETS</code> Java engine in a console, giving a standard output (stdout) and standard error (stderr) logs. Both can be acessed through the fields <code>run_outputs</code> and <code>run_errors</code>, respectively. </p>
+<pre><code class="python">print(my_simulation.run_output)
 </code></pre>
 
 <pre><code>-script
-running script file: '/home/djordje/Dropbox/COMETS_RUN/.current_script'
-Loading layout file '/home/djordje/Dropbox/COMETS_RUN/.current_layout'...
+running script file: /home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/.current_script
+Current Java version: 11.0.7
+Loading layout file '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/.current_layout'...
 Found 1 model files!
-Loading 'EC_ijo1366_model' ...
+Loading '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/e_coli_core.cmd' ...
+Loading '/home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/e_coli_core.cmd' ...
+Academic license - for non-commercial use only
+Academic license - for non-commercial use only
+Done!
+ Testing default parameters...
+Done!
+Optimizer status code = 5 (looks ok!)
+objective solution = 0.8739215069684305
+Constructing world...
+Done!
+medialist   ac_e    acald_e akg_e   co2_e   etoh_e  for_e   fru_e   fum_e   glc__D_e    gln__L_e    glu__L_e    h2o_e   h_e lac__D_e    mal__L_e    nh4_e   o2_e    pi_e    pyr_e   succ_e
+Cycle 1
+Total biomass:
+Model e_coli_core.cmd: 1.0E-7
+Cycle 2
+Total biomass:
+Model e_coli_core.cmd: 1.0E-7
 ...
-...
+Total time = 0.312s
+</code></pre>
+<pre><code class="python">print(my_simulation.run_errors)
 </code></pre>
 
-<pre><code class="python">print(my_comets.run_errors)
+<pre><code>STDERR empty.
 </code></pre>
-
-<pre><code>STDERR is empty.
-</code></pre>
-
-<p>The results of the successful simulation is stored as well in several fields in the <code>comets</code> object, depending on whether the parameters <code>writeTotalBiomasslog</code>,  <code>writeBiomassLog</code>, <code>writeFluxLog</code> and <code>writeMediaLog</code> were set to <code>True</code>. All of the output files ae <code>pandas</code> dataframes:</p>
+<h5 id="accessing-the-results-of-the-simulation">Accessing the results of the simulation</h5>
+<p>The results of the successful simulation are stored in several fields in the <code>comets</code> object, depending on whether the parameters <code>writeTotalBiomasslog</code>,  <code>writeBiomassLog</code>, <code>writeFluxLog</code> and <code>writeMediaLog</code> were set to <code>True</code>. </p>
 <ul>
 <li>The field <code>total_biomass</code>  stores the total biomass (summed up over all coordinates) for each timepoint and species.</li>
 <li>The field <code>biomass</code> stores detailed biomass values for each timepoint, coordinate and species. </li>
 <li>The field <code>media</code> stores the composition of the media at each timepoint.</li>
 <li>The field <code>fluxes</code> stores the metabolic fluxes for each species, coordinate and timepoint. </li>
 </ul>
-<p>Additionally, specific comets modes will have additional output fields; for instance, if we run an evolution simulation, the field <code>genotypes</code> will store information about each species such as its ancestor and which mutation it suffered. For a more detailed description of th output files, see the different examples below. </p>
+<p>Additionally, specific comets modes will have additional output fields; for instance, if we run an evolution simulation, the field <code>genotypes</code> will store information about each species such as its ancestor and which mutation it suffered. </p>
+<p>All of the output files ae <code>pandas</code> dataframes which can be further analyzed or plotted using standard Python tools.  </p>
+<pre><code class="python">my_simulation.total_biomass
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cycle</th>
+      <th>e_coli_core</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>96.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>97.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>98.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>99.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>100.0</td>
+      <td>1.000000e-07</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 2 columns</p>
+</div>
               
             </div>
           </div>
@@ -339,7 +723,7 @@ Loading 'EC_ijo1366_model' ...
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../1_simple_growth/" class="btn btn-neutral float-right" title="Growth in a test tube">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../test_tube/" class="btn btn-neutral float-right" title="Growth in a test tube">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -356,12 +740,12 @@ Loading 'EC_ijo1366_model' ...
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+	  
         </div>
       </div>
 
     </section>
-
+    
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -371,16 +755,14 @@ Loading 'EC_ijo1366_model' ...
         <span><a href="../../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../1_simple_growth/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../test_tube/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
-      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/extra.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      <script src="../../mathjax-config.js"></script>
 
 </body>
 </html>

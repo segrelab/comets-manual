@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Continuous culture - COMETS Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Continuous culture";
+    var mkdocs_page_input_path = "python-module/chemostat.md";
+    var mkdocs_page_url = "/python-module/chemostat/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../test_tube/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../competition_assay/">Competition assay</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Continuous culture</a>
+    <ul class="subnav">
+            
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../evolution/">Simulating evolutionary processes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../soil/">Soil-air interface</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../colony/">Example</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Continuous culture</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><strong>Simulating a chemostat and crossfeeding with COMETS</strong></p>
+<p>COMETS provides the functionality to run simulations in a chemostat. Here, we use the python toolbox to generate a chemostat simulation in two ways. 1) by manually assigning all the "parts," and 2) by using a helper function we've included.</p>
+<p>Here we are going to simulate a chemostat with lactose as the sole carbon resource and two strains of E. coli: one which is defiicient in the ability to uptake lactose, and one which is deficient in the ability to metabolize galactose. We will use the ijo1366 model provided as part of cobrapy. Let's first do the imports.</p>
+<pre><code class="python">import cobra
+import cobra.test # for the ijo1366 model
+import sys
+sys.path.append(&quot;/home/jeremy/Dropbox/work_related/harcombe_lab/segre/COMETS-Python-Toolbox&quot;)
+import comets as c
+</code></pre>
+
+<p>Now let's load the ijo1366 model, make a copy, and knockout the relevant reactions.</p>
+<p>Note that the first model had galE knocked out to prevent metabolism of galactose, which will cause galactose to be secreted during metabolism of lactose. The second model had a reaction knocked out instead of a gene, as lactose transport to the periplasm can be accomplished with multiple genes, and so it is simpler to juts knockout the reaction itself.</p>
+<pre><code class="python">E_no_galE = cobra.test.create_test_model(&quot;ecoli&quot;) # this model will have galE KO'd
+E_no_LCTStex = E_no_galE.copy() # this model will have lactose uptake KO'd
+E_no_galE.genes.b0759.knock_out()
+E_no_LCTStex.reactions.LCTStex.knock_out()
+</code></pre>
+
+<p>We can test that the knockouts perform as expected by trying to grow them in media containing lactose and galactose. We do this in cobrapy.</p>
+<pre><code class="python">medium = E_no_galE.medium
+medium[&quot;EX_glc__D_e&quot;] = 0.
+medium[&quot;EX_lcts_e&quot;] = 1.
+medium[&quot;EX_gal_e&quot;] = 1.
+print(medium)
+E_no_galE.medium = medium
+E_no_LCTStex.medium = medium
+# examine growth and uptake in the galE knockout shows galactose is excreted
+print(&quot;\n\nE_no_galE uptakes lactose and excrete galactose: &quot;)
+E_no_galE.summary()
+</code></pre>
+
+<pre><code>{'EX_ca2_e': 1000.0, 'EX_cbl1_e': 0.01, 'EX_cl_e': 1000.0, 'EX_co2_e': 1000.0, 'EX_cobalt2_e': 1000.0, 'EX_cu2_e': 1000.0, 'EX_fe2_e': 1000.0, 'EX_fe3_e': 1000.0, 'EX_glc__D_e': 0.0, 'EX_h_e': 1000.0, 'EX_h2o_e': 1000.0, 'EX_k_e': 1000.0, 'EX_mg2_e': 1000.0, 'EX_mn2_e': 1000.0, 'EX_mobd_e': 1000.0, 'EX_na1_e': 1000.0, 'EX_nh4_e': 1000.0, 'EX_ni2_e': 1000.0, 'EX_o2_e': 1000.0, 'EX_pi_e': 1000.0, 'EX_sel_e': 1000.0, 'EX_slnt_e': 1000.0, 'EX_so4_e': 1000.0, 'EX_tungs_e': 1000.0, 'EX_zn2_e': 1000.0, 'EX_lcts_e': 1.0, 'EX_gal_e': 1.0}
+
+
+E_no_galE uptakes lactose and excrete galactose:
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">IN_FLUXES</th>
+      <th colspan="2" halign="left">OUT_FLUXES</th>
+      <th colspan="2" halign="left">OBJECTIVES</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>FLUX</th>
+      <th>ID</th>
+      <th>FLUX</th>
+      <th>ID</th>
+      <th>FLUX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>o2_e</td>
+      <td>2.464303</td>
+      <td>h2o_e</td>
+      <td>4.131365</td>
+      <td>BIOMASS_Ec_iJO1366_core_53p95M</td>
+      <td>0.086479</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>lcts_e</td>
+      <td>1.000000</td>
+      <td>co2_e</td>
+      <td>2.450194</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>nh4_e</td>
+      <td>0.934040</td>
+      <td>gal_e</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>fe2_e</td>
+      <td>0.795974</td>
+      <td>fe3_e</td>
+      <td>0.794585</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>pi_e</td>
+      <td>0.083420</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code class="python">print(&quot;\n\nE_no_LCTStex uptakes galactose but not lactose: &quot;)
+E_no_LCTStex.summary()
+</code></pre>
+
+<pre><code>E_no_LCTStex uptakes galactose but not lactose:
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">IN_FLUXES</th>
+      <th colspan="2" halign="left">OUT_FLUXES</th>
+      <th colspan="2" halign="left">OBJECTIVES</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>FLUX</th>
+      <th>ID</th>
+      <th>FLUX</th>
+      <th>ID</th>
+      <th>FLUX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>o2_e</td>
+      <td>2.310433</td>
+      <td>h2o_e</td>
+      <td>4.749252</td>
+      <td>BIOMASS_Ec_iJO1366_core_53p95M</td>
+      <td>0.085442</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>gal_e</td>
+      <td>1.000000</td>
+      <td>co2_e</td>
+      <td>2.492757</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>nh4_e</td>
+      <td>0.922840</td>
+      <td>h_e</td>
+      <td>0.785058</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>pi_e</td>
+      <td>0.082420</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Now that we are satisfied we have made our models correctly, we can setup a COMES simulation. Let's intend that the medium above is the reservoir medium (except that we will remove galactose first), and that the input rate and output rate are 10% per hour. Here, let's set dilution rate parameter, the initial population size (in gDW), and generate the COMETS models. </p>
+<p>Whenever we make COMETS models from COBRA models, we almost always want to set the exchange lower bounds to -1000 so that COMETS can alter these based upon media concentrations.</p>
+<p>Finally, right now both models have the same ID, which will confuse COMETS, so we must give them unique IDs.</p>
+<pre><code class="python"># chemostat parameters
+dilution_rate = 0.1 # / hr
+initial_pop = 1.e-3 # gDW
+
+# make COMETS models from the cobrapy models
+E_no_galE.id = &quot;galE_KO&quot;
+E_no_LCTStex.id = &quot;LCTStex_KO&quot;
+
+galE_comets = c.model(E_no_galE)
+galE_comets.initial_pop = [0,0,initial_pop] # x, y, gDW
+galE_comets.reactions.loc[galE_comets.reactions.EXCH, &quot;LB&quot;] = -1000
+
+lcts_comets = c.model(E_no_LCTStex)
+lcts_comets.initial_pop = [0,0,initial_pop] # x, y, gDW
+lcts_comets.reactions.loc[lcts_comets.reactions.EXCH, &quot;LB&quot;] = -1000
+</code></pre>
+
+<p>Now we are going to use the manual method for making a chemostat. Recall that cobrapy media are set using exchange reaction IDs, whereas COMETS media are set using metabolite ids. We can easily take care of this difference with a dictionary comprehension. Here we do that, then generate a layout, and add the media components to that layout.</p>
+<pre><code class="python"># setup layout by providing models
+layout = c.layout([galE_comets, lcts_comets])
+
+# re-write media (while removing galactose) and add it to layout
+comets_media = {key[3:]: value for key, value in medium.items() if key != &quot;EX_gal_e&quot;}
+for key, value in comets_media.items():
+    layout.set_specific_metabolite(key, value)
+</code></pre>
+
+<p>The input of fresh media from the reservoir into the simulation is done using media_refresh. Metabolites with a media_refresh value are replenished at the specified amount per-hour. Since we are diluting at 0.1 per hour, we multiply the reservoir concentration by this rate.</p>
+<pre><code class="python">for key, value in comets_media.items():
+    layout.set_specific_refresh(key, value * dilution_rate)
+</code></pre>
+
+<p>The rest of the chemostat--the outflow--is setup in the parameters using metaboliteDilutionRate and deathRate. These should be set equal to the desired dilution rate. Here we generate a parameters object and set these values.</p>
+<pre><code class="python">params = c.params()
+params.all_params[&quot;deathRate&quot;] = dilution_rate
+params.all_params[&quot;metaboliteDilutionRate&quot;] = dilution_rate
+</code></pre>
+
+<p>Let's also adjust a few other parameters.</p>
+<pre><code class="python">params.all_params[&quot;timeStep&quot;] = 0.1 # hours
+params.all_params[&quot;maxSpaceBiomass&quot;] = 10. # gDW
+params.all_params[&quot;maxCycles&quot;] = 2000 # duration of simulation in time steps
+</code></pre>
+
+<p>Finally, let's keep track of two key metabolites: lactose and galactose. We do this using the specificMedia log, and choosing the metabolites with a comma-separated string with no spaces.</p>
+<pre><code class="python">params.all_params[&quot;writeSpecificMediaLog&quot;] = True
+params.all_params[&quot;specificMediaLogRate&quot;] = 1 # time steps
+params.all_params[&quot;specificMedia&quot;] = &quot;lcts_e,gal_e&quot; # metabolites to track
+</code></pre>
+
+<p>Now the chemostat aspects are setup using the layout and the parameters. Therefore, we can generate a COMETS simulation, run it, and then examine the biomass and metabolites.</p>
+<pre><code class="python">sim = c.comets(layout, params)
+sim.run()
+</code></pre>
+
+<pre><code>warning:  we cannot find required java class libraries at the expected locations
+    specifically, we cannot find the following libraries at these locations:
+
+library common name      expected path
+___________________      _____________
+gurobi  /opt/gurobi900/linux64/gurobi.jar
+junit   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
+hamcrest    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
+jogl_all    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
+gluegen_rt  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
+gluegen /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
+gluegen_rt_natives  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
+jogl_all_natives    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
+jmatio  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
+jmat    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
+concurrent  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
+colt    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
+lang3   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
+math3   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
+bin /Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
+
+  You have two options to fix this problem:
+1.  set each class path correctly by doing:
+    comets.set_classpath(libraryname, path)
+    e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
+
+    note that versions dont always have to exactly match, but you're on your own if they don't
+
+2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
+       look at the current comets.JAVA_CLASSPATH to see how this should look.
+
+Running COMETS simulation ...
+
+
+
+---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+&lt;ipython-input-11-7664732a7a8e&gt; in &lt;module&gt;
+      9 sim.set_classpath("gurobi","/opt/gurobi900/linux64/lib/gurobi.jar")
+     10 sim.set_classpath("jdistlib", "/opt/jdistlib-0.4.5-bin.jar")
+---&gt; 11 sim.run()
+
+
+~/Dropbox/work_related/harcombe_lab/segre/COMETS-Python-Toolbox/comets.py in run(self, delete_files)
+   2249         # clean workspace
+   2250         if delete_files:
+-&gt; 2251             os.remove(c_global)
+   2252             os.remove(c_package)
+   2253             os.remove(c_script)
+
+
+FileNotFoundError: [Errno 2] No such file or directory: '/home/jeremy/.current_global'
+</code></pre>
+<p>Now let's plot the results. Note how we specify the axes, otherwise "cycle", "x", and "y" will be assumed to be state variables. </p>
+<p>What we see is that both species survive, because the LCTStex_KO cross-feeds galactose from the galE_KO, which uses the glucose piece of lactose. The metabolites, as is typical in a chemostat, are in very low concentrations once equilibrium is reached.</p>
+<pre><code class="python">sim.total_biomass.plot(x = &quot;cycle&quot;, logy = True)
+sim.specific_media.plot(x = &quot;cycle&quot;,y = [&quot;lcts_e&quot;,&quot;gal_e&quot;])
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3a947ff4e0&gt;
+</code></pre>
+<p><img alt="png" src="../output_22_1.png" /></p>
+<p><img alt="png" src="../output_22_2.png" /></p>
+<p>The above code required setting chemostat parameters in multiple places. We offer this functionality so that researchers can create complex setups that may, for example, have different initial concentrations than reservoir concentrations, and different inflow rates than outflow rates. However, we expect most chemostat simulations will function like above, where a single dilution parameter dictates the behavior of the system. For this typical use-case, we have made a helper function which generates a layout and parameters objects with the correct setup.</p>
+<pre><code class="python">layout, params = c.chemostat([galE_comets, lcts_comets], comets_media, dilution_rate)
+# we can still adjust the parameters as desired.
+params.set_param(&quot;timeStep&quot;, 0.1) # hours
+params.set_param(&quot;maxSpaceBiomass&quot;, 10.) # gDW
+params.set_param(&quot;maxCycles&quot;, 500) # duration of simulation in time steps
+params.set_param(&quot;writeSpecificMediaLog&quot;, True)
+params.set_param(&quot;specificMediaLogRate&quot;, 1) # time steps
+params.set_param(&quot;specificMedia&quot;, &quot;lcts_e,gal_e&quot;) # metabolites to track
+# then we make the simulation object and run as before
+sim = c.comets(layout, params)
+sim.run()
+sim.total_biomass.plot(x = &quot;cycle&quot;)
+</code></pre>
+
+<pre><code>warning:  we cannot find required java class libraries at the expected locations
+    specifically, we cannot find the following libraries at these locations:
+
+library common name      expected path
+___________________      _____________
+gurobi  /opt/gurobi900/linux64/gurobi.jar
+junit   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
+hamcrest    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
+jogl_all    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
+gluegen_rt  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
+gluegen /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
+gluegen_rt_natives  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
+jogl_all_natives    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
+jmatio  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
+jmat    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
+concurrent  /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
+colt    /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
+lang3   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
+math3   /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
+bin /Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
+
+  You have two options to fix this problem:
+1.  set each class path correctly by doing:
+    comets.set_classpath(libraryname, path)
+    e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
+
+    note that versions dont always have to exactly match, but you're on your own if they don't
+
+2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
+       look at the current comets.JAVA_CLASSPATH to see how this should look.
+
+Running COMETS simulation ...
+Done!
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3a94644a90&gt;
+</code></pre>
+<p><img alt="png" src="../output_24_2.png" /></p>
+<pre><code class="python">
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../evolution/" class="btn btn-neutral float-right" title="Simulating evolutionary processes">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../competition_assay/" class="btn btn-neutral" title="Competition assay"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../competition_assay/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../evolution/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/extra.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+      <script src="../../mathjax-config.js"></script>
+
+</body>
+</html>
