@@ -28,7 +28,11 @@ pages:
         - Continuous culture: python-module/chemostat.md
         - Simulating evolutionary processes: python-module/evolution.md
         - Citrate use in the LTEE: python-module/citrate.md
+        - Branching colony (Convection): python-module/branching_colony.md
+        - Circular colony (Convection): python-module/circular_colony.md
+        - Demographic noise: python-module/demographic_noise_two_strains.md
         - Soil-air interface: python-module/soil.md
+        - Virtual Petri dish with regions: python-module/petri_dish.md
     - COMETS MATLAB TOOLBOX:
         - Example: colony.md
 theme: readthedocs
