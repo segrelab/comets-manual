@@ -9,6 +9,7 @@ import cobra.test # for the ijo1366 model
 import sys
 import copy
 import numpy as np
+sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy") # not necessary if you pip install cometspy
 import cometspy as c
 ```
 
@@ -18,7 +19,7 @@ Also, upon loading, the biomass functions of these models had positive lower bou
 
 
 ```python
-model_dir = "/home/jeremy/Dropbox/work_related/harcombe_lab/segre/soil_root_eg" # model location
+model_dir = "./models" # model location
 iJN = cobra.io.read_sbml_model(model_dir + '/iJN746.xml')
 iJN.reactions.get_by_id('BIOMASS_KT_TEMP').lower_bound = 0
 iJN.reactions.get_by_id('BIOMASS_KT_TEMP').upper_bound = 1000
@@ -49,18 +50,20 @@ iYO_comets.ensure_sinks_are_not_exchanges()
 iYO_comets.open_exchanges()
 ```
 
-Our simulated world will be a 100x100 box lattice. The left-hand side, where x = 0, will be the root. The top, where y = 0, will be the air. Therefore, the biomass and the rocks will be distributed everywhere else. To ensure that we do not attempt to place biomass where rocks are placed, we first determine the rock locations. Specifically, we will create 70 rocks which are impervious to any biomass or metabolite. These rocks will have an average size of 15 boxes. To pick these locations, we use the helper function COMETS.grow_rocks:
+Our simulated world will be a 100x100 box lattice. The left-hand side, where x = 0, will be the root. The top, where y = 0, will be the air. Therefore, the biomass and the rocks will be distributed everywhere else. To ensure that we don't attempt to place biomass where rocks are placed, we first determine the rock locations. Specifically, we will create 70 rocks which are impervious to any biomass or metabolite. These rocks will have an average size of 15 boxes. To pick these locations, we use the helper function grow_rocks, in the utils subpackage:
 
 
 ```python
-grid_size = 50 # 100
-n_rocks = 70 # 70
-rock_locs = c.grow_rocks(n = n_rocks, xrange = [1,grid_size],yrange = [1,grid_size],mean_size = int(grid_size / 5))
+from cometspy.utils import grow_rocks, pick_random_locations
+
+grid_size = 30 # 100
+n_rocks = 50 # 70
+rock_locs = grow_rocks(n = n_rocks, xrange = [1,grid_size-1],yrange = [1,grid_size-1],mean_size = 5)
 ```
 
 Each species will have biomass seeded at 60 different locations, with no overlap. We will use the helper function pick_random_locations for this, which is useful as it can take in a previously-generated list of tuples of x-y locations as “forbidden” locations, such as the rock locations.
 
-First we make a copy of the rock_locs so we don\'t accidentally alter it, and call this copy forbidden_locs.
+First we make a copy of the rock_locs so we don't accidentally alter it, and call this copy forbidden_locs.
 
 
 
@@ -75,13 +78,13 @@ Next we pick the random locations for each species, adding these locations to th
 
 ```python
 founders_per_species = 20 # 60
-iJN_locs = c.pick_random_locations(n = founders_per_species, 
+iJN_locs = pick_random_locations(n = founders_per_species, 
                                    xrange = [1,grid_size], yrange = [1,grid_size], 
                                    forbidden_locs = forbidden_locs)
 forbidden_locs.extend(iJN_locs)
-iYO_locs = c.pick_random_locations(founders_per_species, [1,grid_size],[1,grid_size], forbidden_locs)
+iYO_locs = pick_random_locations(founders_per_species, [1,grid_size],[1,grid_size], forbidden_locs)
 forbidden_locs.extend(iYO_locs)
-iAF_locs = c.pick_random_locations(founders_per_species, [1,grid_size],[1,grid_size], forbidden_locs)
+iAF_locs = pick_random_locations(founders_per_species, [1,grid_size],[1,grid_size], forbidden_locs)
 forbidden_locs.extend(iAF_locs)
 ```
 
@@ -103,7 +106,9 @@ plt.imshow(initial_image)
 ```
 
 
-![png](../img/chemostat_1.png)
+
+
+![png](/img/soil_1.png)
 
 
 Things look good so we continue by making the layout and setting the dimensions. Then, we add the rock barriers to the layout.
@@ -188,7 +193,7 @@ We are now done prepping the models and the layout. Next we setup the simulation
 ```python
 params = c.params()
 params.set_param('timeStep', 0.1)
-params.set_param('maxCycles', 5000)
+params.set_param('maxCycles', 1000)
 params.set_param('maxSpaceBiomass', 10)
 params.set_param('deathRate', 0.0001) # die at rate of 1/10000 per hour
 params.set_param('writeBiomassLog', True)
@@ -204,20 +209,14 @@ params.set_param('defaultKm', 0.000001)
 
 ```python
 sim = c.comets(layout, params)
-sim.run(False)
+sim.run() # give the argument False if you want to save all intermediate files
 ```
 
-    
     Running COMETS simulation ...
     Done!
 
 
-```python
-print(sim.run_output)
-```
-
-Now we make a simulation object and run it.  This can take awhile.
-
+Now we make a biomass image using the get_biomass_image helper function. We put these into a 3D numpy array to visualize with matplotlib.
 
 ```python
 im = sim.get_biomass_image('iJN746', params.all_params['maxCycles'])
@@ -231,169 +230,52 @@ final[:,:,2] = im3 / np.max(im3)
 for rock in rock_locs:
     final[rock[1]-1,rock[0]-1,0:3] = 0.5 
 from matplotlib import pyplot as plt
-import matplotlib.colors, matplotlib.cm
-my_cmap = matplotlib.cm.get_cmap("copper")
-my_cmap.set_bad((0,0,0))
-
 plt.imshow(final)
 ```
 
 
 
 
-    <matplotlib.image.AxesImage at 0x7f9665e74208>
+
+![png](/img/soil_2.png)
 
 
-
-
-![png](output_29_1.png)
-
-
-
-```python
-sim.biomass_backup = sim.biomass
-```
+Below here, we show a handful of metabolites. 
 
 
 ```python
-sim.biomass = sim.biomass.groupby(["cycle","x","y"]).sum().reset_index()
-```
-
-
-```python
-sim.biomass = sim.biomass_backup
-```
-
-
-```python
-sim.biomass
+plt.imshow(sim.get_metabolite_image("succ_e",params.all_params['maxCycles']+1))
 ```
 
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>cycle</th>
-      <th>x</th>
-      <th>y</th>
-      <th>species</th>
-      <th>biomass</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>4</td>
-      <td>22</td>
-      <td>iJN746</td>
-      <td>1.000000e-08</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>4</td>
-      <td>22</td>
-      <td>iYO844</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>4</td>
-      <td>22</td>
-      <td>iAF692</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>10</td>
-      <td>5</td>
-      <td>iJN746</td>
-      <td>1.000000e-08</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>10</td>
-      <td>5</td>
-      <td>iYO844</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2668</th>
-      <td>10</td>
-      <td>29</td>
-      <td>28</td>
-      <td>iYO844</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2669</th>
-      <td>10</td>
-      <td>29</td>
-      <td>28</td>
-      <td>iAF692</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2670</th>
-      <td>10</td>
-      <td>29</td>
-      <td>29</td>
-      <td>iJN746</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2671</th>
-      <td>10</td>
-      <td>29</td>
-      <td>29</td>
-      <td>iYO844</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>2672</th>
-      <td>10</td>
-      <td>29</td>
-      <td>29</td>
-      <td>iAF692</td>
-      <td>0.000000e+00</td>
-    </tr>
-  </tbody>
-</table>
-<p>2673 rows × 5 columns</p>
-</div>
-
+![png](/img/soil_3.png)
 
 
 
 ```python
-im2
+plt.imshow(sim.get_metabolite_image("ac_e",params.all_params['maxCycles']+1))
 ```
+
+
+
+
+![png](/img/soil_4.png)
+
+
+
+```python
+plt.imshow(sim.get_metabolite_image("nh4_e",params.all_params['maxCycles']+1))
+```
+
+
+
+![png](/img/soil_5.png)
+
+
+
+```python
+
+```
+

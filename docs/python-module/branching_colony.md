@@ -1,10 +1,6 @@
-**Modeling growth and propagation of bacterial colonies on flat surfaces: circular colony**
+**Modeling growth and propagation of bacterial colonies on flat surfaces: branching colony**
 
-This protocol replicates the main text protocol that simulates colony expansion via mechanical pushing among the growing cells. One of the characteristics of the implemented model is that it undergoes a transition in colony morphology depending on the value of the dense packing parameter. In this protocol, we will choose parameters that result in a round colony. In "branching_colony," we will choose parameters that result in a branching colony.
-
-Additionally,we will show how to generate a simple metabolic model with a single nutrient and a single reaction of biomass growth from uptake of the nutrient.
-
-We will make the layout much smaller than in the paper, however, because it is much faster to run.
+This is the exact same as the circular colony protocol notebook, except that a few parameters in the COMETS model have been changed to cause the colony to branch.
 
 
 ```python
@@ -12,7 +8,7 @@ import cobra
 import cobra.test # for the ijo1366 model
 import sys
 import numpy as np
-sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy") # not necessary if you pip install cometspy 
+sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy")
 import cometspy as c
 ```
 
@@ -32,7 +28,6 @@ Biomass = cobra.Reaction("Biomass",
 Biomass.add_metabolites({carbon: -1.})
 toy = cobra.Model("toy")
 toy.add_reactions([carbon_exch, Biomass])
-#toy.add_reactions([carbon_exch, carbon_transport, Biomass])
 toy.objective = "Biomass"
 toy.repair()
 ```
@@ -49,17 +44,17 @@ print(toy.optimize().objective_value)
     1.0
 
 
-We will now convert this into a COMETS model, set its initial biomass, and set the first set of convection parameters. These are the parameters needed to obtain a circular colony with this toy model. Note that the timestep has to be set very low for this form of biomass spread.
+We will now convert this into a COMETS model, set its initial biomass, and set the first set of convection parameters. These are the parameters needed to obtain a branching colony with this toy model. Note that the timestep has to be set very low for this form of biomass spread.
 
 
 ```python
-grid_size = 50
+grid_size = 30
 
 toy_comets = c.model(toy)
 toy_comets.initial_pop = [int(grid_size / 2),int(grid_size / 2),1.0]
-toy_comets.reactions.loc[toy_comets.reactions.EXCH, "LB"] = -1000
-toy_comets.add_convection_parameters(packedDensity = 0.5,
-                                    elasticModulus = 1.e-4,
+toy_comets.open_exchanges()
+toy_comets.add_convection_parameters(packedDensity = 1.2,
+                                    elasticModulus = 5.e-3,
                                     frictionConstant = 1.0,
                                     convDiffConstant = 0.0)
 toy_comets.add_noise_variance_parameter(20.)
@@ -94,21 +89,21 @@ The main parameter we need to set is biomassmotionstyle, which must be set to "C
 ```python
 p = c.params()
 
-p.set_param("biomassMotionStyle", "Convection 2D")
-p.set_param("writeBiomassLog", True)
-p.set_param("BiomassLogRate", 100)
-p.set_param("maxCycles", 2000)
-p.set_param("timeStep", 0.0005)
-p.set_param("spaceWidth", 1)
-p.set_param("maxSpaceBiomass", 10)
-p.set_param("minSpaceBiomass", 0.25e-10)
-p.set_param("allowCellOverlap", True)
-p.set_param("growthDiffRate", 0)
-p.set_param("flowDiffRate", 3e-9)
-p.set_param("exchangestyle", "Monod Style")
-p.set_param("defaultKm", 0.01)
-p.set_param("defaultHill", 1)
-p.set_param("defaultVmax", 100)
+p.all_params["biomassMotionStyle"] = "Convection 2D"
+p.all_params["writeBiomassLog"] = True
+p.all_params["BiomassLogRate"] = 500
+p.all_params["maxCycles"] = 20000
+p.all_params["timeStep"] = 0.00025
+p.all_params["spaceWidth"] = 1
+p.all_params["maxSpaceBiomass"] = 10
+p.all_params["minSpaceBiomass"] = 0.25e-10
+p.all_params["allowCellOverlap"] = True
+p.all_params["growthDiffRate"] = 0
+p.all_params["flowDiffRate"] = 3e-9
+p.all_params["exchangestyle"] = "Monod Style"
+p.all_params["defaultKm"] = 0.01
+p.all_params["defaultHill"] = 1
+p.all_params["defaultVmax"] = 100
 
 ```
 
@@ -117,19 +112,22 @@ Now we make a simulation object and run it.  This can take awhile.
 
 ```python
 sim = c.comets(ly, p)
-sim.run() # set delete_files = False to maintain all comets-generated files
+sim.run() # use the argument delete_files = False to keep all COMETS-generated files
+
 ```
 
-   
+
     Running COMETS simulation ...
     Done!
 
 
-Now let's plot the results. we use the helper script "get_biomass_image," which needs the name of the model and the timestep. Then we use matplotlib to display it. 
+Now let's plot the results. Note how we specify the axes, otherwise "cycle", "x", and "y" will be assumed to be state variables. 
+
+What we see is that both species survive, because the LCTStex_KO cross-feeds galactose from the galE_KO, which uses the glucose piece of lactose. The metabolites, as is typical in a chemostat, are in very low concentrations once equilibrium is reached.
 
 
 ```python
-im = sim.get_biomass_image('toy', 2000)
+im = sim.get_biomass_image('toy', 1500)
 from matplotlib import pyplot as plt
 import matplotlib.colors, matplotlib.cm
 my_cmap = matplotlib.cm.get_cmap("copper")
@@ -142,30 +140,21 @@ plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 
 
-![png](/img/circular_colony_1.png)
+![png](/img/branching_colony_1.png)
 
-
-We can tile the time series in a simple loop.
 
 
 ```python
-big_image = np.zeros((grid_size * 4, grid_size * 5))
+big_image = np.zeros((grid_size * 8, grid_size * 5))
 im_cycles = np.arange(p.all_params["BiomassLogRate"], p.all_params["maxCycles"] + p.all_params["BiomassLogRate"],
                       p.all_params["BiomassLogRate"])
 for i, cycle in enumerate(im_cycles):
     big_image[(grid_size * int(i / 5)):(grid_size + grid_size * int(i / 5)),(grid_size * (i % 5)):(grid_size + grid_size * (i % 5))] = sim.get_biomass_image("toy", cycle)
+    plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 ```
 
 
-```python
-plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
-```
-
-
-
-
-
-![png](/img/circular_colony_2.png)
+![png](/img/branching_colony_2.png)
 
 
 
