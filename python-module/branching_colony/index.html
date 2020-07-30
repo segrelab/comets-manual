@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Branching colony growth - COMETS Documentation</title>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Branching colony growth";
+    var mkdocs_page_input_path = "python-module/branching_colony.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../test_tube/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../competition_assay/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../evolution/">Evolutionary processes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../circular_colony/">Circular colony growth</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Branching colony growth</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#modeling-growth-and-propagation-of-bacterial-colonies-on-flat-surfaces-branching-colony">Modeling growth and propagation of bacterial colonies on flat surfaces: branching colony</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../petri_dish/">Virtual Petri dish</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../soil/">Soil-air interface</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../colony.md">Example</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Branching colony growth</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h4 id="modeling-growth-and-propagation-of-bacterial-colonies-on-flat-surfaces-branching-colony">Modeling growth and propagation of bacterial colonies on flat surfaces: branching colony</h4>
+<p>This is the exact same as the circular colony protocol notebook, except that a few parameters in the COMETS model have been changed to cause the colony to branch.</p>
+<pre><code class="python">import cobra
+import cobra.test # for the ijo1366 model
+import sys
+import numpy as np
+sys.path.append(&quot;/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy&quot;)
+import cometspy as c
+</code></pre>
+
+<p>First, let's make a "toy" model, using functionality of cobrapy. It directly converts extracellular carbon to biomass. </p>
+<pre><code class="python">carbon = cobra.Metabolite(&quot;carbon&quot;,
+                           compartment = &quot;e&quot;)
+carbon_exch = cobra.Reaction(&quot;Carbon_exch&quot;,
+                            lower_bound = -1.,
+                            upper_bound = 1000.)
+carbon_exch.add_metabolites({carbon: -1.})
+Biomass = cobra.Reaction(&quot;Biomass&quot;,
+                        lower_bound = 0.,
+                        upper_bound = 1000.)
+Biomass.add_metabolites({carbon: -1.})
+toy = cobra.Model(&quot;toy&quot;)
+toy.add_reactions([carbon_exch, Biomass])
+toy.objective = &quot;Biomass&quot;
+toy.repair()
+</code></pre>
+
+<p>We can test that the model runs by doing FBA in cobrapy. It should generate as much biomass as the lower bound on carbon_exch.</p>
+<pre><code class="python">print(toy.medium)
+print(toy.optimize().objective_value)
+</code></pre>
+
+<pre><code>{'Carbon_exch': 1.0}
+1.0
+</code></pre>
+<p>We will now convert this into a COMETS model, set its initial biomass, and set the first set of convection parameters. These are the parameters needed to obtain a branching colony with this toy model. Note that the timestep has to be set very low for this form of biomass spread.</p>
+<pre><code class="python">grid_size = 30
+
+toy_comets = c.model(toy)
+toy_comets.initial_pop = [int(grid_size / 2),int(grid_size / 2),1.0]
+toy_comets.open_exchanges()
+toy_comets.add_convection_parameters(packedDensity = 1.2,
+                                    elasticModulus = 5.e-3,
+                                    frictionConstant = 1.0,
+                                    convDiffConstant = 0.0)
+toy_comets.add_noise_variance_parameter(20.)
+</code></pre>
+
+<pre><code>Note: for convection parameters to function,
+params.all_params['biomassMotionStyle'] = 'Convection 2D'
+must also be set
+</code></pre>
+<p>We make sure that the COMETS model does not consider the biomass reaction an exchange.</p>
+<pre><code class="python">toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;,&quot;EXCH&quot;] = False
+toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;,&quot;EXCH_IND&quot;] = 0
+toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;, &quot;LB&quot;] = 0
+</code></pre>
+
+<p>This simulation's layout will be of a single, centered colony on a 100x100 grid. carbon will be spread homogenously.</p>
+<pre><code class="python">ly = c.layout([toy_comets])
+ly.grid = [grid_size, grid_size]
+ly.set_specific_metabolite(&quot;carbon&quot;, 1.)
+</code></pre>
+
+<p>The main parameter we need to set is biomassmotionstyle, which must be set to "Convection 2D".  Then, to capture the spatial information, we'll also log biomass (instead of just total biomass). Finally, we'll also adjust a handful of other parameters. These are stored in the dictionary all_params.</p>
+<pre><code class="python">p = c.params()
+
+p.all_params[&quot;biomassMotionStyle&quot;] = &quot;Convection 2D&quot;
+p.all_params[&quot;writeBiomassLog&quot;] = True
+p.all_params[&quot;BiomassLogRate&quot;] = 500
+p.all_params[&quot;maxCycles&quot;] = 20000
+p.all_params[&quot;timeStep&quot;] = 0.00025
+p.all_params[&quot;spaceWidth&quot;] = 1
+p.all_params[&quot;maxSpaceBiomass&quot;] = 10
+p.all_params[&quot;minSpaceBiomass&quot;] = 0.25e-10
+p.all_params[&quot;allowCellOverlap&quot;] = True
+p.all_params[&quot;growthDiffRate&quot;] = 0
+p.all_params[&quot;flowDiffRate&quot;] = 3e-9
+p.all_params[&quot;exchangestyle&quot;] = &quot;Monod Style&quot;
+p.all_params[&quot;defaultKm&quot;] = 0.01
+p.all_params[&quot;defaultHill&quot;] = 1
+p.all_params[&quot;defaultVmax&quot;] = 100
+
+</code></pre>
+
+<p>Now we make a simulation object and run it.  This can take awhile.</p>
+<pre><code class="python">sim = c.comets(ly, p)
+# this should all be removable once the installer is made with dependencies in a predictable location
+sim.set_classpath(&quot;concurrent&quot;, &quot;/opt/colt/lib/concurrent.jar&quot;)
+sim.set_classpath(&quot;colt&quot;, &quot;/opt/colt/lib/colt.jar&quot;)
+sim.set_classpath(&quot;lang3&quot;, &quot;/opt/commons-lang3-3.9/commons-lang3-3.9.jar&quot;)
+sim.set_classpath(&quot;jmatio&quot;,&quot;/opt/jmatio/lib/jmatio.jar&quot;)
+sim.set_classpath(&quot;math3&quot;,&quot;/opt/commons-math3-3.6.1/commons-math3-3.6.1.jar&quot;)
+sim.set_classpath(&quot;bin&quot;,&quot;/home/jeremy/Dropbox/work_related/harcombe_lab/segre/jars/comets_2.10.0.jar&quot;)
+sim.set_classpath(&quot;gurobi&quot;,&quot;/opt/gurobi900/linux64/lib/gurobi.jar&quot;)
+sim.set_classpath(&quot;jdistlib&quot;, &quot;/opt/jdistlib-0.4.5-bin.jar&quot;)
+
+sim.run(False) # use the argument delete_files = False to keep all COMETS-generated files
+
+</code></pre>
+
+<pre><code>Warning: java class libraries cannot be found
+These are the expected locations for dependencies:
+Dependency           expected path
+__________           _____________
+gurobi          /opt/gurobi900/linux64/gurobi.jar
+junit           /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
+hamcrest            /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
+jogl_all            /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
+gluegen_rt          /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
+gluegen         /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
+gluegen_rt_natives          /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
+jogl_all_natives            /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
+jmatio          /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
+jmat            /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
+concurrent          /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
+colt            /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
+lang3           /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
+math3           /Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
+bin         /Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
+
+  You have two options to fix this problem:
+1.  set each class path correctly by doing:
+    comets.set_classpath(libraryname, path)
+    e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
+
+    note that versions dont always have to exactly match, but you're on your own if they don't
+
+2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
+       look at the current comets.JAVA_CLASSPATH to see how this should look.
+
+Running COMETS simulation ...
+Done!
+</code></pre>
+<p>Now let's plot the results. Note how we specify the axes, otherwise "cycle", "x", and "y" will be assumed to be state variables. </p>
+<p>What we see is that both species survive, because the LCTStex_KO cross-feeds galactose from the galE_KO, which uses the glucose piece of lactose. The metabolites, as is typical in a chemostat, are in very low concentrations once equilibrium is reached.</p>
+<pre><code class="python">im = sim.get_biomass_image('toy', 1500)
+from matplotlib import pyplot as plt
+import matplotlib.colors, matplotlib.cm
+my_cmap = matplotlib.cm.get_cmap(&quot;copper&quot;)
+my_cmap.set_bad((0,0,0))
+plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
+
+</code></pre>
+
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f966a6b3630&gt;
+</code></pre>
+<p><img alt="png" src="../../img/branching_colony_1.png" /></p>
+<pre><code class="python">big_image = np.zeros((grid_size * 8, grid_size * 5))
+im_cycles = np.arange(p.all_params[&quot;BiomassLogRate&quot;], p.all_params[&quot;maxCycles&quot;] + p.all_params[&quot;BiomassLogRate&quot;],
+                      p.all_params[&quot;BiomassLogRate&quot;])
+for i, cycle in enumerate(im_cycles):
+    big_image[(grid_size * int(i / 5)):(grid_size + grid_size * int(i / 5)),(grid_size * (i % 5)):(grid_size + grid_size * (i % 5))] = sim.get_biomass_image(&quot;toy&quot;, cycle)
+    plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
+</code></pre>
+
+<p><img alt="png" src="../../img/branching_colony_2.png" /></p>
+<pre><code class="python">
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../demographic_noise_two_strains/" class="btn btn-neutral float-right" title="Demographic noise with two strains">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../circular_colony/" class="btn btn-neutral" title="Circular colony growth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../circular_colony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../demographic_noise_two_strains/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

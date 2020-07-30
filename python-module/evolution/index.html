@@ -8,24 +8,23 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Simulating evolutionary processes - COMETS Documentation</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
+  <title>Evolutionary processes - COMETS Documentation</title>
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../../css/extra.css" rel="stylesheet">
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Simulating evolutionary processes";
+    var mkdocs_page_name = "Evolutionary processes";
     var mkdocs_page_input_path = "python-module/evolution.md";
-    var mkdocs_page_url = "/python-module/evolution/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -39,7 +38,7 @@
         <a href="../.." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -85,7 +84,7 @@
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Simulating evolutionary processes</a>
+    <a class="current" href="./">Evolutionary processes</a>
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#simulating-evolution-with-comets">Simulating evolution with COMETS</a></li>
@@ -113,6 +112,22 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../circular_colony/">Circular colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../branching_colony/">Branching colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../petri_dish/">Virtual Petri dish</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../soil/">Soil-air interface</a>
                 </li>
     </ul>
@@ -124,7 +139,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../colony/">Example</a>
+    <a class="" href="../../colony.md">Example</a>
                 </li>
     </ul>
 	    </li>
@@ -155,7 +170,7 @@
         
       
     
-    <li>Simulating evolutionary processes</li>
+    <li>Evolutionary processes</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -281,7 +296,7 @@ plt.ylabel(&quot;Biomass (gr.)&quot;)
 
 <pre><code>Text(0,0.5,'Biomass (gr.)')
 </code></pre>
-<p><img alt="png" src="../output_11_1.png" /></p>
+<p><img alt="png" src="../../img/evolution_1.png" /></p>
 <p>In order to analyze the results, it is also helpful to visualize the genotypes data frame, which contains all the mutants that ever appeared during the simulation. The data frame contains three columns: The ancestor, the mutation, and the name of the resulting genotype, which is assigned as a random hash.</p>
 <pre><code class="python">evo_simulation.genotypes
 </code></pre>
@@ -309,12 +324,12 @@ plt.ylabel(&quot;Biomass (gr.)&quot;)
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -328,10 +343,12 @@ plt.ylabel(&quot;Biomass (gr.)&quot;)
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
-      <script src="../../js/extra.js"></script>
-      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-      <script src="../../mathjax-config.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>

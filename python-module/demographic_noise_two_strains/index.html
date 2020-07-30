@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Demographic noise with two strains - COMETS Documentation</title>
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Demographic noise with two strains";
+    var mkdocs_page_input_path = "python-module/demographic_noise_two_strains.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../capabilities/">Capabilities</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS PYTHON TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../getting_started/">Getting started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../test_tube/">Growth in a test tube</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../competition_assay/">Competition assay</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../chemostat/">Continuous culture</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../evolution/">Evolutionary processes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../citrate/">Citrate use in the LTEE</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../circular_colony/">Circular colony growth</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../branching_colony/">Branching colony growth</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Demographic noise with two strains</a>
+    <ul class="subnav">
+            
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../petri_dish/">Virtual Petri dish</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../soil/">Soil-air interface</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">COMETS MATLAB TOOLBOX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../colony.md">Example</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">COMETS Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
+    
+    <li>Demographic noise with two strains</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><strong>Modeling growth and propagation of bacterial colonies on flat surfaces.</strong></p>
+<p>This protocol replicates the main text protocol that simulates demographic noise which causes spatial segregation of expanding, equally-fit colonies. </p>
+<pre><code class="python">import cobra
+import cobra.test # for the ijo1366 model
+import sys
+import copy
+import numpy as np
+sys.path.append(&quot;/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy&quot;) # not necessary if you pip install cometspy
+import cometspy as c
+</code></pre>
+
+<p>We will use the E. coli core model.</p>
+<pre><code class="python">ecoli = cobra.test.create_test_model(&quot;textbook&quot;)
+</code></pre>
+
+<p>We will now convert this into a COMETS model, and set two parameter options: the demographic noise parameter, which is called "neutral drift," and convection-based motion parameters. </p>
+<pre><code class="python">grid_size = 40
+ecoli_comets = c.model(ecoli)
+ecoli_comets.reactions.loc[ecoli_comets.reactions.EXCH, &quot;LB&quot;] = -1000
+ecoli_comets.add_nonlinear_diffusion_parameters(convNonlinDiffZero = 0.,
+                                    convNonlinDiffN = 6.e-6,
+                                    convNonlinDiffExponent = 1.0,
+                                    convNonlinDiffHillN = 2.,
+                                    convNonlinDiffHillK = 0.001)
+ecoli_comets.add_neutral_drift_parameter(0.01)
+</code></pre>
+
+<pre><code>Note: for non-linear diffusion parameters to function,
+params.all_params['biomassMotionStyle'] = 'ConvNonlin' Diffusion 2D'
+must also be set
+</code></pre>
+<p>Let's make an exact copy of the ecoli comets model.</p>
+<pre><code class="python">import random
+
+ecoli_comets2 = copy.copy(ecoli_comets)
+ecoli_comets2.id = &quot;e_coli_core2&quot;
+
+ecoli_comets.initial_pop = [[x, 0, np.random.normal(6.4e-5, 1e-6)] for x in range(grid_size)]
+ecoli_comets2.initial_pop = [[x, 0, np.random.normal(6.4e-5, 1e-6)] for x in range(grid_size)]
+
+</code></pre>
+
+<p>This simulation will be of a single, centered colony on a 100x100 grid. carbon will be spread homogenously, and be fixed at initial concentration along one end.</p>
+<pre><code class="python">ly = c.layout([ecoli_comets, ecoli_comets2])
+ly.grid = [grid_size, grid_size]
+ly.set_specific_metabolite(&quot;glc__D_e&quot;, 2.2e-3)
+ly.set_specific_metabolite(&quot;h2o_e&quot;, 1000)
+ly.set_specific_metabolite(&quot;nh4_e&quot;, 1000)
+ly.set_specific_metabolite(&quot;o2_e&quot;, 1000)
+ly.set_specific_metabolite(&quot;pi_e&quot;, 1000)
+ly.set_specific_metabolite(&quot;h_e&quot;, 1000)
+
+for x in range(grid_size):
+    ly.set_specific_static_at_location(&quot;glc__D_e&quot;, (x, grid_size-1), 1.1e-3)
+
+</code></pre>
+
+<p>The main parameter we need to set is biomassmotionstyle, which must be set to "ConvNonlin Diffusion 2D".  Then, to capture the spatial information, we'll also log biomass (instead of just total biomass). Finally, we'll also adjust a handful of other parameters. These are stored in the dictionary all_params.</p>
+<pre><code class="python">p = c.params()
+
+cycles = 1000
+
+p.all_params[&quot;biomassMotionStyle&quot;] = &quot;ConvNonlin Diffusion 2D&quot;
+p.all_params[&quot;writeBiomassLog&quot;] = True
+p.all_params[&quot;BiomassLogRate&quot;] = cycles
+p.all_params[&quot;maxCycles&quot;] = cycles
+p.all_params[&quot;timeStep&quot;] = 0.05
+p.all_params[&quot;spaceWidth&quot;] = 0.01
+p.all_params[&quot;defaultDiffConst&quot;] = 6.e-6
+p.all_params[&quot;maxSpaceBiomass&quot;] = 1000000
+p.all_params[&quot;minSpaceBiomass&quot;] = 1.0e-9
+p.all_params[&quot;allowCellOverlap&quot;] = True
+p.all_params[&quot;growthDiffRate&quot;] = 0
+p.all_params[&quot;defaultVmax&quot;] = 18.5
+p.all_params[&quot;defaultKm&quot;] = 0.000015
+p.all_params[&quot;defaultHill&quot;] = 1
+p.all_params[&quot;exchangestyle&quot;] = &quot;Monod Style&quot;
+</code></pre>
+
+<p>Now we make a simulation object and run it.  This can take awhile.</p>
+<pre><code class="python">sim = c.comets(ly, p)
+sim.run()
+</code></pre>
+
+<pre><code>Running COMETS simulation ...
+Done!
+</code></pre>
+<p>Now let's plot the results. We use the get_biomass_image helper function and then matplotlib to do the plotting.</p>
+<pre><code class="python">im = sim.get_biomass_image('e_coli_core', cycles).astype(float)
+im = im / np.max(im)
+im2 = sim.get_biomass_image('e_coli_core2',cycles).astype(float)
+im2 = im2 / np.max(im2)
+final = np.zeros((grid_size,grid_size,3))
+final[:,:,1] = im
+final[:,:,2] = im2
+from matplotlib import pyplot as plt
+plt.imshow(final)
+</code></pre>
+
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fba555da860&gt;
+</code></pre>
+<p><img alt="png" src="../../img/demographic_noise_two_strains.png" /></p>
+<pre><code class="python">
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../petri_dish/" class="btn btn-neutral float-right" title="Virtual Petri dish">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../branching_colony/" class="btn btn-neutral" title="Branching colony growth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../branching_colony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../petri_dish/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/extra.js" defer></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
+      <script src="../../mathjax-config.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

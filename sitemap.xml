@@ -1,84 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
     <url>
-     <loc>/capabilities/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
     <url>
-     <loc>/installation/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>/python-module/getting_started/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/test_tube/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/competition_assay/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/chemostat/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/evolution/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/citrate/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/python-module/soil/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>/colony/</loc>
-     <lastmod>2020-07-20</lastmod>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
+    <url>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>None</loc>
+     <lastmod>2020-07-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc></loc>
+     
+     <changefreq>daily</changefreq>
+    </url>
 </urlset>
