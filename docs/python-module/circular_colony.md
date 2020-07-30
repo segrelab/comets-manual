@@ -1,4 +1,4 @@
-**Modeling growth and propagation of bacterial colonies on flat surfaces: circular colony**
+## Modeling growth and propagation of bacterial colonies on flat surfaces: circular colony
 
 This protocol replicates the main text protocol that simulates colony expansion via mechanical pushing among the growing cells. One of the characteristics of the implemented model is that it undergoes a transition in colony morphology depending on the value of the dense packing parameter. In this protocol, we will choose parameters that result in a round colony. In "branching_colony," we will choose parameters that result in a branching colony.
 
@@ -12,7 +12,6 @@ import cobra
 import cobra.test # for the ijo1366 model
 import sys
 import numpy as np
-sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/COMETS-Python-Toolbox")
 import cometspy as c
 ```
 
@@ -53,7 +52,7 @@ We will now convert this into a COMETS model, set its initial biomass, and set t
 
 
 ```python
-grid_size = 30
+grid_size = 50
 
 toy_comets = c.model(toy)
 toy_comets.initial_pop = [int(grid_size / 2),int(grid_size / 2),1.0]
@@ -120,37 +119,7 @@ sim = c.comets(ly, p)
 sim.run() # set delete_files = False to maintain all comets-generated files
 ```
 
-    warning:  we cannot find required java class libraries at the expected locations
-        specifically, we cannot find the following libraries at these locations:
-    
-    library common name 	 expected path
-    ___________________ 	 _____________
-    gurobi	/opt/gurobi900/linux64/gurobi.jar
-    junit	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
-    hamcrest	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
-    jogl_all	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
-    gluegen_rt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
-    gluegen	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
-    gluegen_rt_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
-    jogl_all_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
-    jmatio	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
-    jmat	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
-    concurrent	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
-    colt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
-    lang3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
-    math3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
-    bin	/Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
-    
-      You have two options to fix this problem:
-    1.  set each class path correctly by doing:
-        comets.set_classpath(libraryname, path)
-        e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
-    
-        note that versions dont always have to exactly match, but you're on your own if they don't
-    
-    2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
-           look at the current comets.JAVA_CLASSPATH to see how this should look.
-    
+   
     Running COMETS simulation ...
     Done!
 
@@ -168,15 +137,7 @@ plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x7ff618252c50>
-
-
-
-
-![png](output_17_1.png)
+![png](../img/circular_colony_1.png)
 
 
 We can tile the time series in a simple loop.
@@ -195,13 +156,10 @@ for i, cycle in enumerate(im_cycles):
 plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 ```
 
+![png](../img/circular_colony_2.png)
 
 
 
-    <matplotlib.image.AxesImage at 0x7ff61360c860>
+```python
 
-
-
-
-![png](output_20_1.png)
-
+```

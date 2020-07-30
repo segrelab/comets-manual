@@ -9,8 +9,8 @@ Here we are going to simulate a chemostat with lactose as the sole carbon resour
 import cobra
 import cobra.test # for the ijo1366 model
 import sys
-sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/COMETS-Python-Toolbox")
-import comets as c
+sys.path.append("/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy")
+import cometspy as c
 ```
 
 Now let's load the ijo1366 model, make a copy, and knockout the relevant reactions.
@@ -241,11 +241,11 @@ E_no_LCTStex.id = "LCTStex_KO"
 
 galE_comets = c.model(E_no_galE)
 galE_comets.initial_pop = [0,0,initial_pop] # x, y, gDW
-galE_comets.reactions.loc[galE_comets.reactions.EXCH, "LB"] = -1000
+galE_comets.open_exchanges()
 
 lcts_comets = c.model(E_no_LCTStex)
 lcts_comets.initial_pop = [0,0,initial_pop] # x, y, gDW
-lcts_comets.reactions.loc[lcts_comets.reactions.EXCH, "LB"] = -1000
+lcts_comets.open_exchanges()
 ```
 
 Now we are going to use the manual method for making a chemostat. Recall that cobrapy media are set using exchange reaction IDs, whereas COMETS media are set using metabolite ids. We can easily take care of this difference with a dictionary comprehension. Here we do that, then generate a layout, and add the media components to that layout.
@@ -274,26 +274,26 @@ The rest of the chemostat--the outflow--is setup in the parameters using metabol
 
 ```python
 params = c.params()
-params.all_params["deathRate"] = dilution_rate
-params.all_params["metaboliteDilutionRate"] = dilution_rate
+params.set_param("deathRate", dilution_rate)
+params.set_param("metaboliteDilutionRate", dilution_rate)
 ```
 
 Let's also adjust a few other parameters.
 
 
 ```python
-params.all_params["timeStep"] = 0.1 # hours
-params.all_params["maxSpaceBiomass"] = 10. # gDW
-params.all_params["maxCycles"] = 2000 # duration of simulation in time steps
+params.set_param("timeStep", 0.1) # hours
+params.set_param("maxSpaceBiomass", 10.) # gDW
+params.set_param("maxCycles", 300) # duration of simulation in time steps
 ```
 
 Finally, let's keep track of two key metabolites: lactose and galactose. We do this using the specificMedia log, and choosing the metabolites with a comma-separated string with no spaces.
 
 
 ```python
-params.all_params["writeSpecificMediaLog"] = True
-params.all_params["specificMediaLogRate"] = 1 # time steps
-params.all_params["specificMedia"] = "lcts_e,gal_e" # metabolites to track
+params.set_param("writeSpecificMediaLog", True)
+params.set_param("specificMediaLogRate", 1) # time steps
+params.set_param("specificMedia", "lcts_e,gal_e") # metabolites to track
 ```
 
 Now the chemostat aspects are setup using the layout and the parameters. Therefore, we can generate a COMETS simulation, run it, and then examine the biomass and metabolites.
@@ -301,63 +301,22 @@ Now the chemostat aspects are setup using the layout and the parameters. Therefo
 
 ```python
 sim = c.comets(layout, params)
+# this stuff will not be necessary once the installer is built
+sim.set_classpath("concurrent", "/opt/colt/lib/concurrent.jar")
+sim.set_classpath("colt", "/opt/colt/lib/colt.jar")
+sim.set_classpath("lang3", "/opt/commons-lang3-3.9/commons-lang3-3.9.jar")
+sim.set_classpath("jmatio","/opt/jmatio/lib/jmatio.jar")
+sim.set_classpath("math3","/opt/commons-math3-3.6.1/commons-math3-3.6.1.jar")
+sim.set_classpath("bin","/home/jeremy/Dropbox/work_related/harcombe_lab/segre/jars/comets_2.10.0.jar")
+sim.set_classpath("gurobi","/opt/gurobi900/linux64/lib/gurobi.jar")
+sim.set_classpath("jdistlib", "/opt/jdistlib-0.4.5-bin.jar")
 sim.run()
 ```
 
-    warning:  we cannot find required java class libraries at the expected locations
-        specifically, we cannot find the following libraries at these locations:
-    
-    library common name 	 expected path
-    ___________________ 	 _____________
-    gurobi	/opt/gurobi900/linux64/gurobi.jar
-    junit	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
-    hamcrest	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
-    jogl_all	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
-    gluegen_rt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
-    gluegen	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
-    gluegen_rt_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
-    jogl_all_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
-    jmatio	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
-    jmat	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
-    concurrent	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
-    colt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
-    lang3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
-    math3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
-    bin	/Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
-    
-      You have two options to fix this problem:
-    1.  set each class path correctly by doing:
-        comets.set_classpath(libraryname, path)
-        e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
-    
-        note that versions dont always have to exactly match, but you're on your own if they don't
-    
-    2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
-           look at the current comets.JAVA_CLASSPATH to see how this should look.
+    Warning: java class libraries cannot be found
     
     Running COMETS simulation ...
-
-
-
-    ---------------------------------------------------------------------------
-
-    FileNotFoundError                         Traceback (most recent call last)
-
-    <ipython-input-11-7664732a7a8e> in <module>
-          9 sim.set_classpath("gurobi","/opt/gurobi900/linux64/lib/gurobi.jar")
-         10 sim.set_classpath("jdistlib", "/opt/jdistlib-0.4.5-bin.jar")
-    ---> 11 sim.run()
-    
-
-    ~/Dropbox/work_related/harcombe_lab/segre/COMETS-Python-Toolbox/comets.py in run(self, delete_files)
-       2249         # clean workspace
-       2250         if delete_files:
-    -> 2251             os.remove(c_global)
-       2252             os.remove(c_package)
-       2253             os.remove(c_script)
-
-
-    FileNotFoundError: [Errno 2] No such file or directory: '/home/jeremy/.current_global'
+    Done!
 
 
 Now let's plot the results. Note how we specify the axes, otherwise "cycle", "x", and "y" will be assumed to be state variables. 
@@ -373,67 +332,40 @@ sim.specific_media.plot(x = "cycle",y = ["lcts_e","gal_e"])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f3a947ff4e0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f468e670b70>
 
 
 
 
-![png](output_22_1.png)
+![png](../img/chemostat_1.png)
 
 
 
-![png](output_22_2.png)
+![png](../img/chemostat_2.png)
 
 
-The above code required setting chemostat parameters in multiple places. We offer this functionality so that researchers can create complex setups that may, for example, have different initial concentrations than reservoir concentrations, and different inflow rates than outflow rates. However, we expect most chemostat simulations will function like above, where a single dilution parameter dictates the behavior of the system. For this typical use-case, we have made a helper function which generates a layout and parameters objects with the correct setup.
+The above code required setting chemostat parameters in multiple places. We offer this functionality so that researchers can create complex setups that may, for example, have different initial concentrations than reservoir concentrations, and different inflow rates than outflow rates. However, we expect most chemostat simulations will function like above, where a single dilution parameter dictates the behavior of the system. For this typical use-case, we have made a helper function in the utils subpackage which generates a layout and parameters objects with the correct setup.
 
 
 ```python
-layout, params = c.chemostat([galE_comets, lcts_comets], comets_media, dilution_rate)
+from cometspy.utils import chemostat
+```
+
+
+```python
+chemostat([galE_comets, lcts_comets], comets_media, dilution_rate)
 # we can still adjust the parameters as desired.
 params.set_param("timeStep", 0.1) # hours
 params.set_param("maxSpaceBiomass", 10.) # gDW
-params.set_param("maxCycles", 500) # duration of simulation in time steps
+params.set_param("maxCycles", 300) # duration of simulation in time steps
 params.set_param("writeSpecificMediaLog", True)
 params.set_param("specificMediaLogRate", 1) # time steps
 params.set_param("specificMedia", "lcts_e,gal_e") # metabolites to track
 # then we make the simulation object and run as before
 sim = c.comets(layout, params)
 sim.run()
-sim.total_biomass.plot(x = "cycle")
+sim.total_biomass.plot(x = "cycle", logy = True)
 ```
-
-    warning:  we cannot find required java class libraries at the expected locations
-        specifically, we cannot find the following libraries at these locations:
-    
-    library common name 	 expected path
-    ___________________ 	 _____________
-    gurobi	/opt/gurobi900/linux64/gurobi.jar
-    junit	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/junit-4.12.jar
-    hamcrest	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/junit/hamcrest-core-1.3.jar
-    jogl_all	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all.jar
-    gluegen_rt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt.jar
-    gluegen	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen.jar
-    gluegen_rt_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/gluegen-rt-natives-linux-amd64.jar
-    jogl_all_natives	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/jogl/jogamp-all-platforms/jar/jogl-all-natives-linux-amd64.jar
-    jmatio	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/lib/jamtio.jar
-    jmat	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/JMatIO/JMatIO-041212/lib/jmatio.jar
-    concurrent	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/concurrent.jar
-    colt	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/colt/lib/colt.jar
-    lang3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-lang3-3.7/commons-lang3-3.7.jar
-    math3	/Dropbox/work_related/harcombe_lab/segre/comets/bin/lib/commons-math3-3.6.1/commons-math3-3.6.1.jar
-    bin	/Dropbox/work_related/harcombe_lab/segre/comets/bin/bin/comets_evo.jar
-    
-      You have two options to fix this problem:
-    1.  set each class path correctly by doing:
-        comets.set_classpath(libraryname, path)
-        e.g.   comets.set_classpath('hamcrest', '/home/chaco001/comets/junit/hamcrest-core-1.3.jar')
-    
-        note that versions dont always have to exactly match, but you're on your own if they don't
-    
-    2.  fully define the classpath yourself by overwriting comets.JAVA_CLASSPATH
-           look at the current comets.JAVA_CLASSPATH to see how this should look.
-    
     Running COMETS simulation ...
     Done!
 
@@ -441,12 +373,12 @@ sim.total_biomass.plot(x = "cycle")
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f3a94644a90>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f468e200c88>
 
 
 
 
-![png](output_24_2.png)
+![png](../img/chemostat_3.png)
 
 
 

@@ -155,5 +155,5 @@ myplot.set_ylabel("Biomass (gr.)")
 
 
 
-![png](../img/comp_1.png)
+![png](../img/comp_2.png)
 
