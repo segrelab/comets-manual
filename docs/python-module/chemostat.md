@@ -301,15 +301,6 @@ Now the chemostat aspects are setup using the layout and the parameters. Therefo
 
 ```python
 sim = c.comets(layout, params)
-# this stuff will not be necessary once the installer is built
-sim.set_classpath("concurrent", "/opt/colt/lib/concurrent.jar")
-sim.set_classpath("colt", "/opt/colt/lib/colt.jar")
-sim.set_classpath("lang3", "/opt/commons-lang3-3.9/commons-lang3-3.9.jar")
-sim.set_classpath("jmatio","/opt/jmatio/lib/jmatio.jar")
-sim.set_classpath("math3","/opt/commons-math3-3.6.1/commons-math3-3.6.1.jar")
-sim.set_classpath("bin","/home/jeremy/Dropbox/work_related/harcombe_lab/segre/jars/comets_2.10.0.jar")
-sim.set_classpath("gurobi","/opt/gurobi900/linux64/lib/gurobi.jar")
-sim.set_classpath("jdistlib", "/opt/jdistlib-0.4.5-bin.jar")
 sim.run()
 ```
 
