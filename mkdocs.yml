@@ -37,4 +37,4 @@ nav:
         - Soil-air interface: python-module/soil.md             
     - COMETS MATLAB TOOLBOX:
         - Example: colony.md
-theme: rtd-mklab
+theme: reathedocs
