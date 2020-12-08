@@ -395,19 +395,33 @@ This action yields Figure 1c below, showing rapid accumulation and subsequent co
 ![Figure 1](https://github.com/segrelab/comets-manual/blob/master/docs/img/multispecies_1.png)
 **Figure 1. Growth and metabolic exchange of 14-species microbial community. a)** Biomass production of all 14 organisms over time. **b)** Consumption of limiting carbon sources over time. **c)** Secretion and consumption of metabolic byproducts over time.
 
-References:
+### References
 [1] Henry, C. S., Zinner, J. F., Cohoon, M. P. & Stevens, R. L. iBsu1103: a new genome-scale metabolic model of Bacillus subtilis based on SEED annotations. Genome Biol. 10, R69 (2009).
+
 [2] Orth, J. D. et al. A comprehensive genome-scale reconstruction of Escherichia coli metabolism--2011. Mol. Syst. Biol. 7, 535 (2011).
+
 [3] Liao, Y.-C. et al. An experimentally validated genome-scale metabolic reconstruction of Klebsiella pneumoniae MGH 78578, iYL1228. J. Bacteriol. 193, 1710–1717 (2011).
+
 [4] Flahaut, N. A. L. et al. Genome-scale metabolic model for Lactococcus lactis MG1363 and its application to the analysis of flavor formation. Appl. Microbiol. Biotechnol. 97, 8729–8739 (2013).
+
 [5] Peyraud, R. et al. Genome-scale reconstruction and system level investigation of the metabolic network of Methylobacterium extorquens AM1. BMC Syst. Biol. 5, 189 (2011).
+
 [6] Oberhardt, M. A., Puchałka, J., Fryer, K. E., Martins dos Santos, V. A. P. & Papin, J. A. Genome-scale metabolic network analysis of the opportunistic pathogen Pseudomonas aeruginosa PAO1. J. Bacteriol. 190, 2790–2803 (2008).
+
 [7] Mazumdar, V., Snitkin, E. S., Amar, S. & Segrè, D. Metabolic network model of a human oral pathogen. J. Bacteriol. 191, 74–90 (2009).
+
 [8] Imam, S. et al. iRsp1095: a genome-scale reconstruction of the Rhodobacter sphaeroides metabolic network. BMC Syst. Biol. 5, 116 (2011).
+
 [9] Monk, J. M. et al. Genome-scale metabolic reconstructions of multiple Escherichia coli strains highlight strain-specific adaptations to nutritional environments. Proc. Natl. Acad. Sci. U. S. A. 110, 20338–20343 (2013).
+
 [10] Zomorrodi, A. R. & Maranas, C. D. Improving the iMM904 S. cerevisiae metabolic model using essentiality and synthetic lethality data. BMC Syst. Biol. 4, 178 (2010).
+
 [11] Thiele, I. et al. A community effort towards a knowledge-base and mathematical model of the human pathogen Salmonella Typhimurium LT2. BMC Syst. Biol. 5, 8 (2011).
+
 [12] Pinchuk, G. E. et al. Constraint-based model of Shewanella oneidensis MR-1 metabolism: a tool for data analysis and hypothesis generation. PLoS Comput. Biol. 6, e1000822 (2010).
+
 [13] Nogales, J., Gudmundsson, S., Knight, E. M., Palsson, B. O. & Thiele, I. Detailing the optimality of photosynthesis in cyanobacteria through systems biology analysis. Proc. Natl. Acad. Sci. U. S. A. 109, 2678–2683 (2012).
+
 [14] Lee, K. Y., Park, J. M., Kim, T. Y., Yun, H. & Lee, S. Y. The genome-scale metabolic network analysis of Zymomonas mobilis ZM4 explains physiological features and suggests ethanol and succinic acid production strategies. Microb. Cell Fact. 9, 94 (2010).
+
 [15] Pacheco, A. R., Moel, M. & Segrè, D. Costless metabolic secretions as drivers of interspecies interactions in microbial ecosystems. Nat. Commun. 10, 103 (2019).
