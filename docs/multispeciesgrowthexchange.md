@@ -387,8 +387,6 @@ legend({'Acetate','Formate'})
 
 This action yields Figure 1c below, showing rapid accumulation and subsequent consumption of acetate and formate.
 
-```matlab
+![Figure 1](https://github.com/segrelab/comets-manual/blob/master/docs/img/multispecies_1.png)
+Figure 1. Growth and metabolic exchange of 14-species microbial community. a) Biomass production of all 14 organisms over time. b) Consumption of limiting carbon sources over time. c) Secretion and consumption of metabolic byproducts over time.
 
-```
-
-![Figure 1](https://github.com/segrelab/comets-manual/blob/master/docs/img/branching_colony_1.png)
