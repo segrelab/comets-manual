@@ -2,8 +2,10 @@
 
 This protocol demonstrates the capacity of COMETS to simulate multispecies community dynamics and metabolic exchange using the MATLAB toolbox.
 
-The metabolic models used in this simulation modelsCommunity.mat and the growth medium mediumCommunity.mat can be downloaded from the COMETS GitHub repository. In this example, the growth phenotypes of Bacillus subtilis82, Escherichia coli83, Klebsiella pneumoniae84, Lactococcus lactis85, Methylobacterium extorquens86, Pseudomonas aeruginosa87, Porphyromonas gingivalis88, Rhodobacter sphaeroides89, Shigella boydii90, Saccharomyces cerevisiae81, Salmonella enterica91, Shewanella oneidensis92, Synechocystis sp. PCC680393, and Zymomonas mobilis94 are simulated. These organisms, whose growth and metabolic exchange phenotypes were previously analyzed in silico21, were selected to represent a broad cross-section of nutrient utilization capabilities. Here, the growth profile of a multispecies combination of these organisms in the presence of D-glucose and L-alanine over 12 hours will be analyzed.
-Import the models and medium conditions, and initialize the COMETS layout
+The metabolic models used in this simulation modelsCommunity.mat and the growth medium mediumCommunity.mat can be downloaded from the COMETS GitHub repository. In this example, the growth phenotypes of *Bacillus subtilis* [1], *Escherichia coli* [2], *Klebsiella pneumoniae* [3], *Lactococcus lactis* [4], *Methylobacterium extorquens* [5], *Pseudomonas aeruginosa* [6], *Porphyromonas gingivalis* [7], *Rhodobacter sphaeroides* [8], *Shigella boydii* [9], *Saccharomyces cerevisiae* [10], *Salmonella enterica* [11], *Shewanella oneidensis* [12], *Synechocystis* sp. PCC6803 [13], and *Zymomonas mobilis* [14] are simulated. These organisms, whose growth and metabolic exchange phenotypes were previously analyzed in silico [15], were selected to represent a broad cross-section of nutrient utilization capabilities. Here, the growth profile of a multispecies combination of these organisms in the presence of D-glucose and L-alanine over 12 hours will be analyzed.
+
+### Import the models and medium conditions, and initialize the COMETS layout
+
 Unzip the ‘modelsCommunity.mat.zip’ file. If this is unzipped as a directory, it will be necessary to move the 'modelsCommunity.mat' file back into the top directory.
 In MATLAB, import the metabolic model MATLAB structure.
 
@@ -169,7 +171,9 @@ Define the initial organism populations.
 ```
 
 Here, each organism is added to the environment at an abundance of 1.0·10-7  grams dry weight. By default, the layout is initialized with dimensions of 1 x 1 cells to simulate a well-mixed environment.
-Set the COMETS parameters and run the simulation
+
+### Set the COMETS parameters and run the simulation
+
 Define the COMETS working directory, log file names, and simulation parameters.
 
 ```matlab
@@ -219,7 +223,8 @@ Run the COMETS simulation.
 >> runComets(layout,cometsDirectory)
 ```
 
-Parse the COMETS output logs and visualize data 
+### Parse the COMETS output logs and visualize data 
+
 Parse the media log using the parseBiomassLog function and format the log into a matrix.
 
 ```matlab
@@ -297,7 +302,7 @@ legend(nutrientNames)
 
 This action allows visualization of the nutrient abundances, shown in Figure 1b below.
 
-These results, along with directly examining the nutrient abundances in mediaLogMat, allow us to infer that M. extorquens and S. oneidensis initially grew to high abundances on D-glucose and L-alanine, rapidly outcompeting the remaining organisms. We are also able to observe low growth of multiple other organisms, such as S. boydii and Z. mobilis, which peak upon exhausting D-glucose at hour 6. When both primary resources are exhausted between hours 6 and 7, the abundance of all organisms begins to decay.
+These results, along with directly examining the nutrient abundances in mediaLogMat, allow us to infer that *M. extorquens* and *S. oneidensis* initially grew to high abundances on D-glucose and L-alanine, rapidly outcompeting the remaining organisms. We are also able to observe low growth of multiple other organisms, such as *S. boydii* and *Z. mobilis*, which peak upon exhausting D-glucose at hour 6. When both primary resources are exhausted between hours 6 and 7, the abundance of all organisms begins to decay.
 
 Obtain the metabolites secreted, absorbed, and exchanged by each organism using the getSecAbsExcMets function.
 
@@ -331,7 +336,7 @@ excTable =
      5     5    65
 ```
 
-The first line, for example, denotes that acetate (metabolite 17) is secreted by E. coli (organism 2) and absorbed by M. extorquens (organism 5).
+The first line, for example, denotes that acetate (metabolite 17) is secreted by *E. coli* (organism 2) and absorbed by *M. extorquens* (organism 5).
 
 Use the secMets matrix to identify molecule secretion.
 
@@ -388,5 +393,21 @@ legend({'Acetate','Formate'})
 This action yields Figure 1c below, showing rapid accumulation and subsequent consumption of acetate and formate.
 
 ![Figure 1](https://github.com/segrelab/comets-manual/blob/master/docs/img/multispecies_1.png)
-Figure 1. Growth and metabolic exchange of 14-species microbial community. a) Biomass production of all 14 organisms over time. b) Consumption of limiting carbon sources over time. c) Secretion and consumption of metabolic byproducts over time.
+**Figure 1. Growth and metabolic exchange of 14-species microbial community. a)** Biomass production of all 14 organisms over time. **b)** Consumption of limiting carbon sources over time. **c)** Secretion and consumption of metabolic byproducts over time.
 
+References:
+[1] Henry, C. S., Zinner, J. F., Cohoon, M. P. & Stevens, R. L. iBsu1103: a new genome-scale metabolic model of Bacillus subtilis based on SEED annotations. Genome Biol. 10, R69 (2009).
+[2] Orth, J. D. et al. A comprehensive genome-scale reconstruction of Escherichia coli metabolism--2011. Mol. Syst. Biol. 7, 535 (2011).
+[3] Liao, Y.-C. et al. An experimentally validated genome-scale metabolic reconstruction of Klebsiella pneumoniae MGH 78578, iYL1228. J. Bacteriol. 193, 1710–1717 (2011).
+[4] Flahaut, N. A. L. et al. Genome-scale metabolic model for Lactococcus lactis MG1363 and its application to the analysis of flavor formation. Appl. Microbiol. Biotechnol. 97, 8729–8739 (2013).
+[5] Peyraud, R. et al. Genome-scale reconstruction and system level investigation of the metabolic network of Methylobacterium extorquens AM1. BMC Syst. Biol. 5, 189 (2011).
+[6] Oberhardt, M. A., Puchałka, J., Fryer, K. E., Martins dos Santos, V. A. P. & Papin, J. A. Genome-scale metabolic network analysis of the opportunistic pathogen Pseudomonas aeruginosa PAO1. J. Bacteriol. 190, 2790–2803 (2008).
+[7] Mazumdar, V., Snitkin, E. S., Amar, S. & Segrè, D. Metabolic network model of a human oral pathogen. J. Bacteriol. 191, 74–90 (2009).
+[8] Imam, S. et al. iRsp1095: a genome-scale reconstruction of the Rhodobacter sphaeroides metabolic network. BMC Syst. Biol. 5, 116 (2011).
+[9] Monk, J. M. et al. Genome-scale metabolic reconstructions of multiple Escherichia coli strains highlight strain-specific adaptations to nutritional environments. Proc. Natl. Acad. Sci. U. S. A. 110, 20338–20343 (2013).
+[10] Zomorrodi, A. R. & Maranas, C. D. Improving the iMM904 S. cerevisiae metabolic model using essentiality and synthetic lethality data. BMC Syst. Biol. 4, 178 (2010).
+[11] Thiele, I. et al. A community effort towards a knowledge-base and mathematical model of the human pathogen Salmonella Typhimurium LT2. BMC Syst. Biol. 5, 8 (2011).
+[12] Pinchuk, G. E. et al. Constraint-based model of Shewanella oneidensis MR-1 metabolism: a tool for data analysis and hypothesis generation. PLoS Comput. Biol. 6, e1000822 (2010).
+[13] Nogales, J., Gudmundsson, S., Knight, E. M., Palsson, B. O. & Thiele, I. Detailing the optimality of photosynthesis in cyanobacteria through systems biology analysis. Proc. Natl. Acad. Sci. U. S. A. 109, 2678–2683 (2012).
+[14] Lee, K. Y., Park, J. M., Kim, T. Y., Yun, H. & Lee, S. Y. The genome-scale metabolic network analysis of Zymomonas mobilis ZM4 explains physiological features and suggests ethanol and succinic acid production strategies. Microb. Cell Fact. 9, 94 (2010).
+[15] Pacheco, A. R., Moel, M. & Segrè, D. Costless metabolic secretions as drivers of interspecies interactions in microbial ecosystems. Nat. Commun. 10, 103 (2019).
