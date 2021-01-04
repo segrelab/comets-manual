@@ -98,7 +98,7 @@ myplot.set_ylabel("Biomass (gr.)")
 
 
 
-![png](../img/comp_1.png)
+![png](img/comp_1.png)
 
 
 We can quantitatively analyze the results. For example, we can compute the competitive fitness of the mutant respect to the wild-type as the ratio of the biomass increase of the mutant divided by that of the wild-type: 
@@ -155,5 +155,5 @@ myplot.set_ylabel("Biomass (gr.)")
 
 
 
-![png](../img/comp_2.png)
+![png](img/comp_2.png)
 

@@ -81,7 +81,7 @@ plt.imshow(np.transpose(region_map))
 
 
 
-![png](../img/petri_dish_1.png)
+![png](img/petri_dish_1.png)
 
 
 The region_map looks correct: a square of 200x200 boxes divided into two regions. Let's make the base layout for the simulation and set this region map. Once done, we will set the region parameters.
@@ -184,7 +184,7 @@ plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 
 
-![png](../img/petri_dish_2.png)
+![png](img/petri_dish_2.png)
 
 
 
@@ -195,7 +195,7 @@ plt.imshow(sim.get_metabolite_image("glc__D_e", p.all_params['maxCycles']+1))
 
 
 
-![png](../img/petri_dish_3.png)
+![png](img/petri_dish_3.png)
 
 
 
@@ -211,6 +211,6 @@ plt.imshow(im)
 
 
 
-![png](../img/petri_dish_4.png)
+![png](img/petri_dish_4.png)
 
 

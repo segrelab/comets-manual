@@ -143,7 +143,7 @@ plt.ylabel("Biomass (gr.)")
 
 
 
-![png](../img/evolution_1.png)
+![png](img/evolution_1.png)
 
 
 In order to analyze the results, it is also helpful to visualize the genotypes data frame, which contains all the mutants that ever appeared during the simulation. The data frame contains three columns: The ancestor, the mutation, and the name of the resulting genotype, which is assigned as a random hash.

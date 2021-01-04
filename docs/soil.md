@@ -108,7 +108,7 @@ plt.imshow(initial_image)
 
 
 
-![png](../img/soil_1.png)
+![png](img/soil_1.png)
 
 
 Things look good so we continue by making the layout and setting the dimensions. Then, we add the rock barriers to the layout.
@@ -237,7 +237,7 @@ plt.imshow(final)
 
 
 
-![png](../img/soil_2.png)
+![png](img/soil_2.png)
 
 
 Below here, we show a handful of metabolites. 
@@ -250,7 +250,7 @@ plt.imshow(sim.get_metabolite_image("succ_e",params.all_params['maxCycles']+1))
 
 
 
-![png](../img/soil_3.png)
+![png](img/soil_3.png)
 
 
 
@@ -261,7 +261,7 @@ plt.imshow(sim.get_metabolite_image("ac_e",params.all_params['maxCycles']+1))
 
 
 
-![png](../img/soil_4.png)
+![png](img/soil_4.png)
 
 
 
@@ -271,7 +271,7 @@ plt.imshow(sim.get_metabolite_image("nh4_e",params.all_params['maxCycles']+1))
 
 
 
-![png](../img/soil_5.png)
+![png](img/soil_5.png)
 
 
 

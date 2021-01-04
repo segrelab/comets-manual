@@ -133,7 +133,7 @@ plt.imshow(final)
 
 
 
-![png](../img/demographic_noise_two_strains.png)
+![png](img/demographic_noise_two_strains.png)
 
 
 

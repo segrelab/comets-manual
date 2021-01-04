@@ -183,7 +183,7 @@ plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 
 
-![png](../img/branching_colony_1.png)
+![png](img/branching_colony_1.png)
 
 
 
@@ -197,7 +197,7 @@ for i, cycle in enumerate(im_cycles):
 ```
 
 
-![png](../img/branching_colony_2.png)
+![png](img/branching_colony_2.png)
 
 
 

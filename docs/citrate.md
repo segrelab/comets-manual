@@ -175,5 +175,5 @@ fig.set_yscale("log")
 ```
 
 
-![png](../img/citrate_1.png)
+![png](img/citrate_1.png)
 

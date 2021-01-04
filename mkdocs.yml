@@ -24,14 +24,14 @@ nav:
         - Capabilities: capabilities.md
         - Installation: installation.md
     - COMETS PYTHON TOOLBOX:
-        - Getting started: python-module/getting_started.md
-        - Growth in a test tube: python-module/test_tube.md
-        - Competition assay: python-module/competition_assay.md
-        - Citrate use in the LTEE: python-module/citrate.md
-        - Circular colony growth: python-module/circular_colony.md
-        - Branching colony growth: python-module/branching_colony.md
-        - Demographic noise with two strains: python-module/demographic_noise_two_strains.md
-        - Virtual Petri dish: python-module/petri_dish.md
+        - Getting started: getting_started.md
+        - Growth in a test tube: test_tube.md
+        - Competition assay: competition_assay.md
+        - Citrate use in the LTEE: citrate.md
+        - Circular colony growth: circular_colony.md
+        - Branching colony growth: branching_colony.md
+        - Demographic noise with two strains: demographic_noise_two_strains.md
+        - Virtual Petri dish: petri_dish.md
     - COMETS MATLAB TOOLBOX:
         - Example: colony.md
 theme: readthedocs

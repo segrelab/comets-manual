@@ -137,7 +137,7 @@ plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 ```
 
-![png](../img/circular_colony_1.png)
+![png](img/circular_colony_1.png)
 
 
 We can tile the time series in a simple loop.
@@ -156,7 +156,7 @@ for i, cycle in enumerate(im_cycles):
 plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 ```
 
-![png](../img/circular_colony_2.png)
+![png](img/circular_colony_2.png)
 
 
 

@@ -135,7 +135,7 @@ ax.set_ylabel("Biomass (gr.)")
 
 
 
-![png](../img/test_tube_1.png)
+![png](img/test_tube_1.png)
 
 
 Similarly, we can plot composition of the media. In this case, we will limit the plot to those components that are not added to the layout in unlimited amounts (“static” compounds, e.g. ammonia, phosphate, water, etc in this simulation). In this case, we do this by limiting the plot to compounds with concentration lower than 900mM.
@@ -154,5 +154,5 @@ ax.set_ylabel("Concentration (mmol)")
 
 
 
- ![png](../img/test_tube_2.png)
+ ![png](img/test_tube_2.png)
 
