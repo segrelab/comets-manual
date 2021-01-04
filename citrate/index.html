@@ -8,24 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Citrate - COMETS Documentation</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Citrate use in the LTEE - COMETS Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../../css/extra.css" rel="stylesheet" />
+  <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Citrate";
-    var mkdocs_page_input_path = "python_module/citrate.md";
+    var mkdocs_page_name = "Citrate use in the LTEE";
+    var mkdocs_page_input_path = "citrate.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -39,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -49,7 +49,40 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../capabilities/">Capabilities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS PYTHON TOOLBOX</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../test_tube/">Growth in a test tube</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../competition_assay/">Competition assay</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Citrate use in the LTEE</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../circular_colony/">Circular colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../branching_colony/">Branching colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../petri_dish/">Virtual Petri dish</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS MATLAB TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../colony.md">Example</a>
                     </li>
                 </ul>
       </div>
@@ -61,7 +94,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">COMETS Documentation</a>
+        <a href="..">COMETS Documentation</a>
       </nav>
 
       
@@ -69,11 +102,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
     
-    <li>Citrate</li>
+    <li>Citrate use in the LTEE</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -89,7 +126,7 @@
 <p>After ~33,000 generations, a large population expansion was observed in one of the replicates (Ara-3) of the <em>E. coli</em> long term evolution experiment (Blount et al 2008). This population expansion is associated with two key mutations that together enable the evolution of strong aerobic citrate use (Cit++ phenotype). The first mutation (occuring roughly 31,000 generations) caused the aerobic expression of the citT transporter, producing a weak citrate growth phenotype (Cit+, Blount et al 2012). A subsequent mutation (occuring roughly 33,000 generations in) caused high-level, constitutive expression of dctA, a proton-driven dicarboxylic acid transporter (Quandt et al 2014). Because these two mutations introduce known reactions into the e.coli metabolic network we can simulate them using COMETS.</p>
 <p>This example simulation uses the same models, paramaters and reaction knockouts outlined in (Bajic et al 2018).</p>
 <p>First, create the layout and simulate the DM25 medium. </p>
-<pre><code class="python">import cometspy as c
+<pre><code class="language-python">import cometspy as c
 import matplotlib as plt
 import cobra.test
 import cobra
@@ -103,7 +140,6 @@ layout.add_typical_trace_metabolites()
 layout.set_specific_metabolite('glc__D_e', 0.000139)
 layout.set_specific_metabolite('cit_e', 0.0017)
 </code></pre>
-
 <pre><code>building empty layout model
 models will need to be added with layout.add_model()
 Warning: The added metabolite (glc__D_e) is notable to be taken up by any of the current models
@@ -111,7 +147,7 @@ Warning: The added metabolite (cit_e) is notable to be taken up by any of the cu
 </code></pre>
 <p>Now load the model and build the mutants. To show the compatibility with the COBRApy toolbox, we will load the model and perform the mutations using COBRA, and then pass these models as input to build COMETS models. </p>
 <p>Unlike the LTEE ancestral strain REL606 (and <em>E. coli</em> in general), which possess the necessary genes for citrate utilization but do not express them in aerobic conditions, iJO1366 is able utilize both citrate and succinate as these reactions are unbounded by default. Thus, the ancestral phenotype can be recreated by knocking out three reactions CITt7pp (citT), SUCCt2_2pp (dctA) and SUCCt2_3pp (dcuA or dcuB). </p>
-<pre><code class="python"># Load the E. coli iJO1366 model 
+<pre><code class="language-python"># Load the E. coli iJO1366 model 
 mod  = cobra.test.create_test_model('ecoli')
 
 # Set exchange reaction lower bounds to -1000 to allow them being controlled by COMETS 
@@ -143,7 +179,6 @@ layout.add_model(p)
 layout.add_model(p2)
 layout.add_model(p3)
 </code></pre>
-
 <pre><code>Using license file /home/djordje/gurobi.lic
 Academic license - for non-commercial use only
 Read LP format model from file /tmp/tmpj1e0_y3y.lp
@@ -157,7 +192,7 @@ Reading time = 0.03 seconds
 : 1805 rows, 5166 columns, 20366 nonzeros
 </code></pre>
 <p>Set the parameters for the simulation. We use 1 hr as the COMETS timestep to speed up the simulation. Shortening this to the more commonly used 0.1 hr does not substantially affect the final result, but it does significantly increase the time it takes this simulation to run.</p>
-<pre><code class="python">### Setting paramaters for the simulation ###
+<pre><code class="language-python">### Setting paramaters for the simulation ###
 b_params = c.params()
 b_params.all_params['timeStep'] = 1.0 
 b_params.all_params['deathRate'] = 0.01
@@ -167,15 +202,13 @@ b_params.all_params['dilFactor'] =100
 b_params.all_params['cellSize']= 3.9e-13 #Size of a single cell
 b_params.all_params['minSpaceBiomass'] = 3.8e-13
 </code></pre>
-
 <p>Perform the simulations. We will divide our simulation in three actual COMETS runs. We will start the simulation at generation 25000 and run for around 6000 generations. At roughly generation 31,000, we introduce the CitT genotype and run for around 2000 Generations. Finally, at roughly Generation 33,000 we introduce the CitTdctA Genotype and run for a final 6000 generations. For each run, we will input the final biomass composition of the previous run. biomass of each store the biomass data in a separate dataframe that we will then join together for analysis. </p>
-<pre><code class="python">
+<pre><code class="language-python">
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 </code></pre>
-<pre><code class="python">cycles_per_day = 24.0/b_params.all_params['timeStep']
+<pre><code class="language-python">cycles_per_day = 24.0/b_params.all_params['timeStep']
 
 # We'll start at Generation 25,000.  and run for around 6000 generations
 batch_test = c.comets(layout, b_params)
@@ -209,7 +242,6 @@ phase_3 = pd.DataFrame({'Ancestor' : batch_test.total_biomass.Ancestor/(3.9e-13)
                         'CitTdctA' : batch_test.total_biomass['Cit++']/(3.9e-13),
                         'Generations' : 6.67*(batch_test.total_biomass.cycle)/cycles_per_day + max(phase_2.Generations) })
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 
@@ -217,7 +249,7 @@ Running COMETS simulation ...
 Done!
 </code></pre>
 <p>Group all the results from the three runs together and plot the stationary phase population size through time. </p>
-<pre><code class="python">#Remove the final timepoint from each phase
+<pre><code class="language-python">#Remove the final timepoint from each phase
 phase_1.drop(phase_1.tail(1).index, inplace=True)
 phase_2.drop(phase_2.tail(1).index, inplace=True)
 phase_3.drop(phase_3.tail(1).index, inplace=True)
@@ -226,16 +258,23 @@ final_df = pd.concat([phase_1,phase_2,phase_3])
 final_df.reindex()
 final_df = final_df[np.round((final_df.Generations - 25000) % 6.67,3) == 6.67]
 </code></pre>
-
-<pre><code class="python">fig = final_df.plot(x='Generations')
+<pre><code class="language-python">fig = final_df.plot(x='Generations')
 fig.set_yscale(&quot;log&quot;)
 </code></pre>
-
-<p><img alt="png" src="../../img/citrate_1.png" /></p>
+<p><img alt="png" src="../img/citrate_1.png" /></p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../circular_colony/" class="btn btn-neutral float-right" title="Circular colony growth">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../competition_assay/" class="btn btn-neutral" title="Competition assay"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -259,15 +298,19 @@ fig.set_yscale(&quot;log&quot;)
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../competition_assay/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../circular_colony/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);

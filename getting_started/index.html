@@ -8,24 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>The Comets Python Toolbox - COMETS Documentation</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Getting started - COMETS Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../../css/extra.css" rel="stylesheet" />
+  <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "The Comets Python Toolbox";
-    var mkdocs_page_input_path = "python_module/getting_started.md";
+    var mkdocs_page_name = "Getting started";
+    var mkdocs_page_input_path = "getting_started.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -39,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -49,7 +49,52 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../capabilities/">Capabilities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS PYTHON TOOLBOX</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Getting started</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#preparing-a-model-for-comets">Preparing a model for COMETS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-comets-simulation-parameters">Setting COMETS simulation parameters</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#preparing-a-comets-simulation-layout">Preparing a COMETS simulation layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-a-comets-simulation">Running a COMETS simulation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#checking-simulation-output-and-possible-errors">Checking simulation output and possible errors</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#accessing-the-results-of-the-simulation">Accessing the results of the simulation</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../test_tube/">Growth in a test tube</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../competition_assay/">Competition assay</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../citrate/">Citrate use in the LTEE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../circular_colony/">Circular colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../branching_colony/">Branching colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../petri_dish/">Virtual Petri dish</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS MATLAB TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../colony.md">Example</a>
                     </li>
                 </ul>
       </div>
@@ -61,7 +106,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">COMETS Documentation</a>
+        <a href="..">COMETS Documentation</a>
       </nav>
 
       
@@ -69,11 +114,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
     
-    <li>The Comets Python Toolbox</li>
+    <li>Getting started</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -90,7 +139,7 @@
 <p>In this section, we will walk through the basic functionalities of <code>COMETS</code> using the Python Toolbox, and more specific examples of usage will be provided in the next sections. </p>
 <h5 id="preparing-a-model-for-comets">Preparing a model for <code>COMETS</code></h5>
 <p>The class <code>model</code> is used to store the genome-scale metabolic models used in <code>COMETS</code> simulations. Most frequently, we will first load a model using <code>COBRAPy</code>. Then, we can pass it to the <code>COMETS</code> <code>model</code> class, which allows us to change <code>COMETS</code>-specific model parameters, such as initial population sizes.  </p>
-<pre><code class="python">import cobra
+<pre><code class="language-python">import cobra
 import cobra.test
 import cometspy as c
 
@@ -104,13 +153,12 @@ test_model = c.model(test_model)
 # Notre 
 test_model.initial_pop = [0, 0, 1e-7] 
 </code></pre>
-
 <pre><code>Using license file /home/djordje/gurobi.lic
 Academic license - for non-commercial use only
 </code></pre>
 <h5 id="setting-comets-simulation-parameters">Setting <code>COMETS</code> simulation parameters</h5>
 <p><code>COMETS</code> simulation parameters are stored in the <code>params</code> class, which contains just a <code>dict</code> object with the parameter names and values. If we initialize the class without arguments, it will contain the default parameter values (see <a href="">here</a>). Once loaded, the parameter values can be visualized and modified as desired. </p>
-<pre><code class="python"># Create a parameters object with default values 
+<pre><code class="language-python"># Create a parameters object with default values 
 my_params = c.params()
 
 # Change the value of a parameter, for example number of simulation cycles
@@ -122,7 +170,6 @@ my_params.set_param('writeTotalBiomassLog', True)
 # See avaliable parameters and their values
 my_params.show_params()
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -213,14 +260,12 @@ my_params.show_params()
 <li>If a layout is instantiated passing a <code>model</code> (or several models), it will generate a layout with all metabolites those models can exchange with the environment at zero concentration, plus metals and ions at unlimited concentration (default -1000).  </li>
 </ul>
 <p>To examine the different parts of a Comets <code>layout</code>, let\'s first create one from the above loaded textbook model: </p>
-<pre><code class="python">my_layout = c.layout(test_model)
+<pre><code class="language-python">my_layout = c.layout(test_model)
 </code></pre>
-
 <p>The layout stores information about the species (<code>my_layout.models</code>) and spatial structure (<code>my_layout.grid</code>) in the environment. In this case, the model is only the textbook one, and the grid is the default one, which is <span><span class="MathJax_Preview">1 \times 1</span><script type="math/tex">1 \times 1</script></span> i.e. only one cell.</p>
 <p>The layout stores also information about the <strong>media</strong> as a pandas dataframe. In this case, no amount of any media component is present. </p>
-<pre><code class="python">my_layout.media
+<pre><code class="language-python">my_layout.media
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -495,18 +540,16 @@ my_params.show_params()
 <p>Finally, the layout also contains information about the starting biomass of each model. This information is stored in the <code>initial_pop</code> list. Each component of <code>initial_pop</code> is itself a list with the format <code>[x y biomass_1 biomass_2 ...]</code>specifying the amount of biomass of each model in each coordinate. </p>
 <h5 id="running-a-comets-simulation">Running a <code>COMETS</code> simulation</h5>
 <p>The <code>comets</code> class uses a layout object and a parameters object to run simulations and store the output. Running a comets simulation is pretty straightforward. We firstly define the <code>comets</code> object by passing it a <code>layout</code> and a <code>params</code> objects as arguments. Then, we <code>run()</code> the simulation: </p>
-<pre><code class="python">my_simulation = c.comets(my_layout, my_params)
+<pre><code class="language-python">my_simulation = c.comets(my_layout, my_params)
 my_simulation.run()
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 </code></pre>
 <h5 id="checking-simulation-output-and-possible-errors">Checking simulation output and possible errors</h5>
 <p>In the background, this command invokes the <code>COMETS</code> Java engine in a console, giving a standard output (stdout) and standard error (stderr) logs. Both can be acessed through the fields <code>run_outputs</code> and <code>run_errors</code>, respectively. </p>
-<pre><code class="python">print(my_simulation.run_output)
+<pre><code class="language-python">print(my_simulation.run_output)
 </code></pre>
-
 <pre><code>-script
 running script file: /home/djordje/Dropbox/projects/comets_paper/Methods_Paper_Materials/COMETS_Examples/COMETS_getting_started/Python/.current_script
 Current Java version: 11.0.7
@@ -533,9 +576,8 @@ Model e_coli_core.cmd: 1.0E-7
 ...
 Total time = 0.312s
 </code></pre>
-<pre><code class="python">print(my_simulation.run_errors)
+<pre><code class="language-python">print(my_simulation.run_errors)
 </code></pre>
-
 <pre><code>STDERR empty.
 </code></pre>
 <h5 id="accessing-the-results-of-the-simulation">Accessing the results of the simulation</h5>
@@ -548,9 +590,8 @@ Total time = 0.312s
 </ul>
 <p>Additionally, specific comets modes will have additional output fields; for instance, if we run an evolution simulation, the field <code>genotypes</code> will store information about each species such as its ancestor and which mutation it suffered. </p>
 <p>All of the output files ae <code>pandas</code> dataframes which can be further analyzed or plotted using standard Python tools.  </p>
-<pre><code class="python">my_simulation.total_biomass
+<pre><code class="language-python">my_simulation.total_biomass
 </code></pre>
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -638,6 +679,15 @@ Total time = 0.312s
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../test_tube/" class="btn btn-neutral float-right" title="Growth in a test tube">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -660,15 +710,19 @@ Total time = 0.312s
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../test_tube/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);

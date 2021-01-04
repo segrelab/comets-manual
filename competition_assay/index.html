@@ -8,24 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Competition assay - COMETS Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../../css/extra.css" rel="stylesheet" />
+  <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
     var mkdocs_page_name = "Competition assay";
-    var mkdocs_page_input_path = "python_module/competition_assay.md";
+    var mkdocs_page_input_path = "competition_assay.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -39,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -49,7 +49,50 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../capabilities/">Capabilities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS PYTHON TOOLBOX</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../test_tube/">Growth in a test tube</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Competition assay</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#load-models-and-create-a-mutant">Load models and create a mutant</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-layout-add-models-and-set-up-media-composition">Create layout, add models and set up media composition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-up-simulation-parameters">Set up simulation parameters</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#run-the-simulation">Run the simulation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simulating-serial-transfers">Simulating serial transfers</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../citrate/">Citrate use in the LTEE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../circular_colony/">Circular colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../branching_colony/">Branching colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../petri_dish/">Virtual Petri dish</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS MATLAB TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../colony.md">Example</a>
                     </li>
                 </ul>
       </div>
@@ -61,7 +104,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">COMETS Documentation</a>
+        <a href="..">COMETS Documentation</a>
       </nav>
 
       
@@ -69,8 +112,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
+      
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
       
     
     <li>Competition assay</li>
@@ -88,7 +135,7 @@
 <p>Competition experiments are frequently performed in the laboratory to assay, for example, the fitness of a mutant in competition to the wild-type. Here, we simulate one such experiemnt involving E. coli and a nonessential but deleterious mutation involving the deletion of the triose phosphate isomerase reaction from glycolisis. </p>
 <h5 id="load-models-and-create-a-mutant">Load models and create a mutant</h5>
 <p>We first load our <em>E. coli</em> "core" model and create the mutant in triose phosphate isomerase by setting both upper and lower bounds to zero. We will add both models to our <code>test_tube</code> layout. </p>
-<pre><code class="python"># Start by loading required packages, including the COMETS toolbox
+<pre><code class="language-python"># Start by loading required packages, including the COMETS toolbox
 import cometspy as c
 import cobra.test
 import pandas as pd
@@ -105,25 +152,23 @@ mut.id = 'TPI_KO'
 wt.initial_pop = [0, 0, 5e-8]
 mut.initial_pop = [0, 0, 5e-8]
 </code></pre>
-
 <pre><code>Using license file /home/djordje/gurobi.lic
 Academic license - for non-commercial use only
 </code></pre>
 <h5 id="create-layout-add-models-and-set-up-media-composition">Create layout, add models and set up media composition</h5>
 <p>We create an empty layout ("test_tube") and set the initial nutrient supply.</p>
-<pre><code class="python"># create an empty layout
+<pre><code class="language-python"># create an empty layout
 test_tube = c.layout()
 
 # add the models to the test tube
 test_tube.add_model(wt)
 test_tube.add_model(mut)
 </code></pre>
-
 <pre><code>building empty layout model
 models will need to be added with layout.add_model()
 </code></pre>
 <p>Set the media composition by adding glucose and the inorganic nutrients required for this model (ammonia, phosphate) and oxygen. These inorganic nutrients will be considered as "static" by the simulation, with a value of 1000 that never depletes. Considering metabolites as "static" is the way COMETS has to simulate an unlimited supply of metabolites.</p>
-<pre><code class="python"># Add glucose to the media 
+<pre><code class="language-python"># Add glucose to the media 
 test_tube.set_specific_metabolite('glc__D_e', 0.01)
 
 # Add typical trace metabolites and oxygen coli as static
@@ -134,69 +179,70 @@ for i in trace_metabolites:
     test_tube.set_specific_metabolite(i, 1000)
     test_tube.set_specific_static(i, 1000)
 </code></pre>
-
 <h5 id="set-up-simulation-parameters">Set up simulation parameters</h5>
 <p>We next create a parameters object and modify needed parameters - in this case only the number of cycles the simulation runs.  </p>
-<pre><code class="python">comp_params = c.params()
+<pre><code class="language-python">comp_params = c.params()
 comp_params.set_param('maxCycles', 240)
 </code></pre>
-
 <h5 id="run-the-simulation">Run the simulation</h5>
 <p>Finally, we create the comets object using the above created layout and parameters, and run the competition assay. </p>
-<pre><code class="python">comp_assay = c.comets(test_tube, comp_params)
+<pre><code class="language-python">comp_assay = c.comets(test_tube, comp_params)
 comp_assay.run()
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 </code></pre>
 <p>We now plot the biomasses of these two genotypes in coculture. </p>
-<pre><code class="python">biomass = comp_assay.total_biomass
+<pre><code class="language-python">biomass = comp_assay.total_biomass
 biomass['t'] = biomass['cycle'] * comp_assay.parameters.all_params['timeStep']
 
 myplot = biomass.drop(columns=['cycle']).plot(x = 't')
 myplot.set_ylabel(&quot;Biomass (gr.)&quot;)
 </code></pre>
-
-<p><img alt="png" src="../../img/comp_1.png" /></p>
+<p><img alt="png" src="../img/comp_1.png" /></p>
 <p>We can quantitatively analyze the results. For example, we can compute the competitive fitness of the mutant respect to the wild-type as the ratio of the biomass increase of the mutant divided by that of the wild-type: </p>
-<pre><code class="python">cfit = (biomass.loc[biomass['t'] == 24, 'TPI_KO'].iloc[0]/biomass.loc[biomass['t'] == 0, 'TPI_KO'].iloc[0])/(biomass.loc[biomass['t'] == 24, 'wt'].iloc[0]/biomass.loc[biomass['t'] == 0, 'wt'].iloc[0])
+<pre><code class="language-python">cfit = (biomass.loc[biomass['t'] == 24, 'TPI_KO'].iloc[0]/biomass.loc[biomass['t'] == 0, 'TPI_KO'].iloc[0])/(biomass.loc[biomass['t'] == 24, 'wt'].iloc[0]/biomass.loc[biomass['t'] == 0, 'wt'].iloc[0])
 cfit
 </code></pre>
-
 <pre><code>0.39378816074777145
 </code></pre>
 <h5 id="simulating-serial-transfers">Simulating serial transfers</h5>
 <p>Using <code>COMETS</code> we can also simulate a serial tranfer competition between these two mutants. We will just modify the parameters, increasing the total simulation time and including batch transfers of 1% every 24h, but we will use the same <code>test_tube</code> layout as before. </p>
-<pre><code class="python">serial_params = c.params()
+<pre><code class="language-python">serial_params = c.params()
 serial_params.set_param('maxCycles', 240*25) # simulate 4 serial transfers of 24h each
 serial_params.set_param('batchDilution', True)
 serial_params.set_param('dilFactor', 0.01)
 serial_params.set_param('dilTime', 24)
 </code></pre>
-
 <p>We run the simulation </p>
-<pre><code class="python">serial_expt = c.comets(test_tube, serial_params)
+<pre><code class="language-python">serial_expt = c.comets(test_tube, serial_params)
 serial_expt.JAVA_CLASSPATH = comp_assay.JAVA_CLASSPATH
 serial_expt.run()
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 </code></pre>
 <p>Now plot the biomass of the two species during the experiment </p>
-<pre><code class="python">biomass = serial_expt.total_biomass
+<pre><code class="language-python">biomass = serial_expt.total_biomass
 biomass['transfer'] = biomass['cycle'] * comp_assay.parameters.all_params['timeStep']/24
 
 myplot = biomass.drop(columns=['cycle']).plot(x = 'transfer')
 myplot.set_ylabel(&quot;Biomass (gr.)&quot;)
 </code></pre>
-
-<p><img alt="png" src="../../img/comp_2.png" /></p>
+<p><img alt="png" src="../img/comp_2.png" /></p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../citrate/" class="btn btn-neutral float-right" title="Citrate use in the LTEE">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../test_tube/" class="btn btn-neutral" title="Growth in a test tube"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -220,15 +266,19 @@ myplot.set_ylabel(&quot;Biomass (gr.)&quot;)
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../test_tube/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../citrate/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);

@@ -8,24 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Circular colony - COMETS Documentation</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Circular colony growth - COMETS Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../../css/extra.css" rel="stylesheet" />
+  <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Circular colony";
-    var mkdocs_page_input_path = "python_module/circular_colony.md";
+    var mkdocs_page_name = "Circular colony growth";
+    var mkdocs_page_input_path = "circular_colony.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -39,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -49,7 +49,40 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../capabilities/">Capabilities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS PYTHON TOOLBOX</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../test_tube/">Growth in a test tube</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../competition_assay/">Competition assay</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../citrate/">Citrate use in the LTEE</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Circular colony growth</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../branching_colony/">Branching colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../petri_dish/">Virtual Petri dish</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS MATLAB TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../colony.md">Example</a>
                     </li>
                 </ul>
       </div>
@@ -61,7 +94,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">COMETS Documentation</a>
+        <a href="..">COMETS Documentation</a>
       </nav>
 
       
@@ -69,11 +102,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>COMETS PYTHON TOOLBOX &raquo;</li>
+        
+      
     
-    <li>Circular colony</li>
+    <li>Circular colony growth</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -88,15 +125,14 @@
 <p>This protocol replicates the main text protocol that simulates colony expansion via mechanical pushing among the growing cells. One of the characteristics of the implemented model is that it undergoes a transition in colony morphology depending on the value of the dense packing parameter. In this protocol, we will choose parameters that result in a round colony. In "branching_colony," we will choose parameters that result in a branching colony.</p>
 <p>Additionally,we will show how to generate a simple metabolic model with a single nutrient and a single reaction of biomass growth from uptake of the nutrient.</p>
 <p>We will make the layout much smaller than in the paper, however, because it is much faster to run.</p>
-<pre><code class="python">import cobra
+<pre><code class="language-python">import cobra
 import cobra.test # for the ijo1366 model
 import sys
 import numpy as np
 import cometspy as c
 </code></pre>
-
 <p>First, let's make a "toy" model, using functionality of cobrapy. It directly converts extracellular carbon to biomass. </p>
-<pre><code class="python">carbon = cobra.Metabolite(&quot;carbon&quot;,
+<pre><code class="language-python">carbon = cobra.Metabolite(&quot;carbon&quot;,
                            compartment = &quot;e&quot;)
 carbon_exch = cobra.Reaction(&quot;Carbon_exch&quot;,
                             lower_bound = -1.,
@@ -112,17 +148,15 @@ toy.add_reactions([carbon_exch, Biomass])
 toy.objective = &quot;Biomass&quot;
 toy.repair()
 </code></pre>
-
 <p>We can test that the model runs by doing FBA in cobrapy. It should generate as much biomass as the lower bound on carbon_exch.</p>
-<pre><code class="python">print(toy.medium)
+<pre><code class="language-python">print(toy.medium)
 print(toy.optimize().objective_value)
 </code></pre>
-
 <pre><code>{'Carbon_exch': 1.0}
 1.0
 </code></pre>
 <p>We will now convert this into a COMETS model, set its initial biomass, and set the first set of convection parameters. These are the parameters needed to obtain a circular colony with this toy model. Note that the timestep has to be set very low for this form of biomass spread.</p>
-<pre><code class="python">grid_size = 50
+<pre><code class="language-python">grid_size = 50
 
 toy_comets = c.model(toy)
 toy_comets.initial_pop = [int(grid_size / 2),int(grid_size / 2),1.0]
@@ -133,25 +167,22 @@ toy_comets.add_convection_parameters(packedDensity = 0.5,
                                     convDiffConstant = 0.0)
 toy_comets.add_noise_variance_parameter(20.)
 </code></pre>
-
 <pre><code>Note: for convection parameters to function,
 params.all_params['biomassMotionStyle'] = 'Convection 2D'
 must also be set
 </code></pre>
 <p>We make sure that the COMETS model does not consider the biomass reaction an exchange.</p>
-<pre><code class="python">toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;,&quot;EXCH&quot;] = False
+<pre><code class="language-python">toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;,&quot;EXCH&quot;] = False
 toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;,&quot;EXCH_IND&quot;] = 0
 toy_comets.reactions.loc[toy_comets.reactions.REACTION_NAMES == &quot;Biomass&quot;, &quot;LB&quot;] = 0
 </code></pre>
-
 <p>This simulation's layout will be of a single, centered colony on a 100x100 grid. carbon will be spread homogenously.</p>
-<pre><code class="python">ly = c.layout([toy_comets])
+<pre><code class="language-python">ly = c.layout([toy_comets])
 ly.grid = [grid_size, grid_size]
 ly.set_specific_metabolite(&quot;carbon&quot;, 1.)
 </code></pre>
-
 <p>The main parameter we need to set is biomassmotionstyle, which must be set to "Convection 2D".  Then, to capture the spatial information, we'll also log biomass (instead of just total biomass). Finally, we'll also adjust a handful of other parameters. These are stored in the dictionary all_params.</p>
-<pre><code class="python">p = c.params()
+<pre><code class="language-python">p = c.params()
 
 p.set_param(&quot;biomassMotionStyle&quot;, &quot;Convection 2D&quot;)
 p.set_param(&quot;writeBiomassLog&quot;, True)
@@ -170,17 +201,15 @@ p.set_param(&quot;defaultHill&quot;, 1)
 p.set_param(&quot;defaultVmax&quot;, 100)
 
 </code></pre>
-
 <p>Now we make a simulation object and run it.  This can take awhile.</p>
-<pre><code class="python">sim = c.comets(ly, p)
+<pre><code class="language-python">sim = c.comets(ly, p)
 sim.run() # set delete_files = False to maintain all comets-generated files
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 </code></pre>
 <p>Now let's plot the results. we use the helper script "get_biomass_image," which needs the name of the model and the timestep. Then we use matplotlib to display it. </p>
-<pre><code class="python">im = sim.get_biomass_image('toy', 2000)
+<pre><code class="language-python">im = sim.get_biomass_image('toy', 2000)
 from matplotlib import pyplot as plt
 import matplotlib.colors, matplotlib.cm
 my_cmap = matplotlib.cm.get_cmap(&quot;copper&quot;)
@@ -188,26 +217,32 @@ my_cmap.set_bad((0,0,0))
 plt.imshow(im, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 
 </code></pre>
-
-<p><img alt="png" src="../../img/circular_colony_1.png" /></p>
+<p><img alt="png" src="../img/circular_colony_1.png" /></p>
 <p>We can tile the time series in a simple loop.</p>
-<pre><code class="python">big_image = np.zeros((grid_size * 4, grid_size * 5))
+<pre><code class="language-python">big_image = np.zeros((grid_size * 4, grid_size * 5))
 im_cycles = np.arange(p.all_params[&quot;BiomassLogRate&quot;], p.all_params[&quot;maxCycles&quot;] + p.all_params[&quot;BiomassLogRate&quot;],
                       p.all_params[&quot;BiomassLogRate&quot;])
 for i, cycle in enumerate(im_cycles):
     big_image[(grid_size * int(i / 5)):(grid_size + grid_size * int(i / 5)),(grid_size * (i % 5)):(grid_size + grid_size * (i % 5))] = sim.get_biomass_image(&quot;toy&quot;, cycle)
 </code></pre>
-
-<pre><code class="python">plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
+<pre><code class="language-python">plt.imshow(big_image, norm = matplotlib.colors.LogNorm(), cmap = my_cmap)
 </code></pre>
-
-<p><img alt="png" src="../../img/circular_colony_2.png" /></p>
-<pre><code class="python">
+<p><img alt="png" src="../img/circular_colony_2.png" /></p>
+<pre><code class="language-python">
 </code></pre>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../branching_colony/" class="btn btn-neutral float-right" title="Branching colony growth">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../citrate/" class="btn btn-neutral" title="Citrate use in the LTEE"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -231,15 +266,19 @@ for i, cycle in enumerate(im_cycles):
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../citrate/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../branching_colony/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);

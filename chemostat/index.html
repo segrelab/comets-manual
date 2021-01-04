@@ -8,24 +8,24 @@
   
   
   
-  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Chemostat - COMETS Documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../../css/extra.css" rel="stylesheet" />
+  <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
     var mkdocs_page_name = "Chemostat";
-    var mkdocs_page_input_path = "python_module/chemostat.md";
+    var mkdocs_page_input_path = "chemostat.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -39,9 +39,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> COMETS Documentation</a>
+        <a href=".." class="icon icon-home"> COMETS Documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -49,7 +49,38 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../capabilities/">Capabilities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS PYTHON TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting_started/">Getting started</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../test_tube/">Growth in a test tube</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../competition_assay/">Competition assay</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../citrate/">Citrate use in the LTEE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../circular_colony/">Circular colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../branching_colony/">Branching colony growth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../demographic_noise_two_strains/">Demographic noise with two strains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../petri_dish/">Virtual Petri dish</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">COMETS MATLAB TOOLBOX</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../colony.md">Example</a>
                     </li>
                 </ul>
       </div>
@@ -61,7 +92,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">COMETS Documentation</a>
+        <a href="..">COMETS Documentation</a>
       </nav>
 
       
@@ -69,7 +100,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
     
@@ -87,23 +118,21 @@
                 <p><strong>Simulating a chemostat and crossfeeding with COMETS</strong></p>
 <p>COMETS provides the functionality to run simulations in a chemostat. Here, we use the python toolbox to generate a chemostat simulation in two ways. 1) by manually assigning all the "parts," and 2) by using a helper function we've included.</p>
 <p>Here we are going to simulate a chemostat with lactose as the sole carbon resource and two strains of E. coli: one which is defiicient in the ability to uptake lactose, and one which is deficient in the ability to metabolize galactose. We will use the ijo1366 model provided as part of cobrapy. Let's first do the imports.</p>
-<pre><code class="python">import cobra
+<pre><code class="language-python">import cobra
 import cobra.test # for the ijo1366 model
 import sys
 sys.path.append(&quot;/home/jeremy/Dropbox/work_related/harcombe_lab/segre/cometspy&quot;)
 import cometspy as c
 </code></pre>
-
 <p>Now let's load the ijo1366 model, make a copy, and knockout the relevant reactions.</p>
 <p>Note that the first model had galE knocked out to prevent metabolism of galactose, which will cause galactose to be secreted during metabolism of lactose. The second model had a reaction knocked out instead of a gene, as lactose transport to the periplasm can be accomplished with multiple genes, and so it is simpler to juts knockout the reaction itself.</p>
-<pre><code class="python">E_no_galE = cobra.test.create_test_model(&quot;ecoli&quot;) # this model will have galE KO'd
+<pre><code class="language-python">E_no_galE = cobra.test.create_test_model(&quot;ecoli&quot;) # this model will have galE KO'd
 E_no_LCTStex = E_no_galE.copy() # this model will have lactose uptake KO'd
 E_no_galE.genes.b0759.knock_out()
 E_no_LCTStex.reactions.LCTStex.knock_out()
 </code></pre>
-
 <p>We can test that the knockouts perform as expected by trying to grow them in media containing lactose and galactose. We do this in cobrapy.</p>
-<pre><code class="python">medium = E_no_galE.medium
+<pre><code class="language-python">medium = E_no_galE.medium
 medium[&quot;EX_glc__D_e&quot;] = 0.
 medium[&quot;EX_lcts_e&quot;] = 1.
 medium[&quot;EX_gal_e&quot;] = 1.
@@ -114,7 +143,6 @@ E_no_LCTStex.medium = medium
 print(&quot;\n\nE_no_galE uptakes lactose and excrete galactose: &quot;)
 E_no_galE.summary()
 </code></pre>
-
 <pre><code>{'EX_ca2_e': 1000.0, 'EX_cbl1_e': 0.01, 'EX_cl_e': 1000.0, 'EX_co2_e': 1000.0, 'EX_cobalt2_e': 1000.0, 'EX_cu2_e': 1000.0, 'EX_fe2_e': 1000.0, 'EX_fe3_e': 1000.0, 'EX_glc__D_e': 0.0, 'EX_h_e': 1000.0, 'EX_h2o_e': 1000.0, 'EX_k_e': 1000.0, 'EX_mg2_e': 1000.0, 'EX_mn2_e': 1000.0, 'EX_mobd_e': 1000.0, 'EX_na1_e': 1000.0, 'EX_nh4_e': 1000.0, 'EX_ni2_e': 1000.0, 'EX_o2_e': 1000.0, 'EX_pi_e': 1000.0, 'EX_sel_e': 1000.0, 'EX_slnt_e': 1000.0, 'EX_so4_e': 1000.0, 'EX_tungs_e': 1000.0, 'EX_zn2_e': 1000.0, 'EX_lcts_e': 1.0, 'EX_gal_e': 1.0}
 
 
@@ -202,10 +230,9 @@ E_no_galE uptakes lactose and excrete galactose:
 </table>
 </div>
 
-<pre><code class="python">print(&quot;\n\nE_no_LCTStex uptakes galactose but not lactose: &quot;)
+<pre><code class="language-python">print(&quot;\n\nE_no_LCTStex uptakes galactose but not lactose: &quot;)
 E_no_LCTStex.summary()
 </code></pre>
-
 <pre><code>E_no_LCTStex uptakes galactose but not lactose:
 </code></pre>
 <div>
@@ -284,7 +311,7 @@ E_no_LCTStex.summary()
 <p>Now that we are satisfied we have made our models correctly, we can setup a COMES simulation. Let's intend that the medium above is the reservoir medium (except that we will remove galactose first), and that the input rate and output rate are 10% per hour. Here, let's set dilution rate parameter, the initial population size (in gDW), and generate the COMETS models. </p>
 <p>Whenever we make COMETS models from COBRA models, we almost always want to set the exchange lower bounds to -1000 so that COMETS can alter these based upon media concentrations.</p>
 <p>Finally, right now both models have the same ID, which will confuse COMETS, so we must give them unique IDs.</p>
-<pre><code class="python"># chemostat parameters
+<pre><code class="language-python"># chemostat parameters
 dilution_rate = 0.1 # / hr
 initial_pop = 1.e-3 # gDW
 
@@ -300,9 +327,8 @@ lcts_comets = c.model(E_no_LCTStex)
 lcts_comets.initial_pop = [0,0,initial_pop] # x, y, gDW
 lcts_comets.open_exchanges()
 </code></pre>
-
 <p>Now we are going to use the manual method for making a chemostat. Recall that cobrapy media are set using exchange reaction IDs, whereas COMETS media are set using metabolite ids. We can easily take care of this difference with a dictionary comprehension. Here we do that, then generate a layout, and add the media components to that layout.</p>
-<pre><code class="python"># setup layout by providing models
+<pre><code class="language-python"># setup layout by providing models
 layout = c.layout([galE_comets, lcts_comets])
 
 # re-write media (while removing galactose) and add it to layout
@@ -310,35 +336,29 @@ comets_media = {key[3:]: value for key, value in medium.items() if key != &quot;
 for key, value in comets_media.items():
     layout.set_specific_metabolite(key, value)
 </code></pre>
-
 <p>The input of fresh media from the reservoir into the simulation is done using media_refresh. Metabolites with a media_refresh value are replenished at the specified amount per-hour. Since we are diluting at 0.1 per hour, we multiply the reservoir concentration by this rate.</p>
-<pre><code class="python">for key, value in comets_media.items():
+<pre><code class="language-python">for key, value in comets_media.items():
     layout.set_specific_refresh(key, value * dilution_rate)
 </code></pre>
-
 <p>The rest of the chemostat--the outflow--is setup in the parameters using metaboliteDilutionRate and deathRate. These should be set equal to the desired dilution rate. Here we generate a parameters object and set these values.</p>
-<pre><code class="python">params = c.params()
+<pre><code class="language-python">params = c.params()
 params.set_param(&quot;deathRate&quot;, dilution_rate)
 params.set_param(&quot;metaboliteDilutionRate&quot;, dilution_rate)
 </code></pre>
-
 <p>Let's also adjust a few other parameters.</p>
-<pre><code class="python">params.set_param(&quot;timeStep&quot;, 0.1) # hours
+<pre><code class="language-python">params.set_param(&quot;timeStep&quot;, 0.1) # hours
 params.set_param(&quot;maxSpaceBiomass&quot;, 10.) # gDW
 params.set_param(&quot;maxCycles&quot;, 300) # duration of simulation in time steps
 </code></pre>
-
 <p>Finally, let's keep track of two key metabolites: lactose and galactose. We do this using the specificMedia log, and choosing the metabolites with a comma-separated string with no spaces.</p>
-<pre><code class="python">params.set_param(&quot;writeSpecificMediaLog&quot;, True)
+<pre><code class="language-python">params.set_param(&quot;writeSpecificMediaLog&quot;, True)
 params.set_param(&quot;specificMediaLogRate&quot;, 1) # time steps
 params.set_param(&quot;specificMedia&quot;, &quot;lcts_e,gal_e&quot;) # metabolites to track
 </code></pre>
-
 <p>Now the chemostat aspects are setup using the layout and the parameters. Therefore, we can generate a COMETS simulation, run it, and then examine the biomass and metabolites.</p>
-<pre><code class="python">sim = c.comets(layout, params)
+<pre><code class="language-python">sim = c.comets(layout, params)
 sim.run()
 </code></pre>
-
 <pre><code>Warning: java class libraries cannot be found
 
 Running COMETS simulation ...
@@ -346,19 +366,17 @@ Done!
 </code></pre>
 <p>Now let's plot the results. Note how we specify the axes, otherwise "cycle", "x", and "y" will be assumed to be state variables. </p>
 <p>What we see is that both species survive, because the LCTStex_KO cross-feeds galactose from the galE_KO, which uses the glucose piece of lactose. The metabolites, as is typical in a chemostat, are in very low concentrations once equilibrium is reached.</p>
-<pre><code class="python">sim.total_biomass.plot(x = &quot;cycle&quot;, logy = True)
+<pre><code class="language-python">sim.total_biomass.plot(x = &quot;cycle&quot;, logy = True)
 sim.specific_media.plot(x = &quot;cycle&quot;,y = [&quot;lcts_e&quot;,&quot;gal_e&quot;])
 </code></pre>
-
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f468e670b70&gt;
 </code></pre>
-<p><img alt="png" src="../../img/chemostat_1.png" /></p>
-<p><img alt="png" src="../../img/chemostat_2.png" /></p>
+<p><img alt="png" src="../img/chemostat_1.png" /></p>
+<p><img alt="png" src="../img/chemostat_2.png" /></p>
 <p>The above code required setting chemostat parameters in multiple places. We offer this functionality so that researchers can create complex setups that may, for example, have different initial concentrations than reservoir concentrations, and different inflow rates than outflow rates. However, we expect most chemostat simulations will function like above, where a single dilution parameter dictates the behavior of the system. For this typical use-case, we have made a helper function in the utils subpackage which generates a layout and parameters objects with the correct setup.</p>
-<pre><code class="python">from cometspy.utils import chemostat
+<pre><code class="language-python">from cometspy.utils import chemostat
 </code></pre>
-
-<pre><code class="python">chemostat([galE_comets, lcts_comets], comets_media, dilution_rate)
+<pre><code class="language-python">chemostat([galE_comets, lcts_comets], comets_media, dilution_rate)
 # we can still adjust the parameters as desired.
 params.set_param(&quot;timeStep&quot;, 0.1) # hours
 params.set_param(&quot;maxSpaceBiomass&quot;, 10.) # gDW
@@ -371,7 +389,6 @@ sim = c.comets(layout, params)
 sim.run()
 sim.total_biomass.plot(x = &quot;cycle&quot;, logy = True)
 </code></pre>
-
 <pre><code>Running COMETS simulation ...
 Done!
 
@@ -381,8 +398,8 @@ Done!
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x7f468e200c88&gt;
 </code></pre>
-<p><img alt="png" src="../../img/chemostat_3.png" /></p>
-<pre><code class="python">
+<p><img alt="png" src="../img/chemostat_3.png" /></p>
+<pre><code class="language-python">
 </code></pre>
               
             </div>
@@ -414,12 +431,12 @@ Done!
       
     </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../js/extra.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/extra.js" defer></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" defer></script>
-      <script src="../../mathjax-config.js" defer></script>
-      <script src="../../search/main.js" defer></script>
+      <script src="../mathjax-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
