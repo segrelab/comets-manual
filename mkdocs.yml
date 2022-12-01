@@ -34,4 +34,5 @@ nav:
         - Virtual Petri dish: petri_dish.md
     - COMETS MATLAB TOOLBOX:
         - Example: colony.md
+        - Example: multispeciesgrowthexchange.md
 theme: readthedocs
